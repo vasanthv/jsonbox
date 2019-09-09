@@ -8,8 +8,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, "www"), { maxAge: (3600000 * 4) }));
 app.use(bodyParser.json());
 
-// app.use('/users', require('./src/users/routes'));
-app.use('/', require('./src/data/routes'));
+app.post('/paypal', require('./src/paypal'));
+app.use(require('./src/data/routes'));
 
 
 app.listen(config.PORT, err => {

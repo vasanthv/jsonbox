@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Cache-control" content="public" />
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="HTTP based JSON storage for small projects." />
+	<meta name="keywords" content="json storage, json database, http" />
+	<meta property="og:url" content="https://jsonbox.io" />
+	<meta property="og:image" content="https://jsonbox.io/android-chrome-512x512.png" />
+	<meta property="og:title" content="jsonbox.io" />
+	<meta property="og:description" content="HTTP based JSON storage for small projects." />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="icon" href="icon.svg" sizes="any" type="image/svg+xml" />
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#333333" />
+	<link rel="author" href="/humans.txt" type="text/plain" />
+	<title>jsonbox.io | HTTP based JSON storage</title>
+	<link href="/style.css" rel="stylesheet" />
+	<script defer src="/vue.min.js"></script>
+	<!-- <script defer src="/script.js"></script> -->
+	<script src="https://www.paypal.com/sdk/js?client-id=ASAtcAk_uMa4_IMJWDj9aCQy17wKtaJVu6km4-2GxPJJ_JHvHo8fZUEARi6840g-Yppag4TDAq6cTGlZ"></script>
+</head>
+
+<body>
+	<div id="paypal-button-container"></div>
+	<script>
+	paypal.Buttons({
+		createOrder: function(data, actions) {
+			// Set up the transaction
+			return actions.order.create({
+				purchase_units: [{
+					amount: {
+						currency_code: 'USD',
+						value: '24.00'
+					},
+					custom_id: 'THISISIHGFLDHIDJHGDK8d84'
+				}]
+			});
+		},
+		onApprove: function(data, actions) {
+			// Capture the funds from the transaction
+			return actions.order.capture().then(function(details) {
+				// Show a success message to your buyer
+				alert('Transaction completed by ' + details.payer.name.given_name);
+				return fetch('/paypal', {
+					method: 'post',
+					headers: {
+						'content-type': 'application/json'
+					},
+					body: JSON.stringify({
+						orderID: data.orderID,
+						email: "vasanthv@outlook.com"
+					})
+				});
+			});
+		}
+	}).render('#paypal-button-container');
+
+	</script>
+</body>
+
+</html>

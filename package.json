@@ -26,7 +26,9 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "fetch-lite": "^1.1.0",
     "mongoose": "^5.6.12",
+    "nodemailer": "^6.3.0",
     "uuid": "^3.3.3"
   }
 }

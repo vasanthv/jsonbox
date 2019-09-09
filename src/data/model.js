@@ -9,7 +9,7 @@ const xpost = async (req, res, next) => {
 			let record = { _box: req.box };
 			if (req.collection) record['_collection'] = req.collection;
 			record['_createdOn'] = date;
-			record['_createdBy'] = req.API_KEY;
+			record['_createdBy'] = req.API_SECRET;
 			record['data'] = body;
 			const newRecord = await new Data(record).save();
 			console.log(helper.responseBody(newRecord));
@@ -28,8 +28,6 @@ const xpost = async (req, res, next) => {
 	} catch (error) {
 		next(error);
 	}
-	// increment a count in the box collection;
-	// await Db.Box.updateOne({ key: req.box }, { $inc: { noOfRecords: 1 } });
 };
 const xget = async (req, res, next) => {
 	try {
@@ -81,7 +79,11 @@ const xput = async (req, res, next) => {
 	try {
 		const record = await Data.findOne({ _id: req.recordId, _box: req.box }).exec();
 		if (record) {
-			await Data.updateOne({ _id: req.recordId, _box: req.box }, { data: req.body });
+			await Data.updateOne({ _id: req.recordId, _box: req.box }, {
+				_updatedOn: new Date(),
+				_updatedBy: req.API_SECRET,
+				data: req.body
+			});
 			res.json({ message: "Record updated." });
 		} else { res.status(400).json({ message: "Invalid record Id" }) }
 	} catch (error) {
@@ -98,8 +100,6 @@ const xdelete = async (req, res, next) => {
 	} catch (error) {
 		next(error);
 	}
-	// decrement a count in the box collection;
-	// await Db.Box.updateOne({ key: req.box }, { $inc: { noOfRecords: -1 } });
 };
 
 module.exports = {

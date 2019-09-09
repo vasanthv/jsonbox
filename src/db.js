@@ -8,7 +8,7 @@ module.exports = (() => {
 		const mongoose = require("mongoose");
 		const config = require("./config");
 
-		mongoose.connect(config.DATA_MONGO_URL, { useCreateIndex: true, useNewUrlParser: true });
+		mongoose.connect(config.MONGO_URL, { useCreateIndex: true, useNewUrlParser: true });
 		const Schema = mongoose.Schema;
 
 		console.log('Data Db initialized');
@@ -24,38 +24,33 @@ module.exports = (() => {
 		});
 
 		// Users Schema
-		const userSchema = new Schema({
-			name: String,
-			email: { type: String, index: true, unique: true },
-			password: String,
-			joinedOn: Date,
-			lastLoginOn: Date,
-			token: { type: String, index: true, unique: true },
-			verified: Boolean,
-			code: String,
-			resetCode: String
-		});
+		// const userSchema = new Schema({
+		// 	name: String,
+		// 	email: { type: String, index: true, unique: true },
+		// 	password: String,
+		// 	joinedOn: Date,
+		// 	lastLoginOn: Date,
+		// 	token: { type: String, index: true, unique: true },
+		// 	verified: Boolean,
+		// 	code: String,
+		// 	resetCode: String
+		// });
 
 		// Box Schema
 		const boxSchema = new Schema({
-			name: String,
 			key: { type: String, index: true, unique: true },
-			type: { type: String, enum: ['PRIVATE', 'PUBLIC'] },
+			type: { type: String, enum: ['PRIVATE', 'PUBLIC', 'EXPIRED'] },
 			expiresOn: Date,
 			createdOn: Date,
-			createdBy: { type: Schema.Types.ObjectId, ref: "Users", index: true },
-			users: [{ type: Schema.Types.ObjectId, ref: "Users" }],
 			access: [{
 				key: { type: String, index: true },
 				permission: { type: String, enum: ['READ', 'READWRITE'] }
-			}],
-			noOfRecords: { type: Number, default: 0 },
-			deleted: Boolean
+			}]
 		});
 
 
 		return {
-			User: mongoose.model("User", userSchema),
+			// User: mongoose.model("User", userSchema),
 			Box: mongoose.model("Box", boxSchema),
 			Data: mongoose.model("Data", dataSchema)
 		};
