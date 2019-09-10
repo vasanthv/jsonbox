@@ -42,6 +42,7 @@ module.exports = (() => {
 			type: { type: String, enum: ['PRIVATE', 'PUBLIC', 'EXPIRED'] },
 			expiresOn: Date,
 			createdOn: Date,
+			renewedOn: Date,
 			access: [{
 				key: { type: String, index: true },
 				permission: { type: String, enum: ['READ', 'READWRITE'] }

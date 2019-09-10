@@ -17,10 +17,8 @@ const transporter = nodemailer.createTransport({
 });
 const formatDate = function(datestring) {
 	const date = new Date(datestring);
-	const hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
 	return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][date.getMonth()] + ' ' +
-		(date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ', ' +
-		(date.getFullYear() != (new Date()).getFullYear() ? date.getFullYear() : '');
+		(date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ', ' + date.getFullYear();
 };
 
 const genToken = () => {
@@ -44,44 +42,59 @@ module.exports = async (req, res) => {
 			const boxKey = responseBody.purchase_units[0].custom_id;
 			const email = req.body.email;
 			const date = new Date();
-			const expiry = new Date();
-			expiry.setFullYear(expiry.getFullYear() + 1);
-			expiry.setHours(23);
-			expiry.setMinutes(59);
-			expiry.setSeconds(59);
-			const readKey = genToken();
-			const writeKey = genToken();
-			const body = {
-				key: boxKey,
-				email: email,
-				type: "PRIVATE",
-				expiresOn: expiry,
-				createdOn: date,
-				access: [{ key: readKey, permission: 'READ' }, { key: writeKey, permission: 'READWRITE' }]
+
+			const thisBox = await Box.findOne({ key: boxKey }).exec();
+			if (thisBox) {
+				var expiry = thisBox.expiry;
+				expiry.setFullYear(expiry.getFullYear() + 1);
+				var readKey = thisBox.access.find(a => a.permission == 'READ').key;
+				var writeKey = thisBox.access.find(a => a.permission == 'READWRITE').key;
+				await Box.updateOne({ key: boxKey }, { expiry: expiry, renewedOn: date });
+			} else {
+				var expiry = new Date();
+				expiry.setFullYear(expiry.getFullYear() + 1);
+				expiry.setHours(23);
+				expiry.setMinutes(59);
+				expiry.setSeconds(59);
+				var readKey = genToken();
+				var writeKey = genToken();
+				var body = {
+					key: boxKey,
+					email: email,
+					type: "PRIVATE",
+					expiresOn: expiry,
+					createdOn: date,
+					access: [{ key: readKey, permission: 'READ' }, { key: writeKey, permission: 'READWRITE' }]
+				}
+				await new Box(body).save();
 			}
-			await new Box(body).save();
+
 			res.json({ message: "Payment successful", readKey: readKey, writeKey: writeKey, expiry: expiry });
 
 			//send mail to the user with access keys
-			var mailOptions = {
-				from: "jsonbox.io <jsonbox.io@gmail.com>",
-				to: email,
-				subject: 'Your private box is ready!',
-				html: 'Hello <br/> Your private box in jsonbox.io is ready. Please find the details below: <br/><br/>' +
-					'<b>Box ID:</b> <i>' + boxKey + '</i><br/>' +
-					'<b>API Secret (READ & WRITE):</b> <i>' + writeKey + '</i><br/>' +
-					'<b>API Secret (READONLY):</b> <i>' + readKey + '</i><br/>' +
-					'<b>Type:</b> <i>PRIVATE</i><br/>' +
-					'<b>Expires On:</b> <i>' + formatDate(expiry) + '</i><br/><br/>' +
-					'<small>Thank you for choosing jsonbox.io. You can find the documentation <a href="https://jsonbox.io/#docs">here</a>. For any queries you can reply to this email. </small>'
-			}
-			transporter.sendMail(mailOptions, (error, response) => {
-				if (error) console.log(error);
-				console.log(response);
-			});
+			sendMail(email, boxKey, writeKey, readKey, expiry);
 		} else res.status(400).json({ message: "Invalid payment info" });
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ message: "Something went wrong" });
 	}
+}
+
+const sendMail = (email, boxKey, writeKey, readKey, expiry) => {
+	var mailOptions = {
+		from: "jsonbox.io <jsonbox.io@gmail.com>",
+		to: email,
+		subject: 'Your private box is ready!',
+		html: 'Hello <br/> Your private box in jsonbox.io is ready. Please find the details below: <br/><br/>' +
+			'<b>Box ID:</b> <i>' + boxKey + '</i><br/>' +
+			'<b>API Secret (READ & WRITE):</b> <i>' + writeKey + '</i><br/>' +
+			'<b>API Secret (READONLY):</b> <i>' + readKey + '</i><br/>' +
+			'<b>Type:</b> <i>PRIVATE</i><br/>' +
+			'<b>Expires On:</b> <i>' + formatDate(expiry) + '</i><br/><br/>' +
+			'<small>Thank you for choosing jsonbox.io. You can find the documentation <a href="https://jsonbox.io/#docs">here</a>. For any queries you can reply to this email. </small>'
+	}
+	transporter.sendMail(mailOptions, (error, response) => {
+		if (error) console.log(error);
+		console.log(response);
+	});
 }
