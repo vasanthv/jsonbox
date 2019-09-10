@@ -40,6 +40,7 @@ module.exports = (() => {
 		const boxSchema = new Schema({
 			key: { type: String, index: true, unique: true },
 			type: { type: String, enum: ['PRIVATE', 'PUBLIC', 'EXPIRED'] },
+			email: String,
 			expiresOn: Date,
 			createdOn: Date,
 			renewedOn: Date,

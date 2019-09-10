@@ -77,7 +77,7 @@ const publicBoxValidation = (req, res, next) => {
 
 // check the API_SECRET for the PRIVATE Box
 const privateBoxValidation = (req, res, next) => {
-	if (req.boxType === 'PUBLIC') next();
+	if (req.boxType === 'PUBLIC' || req.boxType === 'EXPIRED') next();
 	else {
 		const API_SECRET = req.headers['api-secret'] || req.headers['x-api-secret'];
 		req['API_SECRET'] = API_SECRET;

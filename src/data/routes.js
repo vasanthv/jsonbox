@@ -3,11 +3,11 @@ const router = require('express').Router();
 const model = require('./model');
 const validators = require('./validators');
 
-router.use((req, res, next) => {
-	console.log('----------GOT HERE');
-	console.log(req.path);
-	next();
-})
+// router.use((req, res, next) => {
+// 	console.log('----------GOT HERE');
+// 	console.log(req.path);
+// 	next();
+// })
 // list of all validators to be in place
 router.use(validators.sizeValidator);
 router.use(validators.keysValidator);

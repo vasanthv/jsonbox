@@ -45,11 +45,11 @@ module.exports = async (req, res) => {
 
 			const thisBox = await Box.findOne({ key: boxKey }).exec();
 			if (thisBox) {
-				var expiry = thisBox.expiry;
+				var expiry = thisBox.expiresOn;
 				expiry.setFullYear(expiry.getFullYear() + 1);
 				var readKey = thisBox.access.find(a => a.permission == 'READ').key;
 				var writeKey = thisBox.access.find(a => a.permission == 'READWRITE').key;
-				await Box.updateOne({ key: boxKey }, { expiry: expiry, renewedOn: date });
+				await Box.updateOne({ key: boxKey }, { expiresOn: expiry, renewedOn: date });
 			} else {
 				var expiry = new Date();
 				expiry.setFullYear(expiry.getFullYear() + 1);
