@@ -15,7 +15,7 @@ module.exports = (() => {
 		// Data Schema
 		const dataSchema = new Schema({
 			_box: { type: String, index: true, select: false }, // box to which the record belongs
-			_collection: { type: String, index: true, select: false }, // Any collection if user passes in URL
+			_collection: { type: String, index: true }, // Any collection if user passes in URL
 			_createdOn: Date, // Date on which its created
 			_createdBy: { type: String, select: false }, // API KEY used to create the record
 			_updatedOn: Date, // Date on which its updated

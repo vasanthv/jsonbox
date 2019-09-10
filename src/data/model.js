@@ -12,8 +12,7 @@ const xpost = async (req, res, next) => {
 			record['_createdBy'] = req.API_SECRET;
 			record['data'] = body;
 			const newRecord = await new Data(record).save();
-			console.log(helper.responseBody(newRecord));
-			return helper.responseBody(newRecord);
+			return helper.responseBody(newRecord, req.collection);
 		}
 
 		if (Array.isArray(req.body)) {
@@ -33,7 +32,7 @@ const xget = async (req, res, next) => {
 	try {
 		if (req.recordId) {
 			const record = await Data.findOne({ _id: req.recordId, _box: req.box }).exec();
-			res.json(helper.responseBody(record));
+			res.json(helper.responseBody(record, req.collection));
 		} else {
 			const skip = req.query.skip ? +(req.query.skip) : 0;
 			let limit = req.query.limit ? +(req.query.limit) : 20;
@@ -69,7 +68,7 @@ const xget = async (req, res, next) => {
 			query['_box'] = req.box;
 			if (req.collection) query['_collection'] = req.collection;
 			const records = await Data.find(query).skip(skip).limit(limit).sort(sort).exec();
-			res.json(records.map(helper.responseBody));
+			res.json(records.map(r => helper.responseBody(r, req.collection)));
 		}
 	} catch (error) {
 		next(error);

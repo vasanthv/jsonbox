@@ -35,13 +35,14 @@ const isValidKeys = (obj) => {
 	const keys = Object.keys(obj);
 	return keys.every(key => /^[A-Za-z]/i.test(key[0]));
 }
-const responseBody = (obj) => {
+const responseBody = (obj, collection) => {
 	let response = {};
 	response['_id'] = obj._id;
 	const data = obj.data;
 	response = { ...response, ...data };
 	response['_createdOn'] = obj._createdOn;
 	if (obj._updatedOn) response['_updatedOn'] = obj._updatedOn;
+	if (!collection && obj._collection) response['_collection'] = obj._collection;
 	return response;
 }
 
