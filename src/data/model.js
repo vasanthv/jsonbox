@@ -36,7 +36,7 @@ const xget = async (req, res, next) => {
 		} else {
 			const skip = req.query.skip ? +(req.query.skip) : 0;
 			let limit = req.query.limit ? +(req.query.limit) : 20;
-			limit = limit > 100 ? 100 : limit;
+			limit = limit > 1000 ? 1000 : limit;
 			let sort = req.query.sort ? req.query.sort : '-_createdOn';
 			if (!['_createdOn', '-_createdOn', '_updatedOn', '-_updatedOn'].includes(sort)) {
 				sort = (sort[0] === '-') ? '-data.' + sort.substr(1) : 'data.' + sort;

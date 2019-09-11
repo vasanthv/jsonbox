@@ -9,6 +9,7 @@ const validators = require('./validators');
 // 	next();
 // })
 // list of all validators to be in place
+router.use(validators.removeNativeKeys);
 router.use(validators.sizeValidator);
 router.use(validators.keysValidator);
 router.use(validators.extractParams);

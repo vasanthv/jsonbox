@@ -9,57 +9,144 @@
 	<meta name="description" content="HTTP based JSON storage for small projects." />
 	<meta name="keywords" content="json storage, json database, http" />
 	<meta property="og:url" content="https://jsonbox.io" />
-	<meta property="og:image" content="https://jsonbox.io/android-chrome-512x512.png" />
+	<meta property="og:image" content="https://jsonbox.io/icon.png" />
 	<meta property="og:title" content="jsonbox.io" />
 	<meta property="og:description" content="HTTP based JSON storage for small projects." />
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="icon" href="icon.svg" sizes="any" type="image/svg+xml" />
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#333333" />
 	<link rel="author" href="/humans.txt" type="text/plain" />
 	<title>jsonbox.io | HTTP based JSON storage</title>
 	<link href="/style.css" rel="stylesheet" />
 	<script defer src="/vue.min.js"></script>
-	<!-- <script defer src="/script.js"></script> -->
 	<script src="https://www.paypal.com/sdk/js?client-id=ASAtcAk_uMa4_IMJWDj9aCQy17wKtaJVu6km4-2GxPJJ_JHvHo8fZUEARi6840g-Yppag4TDAq6cTGlZ"></script>
+	<script defer src="/script.js"></script>
 </head>
 
 <body>
-	<div id="paypal-button-container"></div>
+	<section id="home">
+		<div class="wrapper">
+			<div id="brand">
+				<div id="logo">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+						<path fill="#be8549" d="M 42.00,2.00 C 44.21,2.00 46.00,3.79 46.00,6.00 46.00,6.00 46.00,14.00 46.00,14.00 46.09,14.00 2.00,14.09 2.00,14.00 2.00,14.00 2.00,6.00 2.00,6.00 2.00,3.79 3.79,2.00 6.00,2.00 6.00,2.00 42.00,2.00 42.00,2.00 Z M 46.00,16.09 C 46.00,16.09 46.00,41.00 46.00,41.00 46.00,43.76 43.76,46.00 41.00,46.00 41.00,46.00 7.00,46.00 7.00,46.00 4.24,46.00 2.00,43.76 2.00,41.00 2.00,41.00 2.00,16.00 2.00,16.00 2.09,16.00 46.09,16.18 46.00,16.09 Z" />
+						<path fill="#8b5929" d="M 20.00,24.00 C 18.90,24.00 18.00,24.90 18.00,26.00 18.00,26.00 18.00,26.00 18.00,26.00 18.00,27.10 18.90,28.00 20.00,28.00 20.00,28.00 28.00,28.00 28.00,28.00 29.10,28.00 30.00,27.10 30.00,26.00 30.00,26.00 30.00,26.00 30.00,26.00 30.00,24.90 29.10,24.00 28.00,24.00 28.00,24.00 20.00,24.00 20.00,24.00 Z" />
+					</svg>
+				</div>
+				jsonbox.io
+			</div>
+			<div id="desc">Free HTTP based JSON Storage</div>
+			<div id="randomwrap">
+				<div id="randombox">
+					<input type="text" class="mono" id="boxurl" value="https://jsonbox.io/91229bf2214443f6b0f3d94549850cce" readonly />
+					<button onclick="copyURL()">Copy to clipboard</button>
+				</div>
+			</div>
+			<div id="nav">
+				<a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">read the docs</a>
+				&middot;
+				<a href="javascript:void(0)" onclick="toggleBuy()">private box <small>($2/mon)</small></a>
+			</div>
+		</div>
+	</section>
+	<section id="faq">
+		<div class="wrapper">
+			<h1>Frequently Asked Questions</h1>
+			<div class="faq">
+				<h3>What is jsonbox.io?</h3>
+				<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. Please read the <a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">docs</a> for more info.</p>
+			</div>
+			<div class="faq">
+				<h3>Why is there a premium offering?</h3>
+				<p>Premium subscriptions help us keep the service free while maintaining a rock solid infrastructure, and investing on new features. Unlike others, we’re here to stay.</p>
+			</div>
+			<div class="faq">
+				<h3>Whats in there for premium?</h3>
+				<p>All boxes are public by default (meaning there is no authentication). The data is as secure as the box id you are using. Whereas for Private boxes, there is a one more level of authentication using API-SECRET.</p>
+			</div>
+			<div class="faq">
+				<h3>Is there any limits?</h3>
+				<p>Yes. For a free box the size of a single record should not be more than 10KB. If you are using a private box, you can store upto 100KB of JSON data in a single record. But there is no limit to the number of records in both free & private boxes.</p>
+			</div>
+			<div class="faq">
+				<h3>How do we contact you?</h3>
+				<p>You can contact us for any queries, feel free to contact us at <a href="mailto:jsonbox.io@gmail.com">jsonbox.io@gmail.com</a>. We will respond within 24 to 48 hours.</p>
+			</div>
+			<div class="faq">
+				<h3>Where is our data stored?</h3>
+				<p>Your data is securely stored in our MongoDb instances.</p>
+			</div>
+			<div class="faq">
+				<h3>Do you sell our data to third parties?</h3>
+				<p>No. Never. We don't sell your data to any third parties.</p>
+			</div>
+		</div>
+	</section>
+	<section id="buy">
+		<div id="app" class="wrapper">
+			<a href="javascript:void(0)" id="close" onclick="toggleBuy()">&times;</a>
+			<br /><br />
+			<h1 v-if="!orderComplete">
+				Buy/Renew Private Box ($2/mon)<br/>
+				<small>Billed annually ($24/yr)</small>
+			</h1>
+			<br v-if="!orderComplete" />
+			<div id="privateform" v-if="!orderComplete">
+				<input type="email" v-model="email" placeholder="Email address" required />
+				<div class="info">Please enter a valid email id, as the API_SECRET will be sent to this email and this is to be used of all communications further.</div>
+				<br />
+				<input type="text" v-model="boxid" placeholder="Box ID" required />
+				<button id="generateBtn" v-on:click="generateBoxId">Generate</button>
+				<div class="info">Only alphanumeric characters & "_" is allowed. Min. 20 characters.</div>
+				<br />
+				<div id="notice" v-if="notice" v-html="notice"></div>
+				<button id="nextBtn" v-if="!notice" v-on:click="next">Next</button>
+				<div id="paypal-button-container"></div>
+			</div>
+			<br />
+			<div v-if="orderComplete">
+				We have sent you an email with your access credentials. Please check your SPAM folder as well. If you haven't received your email in the next 5 mins, contact us at <a href="mailto:jsonbox.io@gmail.com">jsonbox.io@gmail.com</a>. Please read our <a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">docs</a> for information on how to use your credentials.
+			</div>
+		</div>
+	</section>
+	<footer class="wrapper">
+		&copy; jsonbox.io
+	</footer>
 	<script>
-	paypal.Buttons({
-		createOrder: function(data, actions) {
-			// Set up the transaction
-			return actions.order.create({
-				purchase_units: [{
-					amount: {
-						currency_code: 'USD',
-						value: '24.00'
-					},
-					custom_id: 'THISISIHGFLDHIDJHGDK8d84'
-				}]
-			});
-		},
-		onApprove: function(data, actions) {
-			// Capture the funds from the transaction
-			return actions.order.capture().then(function(details) {
-				// Show a success message to your buyer
-				alert('Transaction completed by ' + details.payer.name.given_name);
-				return fetch('/paypal', {
-					method: 'post',
-					headers: {
-						'content-type': 'application/json'
-					},
-					body: JSON.stringify({
-						orderID: data.orderID,
-						email: "vasanthv@outlook.com"
-					})
+	function loadPaypal() {
+		paypal.Buttons({
+			createOrder: function(data, actions) {
+				// Set up the transaction
+				if (thisApp.boxid && thisApp.email)
+					return actions.order.create({
+						purchase_units: [{
+							amount: {
+								currency_code: 'USD',
+								value: '24.00'
+							},
+							custom_id: thisApp.boxid
+						}]
+					});
+			},
+			onApprove: function(data, actions) {
+				// Capture the funds from the transaction
+				return actions.order.capture().then(function(details) {
+					// Show a success message to your buyer
+					alert('Transaction completed by ' + details.payer.name.given_name);
+					thisApp.orderComplete = true;
+					return fetch('/paypal', {
+						method: 'post',
+						headers: {
+							'content-type': 'application/json'
+						},
+						body: JSON.stringify({
+							orderID: data.orderID,
+							email: thisApp.email
+						})
+					});
 				});
-			});
-		}
-	}).render('#paypal-button-container');
+			}
+		}).render('#paypal-button-container');
+	}
 
 	</script>
 </body>

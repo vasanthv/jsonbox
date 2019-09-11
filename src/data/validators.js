@@ -1,6 +1,15 @@
 const helper = require('./helper');
 const Db = require('../db').getInstance();
 
+// remove the native keys from req.body
+const removeNativeKeys = (req, res, next) => {
+	delete req.body._id;
+	delete req.body._createdOn;
+	delete req.body._updatedOn;
+	delete req.body._collection;
+	next();
+}
+
 // size of the JSON body should be larger than 100KB
 const sizeValidator = (req, res, next) => {
 	if (req.method === 'POST' || req.method === 'PUT') {
@@ -29,13 +38,13 @@ const extractParams = (req, res, next) => {
 	const path = req.path;
 	const pathParams = path.split('/').filter(p => !!p);
 	const isHexString = /^([0-9A-Fa-f]){24}$/;
-	const isAlphanumeric = /^[0-9A-Za-z]+$/i;
+	const isValidBoxID = /^[0-9A-Za-z_]+$/i;
 	if (pathParams[0]) {
-		req['box'] = isAlphanumeric.test(pathParams[0]) ? pathParams[0] : undefined;
+		req['box'] = isValidBoxID.test(pathParams[0]) ? pathParams[0] : undefined;
 		if (pathParams[1]) {
 			const isObjectId = isHexString.test(pathParams[1]);
 			if (isObjectId) req['recordId'] = pathParams[1];
-			else req['collection'] = pathParams[1];
+			else req['collection'] = isValidBoxID.test(pathParams[1]) ? pathParams[1] : undefined;
 		}
 		if (!req['recordId'] && pathParams[2]) {
 			req['recordId'] = isHexString.test(pathParams[2]) ? pathParams[2] : undefined;
@@ -99,6 +108,7 @@ const throwError = (message, code) => {
 }
 
 module.exports = {
+	removeNativeKeys,
 	sizeValidator,
 	keysValidator,
 	extractParams,

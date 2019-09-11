@@ -28,7 +28,7 @@ const genToken = () => {
 module.exports = async (req, res) => {
 	const orderID = req.body.orderID;
 	try {
-		const response = await fetch('https://api.sandbox.paypal.com/v2/checkout/orders/' + orderID, {
+		const response = await fetch(config.PAYPAL_BASE_URL + '/v2/checkout/orders/' + orderID, {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json',
