@@ -20,8 +20,8 @@ Response:
 You can also created multiple records at once by passing an array 
 ```sh
 curl -X POST 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4' \
-	-H 'content-type: application/json' \
-	-d '[{"name": "Daenerys Targaryen", "age": 25}, {"name": "Arya Stark", "age": 16}]'
+  -H 'content-type: application/json' \
+  -d '[{"name": "Daenerys Targaryen", "age": 25}, {"name": "Arya Stark", "age": 16}]'
 ```
 ```json
 [
@@ -29,3 +29,6 @@ curl -X POST 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4' \
   {"_id":"5d776b75fd6d3d6cb1d45c53","name":"Arya Stark","age":16,"_createdOn":"2019-09-10T09:23:01.105Z"}
 ]
 ```
+You can also pass in an optional collections parameter in the url to group records `jsonbox.io/${BOX_ID}/${COLLECTION}`.
+
+_Note: A valid `${BOX_ID}` & `${COLLECTION}` should contain only alphanumeric characters & \_. `${BOX_ID}` should be atleast 20 character long._
