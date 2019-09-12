@@ -111,7 +111,7 @@
 			<br v-if="!orderComplete" />
 			<div id="privateform" v-if="!orderComplete">
 				<input type="email" v-model="email" placeholder="Email address" required />
-				<div class="info">Please enter a valid email id, as the API_SECRET will be sent to this email and this is to be used of all communications in future.</div>
+				<div class="info">Please enter valid email id, as the API_SECRET will be sent to this email and this is to be used of all communications in future.</div>
 				<br />
 				<input type="text" v-model="boxid" placeholder="Box ID" required />
 				<button id="generateBtn" v-on:click="generateBoxId">Generate</button>
