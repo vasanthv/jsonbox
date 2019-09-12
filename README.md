@@ -17,7 +17,7 @@ Response:
 {"_id":"5d776a25fd6d3d6cb1d45c51","name":"Jon Snow","age":25,"_createdOn":"2019-09-10T09:17:25.607Z"}
 ```
 
-You can also created multiple records at once by passing an array 
+You can also create multiple records at once by passing an array 
 ```sh
 curl -X POST 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4' \
     -H 'content-type: application/json' \
@@ -29,7 +29,7 @@ curl -X POST 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4' \
   {"_id":"5d776b75fd6d3d6cb1d45c53","name":"Arya Stark","age":16,"_createdOn":"2019-09-10T09:23:01.105Z"}
 ]
 ```
-You can also pass in an optional collections parameter in the url to group records `jsonbox.io/${BOX_ID}/${COLLECTION}`.
+You can also pass in an optional collections parameter in the URL to group records `jsonbox.io/${BOX_ID}/${COLLECTION}`.
 
 _Note: A valid `${BOX_ID}` & `${COLLECTION}` should contain only alphanumeric characters & \_. `${BOX_ID}` should be atleast 20 character long._
 
@@ -78,7 +78,7 @@ All the accepted query params are as follows.
 | query_type  | Query type can either of these "startswith", "endswith", "anywhere".                          | exact       |
 
 ### Update
-Use HTTP PUT to update record one by one. Please note that this will not patch the record, it is full update. _Bulk update is not supported yet._
+Use HTTP PUT to update record one by one. Please note that this will not patch the record, it is full update. _A Bulk update is not supported yet._
 ```sh
 curl -X PUT 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4/5d776b75fd6d3d6cb1d45c53' \
     -H 'content-type: application/json' \
@@ -100,4 +100,4 @@ curl -X POST 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4' \
     -d '{"name": "Jon Snow", "age": 25}'
 ```
 
-For any queries contact the email address listed in https://jsonbox.io.
+For any queries contact the email address listed on https://jsonbox.io.
