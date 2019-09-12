@@ -23,39 +23,7 @@ module.exports = (() => {
 			data: { type: Object } // Actual data of the record
 		});
 
-		// Users Schema
-		// const userSchema = new Schema({
-		// 	name: String,
-		// 	email: { type: String, index: true, unique: true },
-		// 	password: String,
-		// 	joinedOn: Date,
-		// 	lastLoginOn: Date,
-		// 	token: { type: String, index: true, unique: true },
-		// 	verified: Boolean,
-		// 	code: String,
-		// 	resetCode: String
-		// });
-
-		// Box Schema
-		const boxSchema = new Schema({
-			key: { type: String, index: true, unique: true },
-			type: { type: String, enum: ['PRIVATE', 'PUBLIC', 'EXPIRED'] },
-			email: String,
-			expiresOn: Date,
-			createdOn: Date,
-			renewedOn: Date,
-			access: [{
-				key: { type: String, index: true },
-				permission: { type: String, enum: ['READ', 'READWRITE'] }
-			}]
-		});
-
-
-		return {
-			// User: mongoose.model("User", userSchema),
-			Box: mongoose.model("Box", boxSchema),
-			Data: mongoose.model("Data", dataSchema)
-		};
+		return mongoose.model("Data", dataSchema);
 	}
 	return {
 		getInstance: () => {

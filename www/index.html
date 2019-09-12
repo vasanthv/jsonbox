@@ -22,11 +22,8 @@
 	</script>
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="icon" href="icon.svg" sizes="any" type="image/svg+xml" />
-	<link rel="author" href="/humans.txt" type="text/plain" />
 	<title>jsonbox.io | HTTP based JSON storage</title>
 	<link href="/style.css" rel="stylesheet" />
-	<script defer src="/vue.min.js"></script>
-	<script src="https://www.paypal.com/sdk/js?client-id=AedRFErPsMLHRhU9sgOKorqBIWi65arviPrFtCRdmteNJyP0zzRCPYpBsEqke2vnsNret7cG7ZFCIXAP"></script>
 	<script defer src="/script.js"></script>
 </head>
 
@@ -50,122 +47,33 @@
 				</div>
 			</div>
 			<div id="nav">
-				<a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">read the docs</a>
+				<a href="https://github.com/vasanthv/jsonbox-io" target="_blank">View it in Github</a>
+				&middot;
+				Made by <a href="https://twitter.com/vsnthv" target="_blank">Vasanth.V</a>
 			</div>
 		</div>
 	</section>
-	<section id="faq">
-		<div class="wrapper">
-			<h1>Frequently Asked Questions</h1>
-			<div class="faq">
-				<h3>What is jsonbox.io?</h3>
-				<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. </p>
-			</div>
-			<div class="faq">
-				<h3>Who can use it?</h3>
-				<p>It's open for everyone to use it, but it's ideal of small projects, prototypes or hackathons, where you don't have to spin up your own data store.</p>
-			</div>
-			<div class="faq">
-				<h3>How do we get started?</h3>
-				<p>Copy the URL from the top and start sending HTTP requests to play around with your data store. Please read the <a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">docs</a> for more info.</p>
-			</div>
-			<div class="faq">
-				<h3>Is it FREE?</h3>
-				<p>The service is completely FREE to use for everyone. Although by default the boxes don't have any authentication. The data stored is as secure as the box id you use. You can also pay a nominal fee of <b>$2/mon for private boxes</b>, all requests to private boxes have to be authenticated using API-SECRET.</p>
-				<p><a href="#buy" onclick="toggleBuy()">Click here to get a private box.</a></p>
-			</div>
-			<div class="faq">
-				<h3>Are there any limits?</h3>
-				<p>Yes. For a free box, the size of a single record can't be more than 10KB. If you are using a private box, you can store up to 100KB of JSON data in a single record. But there is no limit to the number of records in both free & private boxes.</p>
-			</div>
-			<div class="faq">
-				<h3>What is a box?</h3>
-				<p>A box is a virtual entity where you put all your data. It is mandated to be present in all HTTP requests you send.</p>
-			</div>
-			<div class="faq">
-				<h3>Where is our data stored?</h3>
-				<p>Your data is securely stored in our MongoDB instances.</p>
-			</div>
-			<div class="faq">
-				<h3>Do you sell our data to third parties?</h3>
-				<p>No. Never. We don't sell your data to any third parties.</p>
-			</div>
-			<div class="faq">
-				<h3>Can I download my data?</h3>
-				<p>Of course. Please contact us for that.</p>
-			</div>
-			<div class="faq">
-				<h3>How do we contact you?</h3>
-				<p>You can contact us for any queries at <a href="mailto:jsonbox.io@gmail.com">jsonbox.io@gmail.com</a>. We will respond within 24 to 48 hours.</p>
-			</div>
-		</div>
-	</section>
-	<section id="buy" style="display: none;">
-		<div id="app" class="wrapper">
-			<a href="#" id="close" onclick="toggleBuy()">&times;</a>
-			<br /><br />
-			<h1 v-if="!orderComplete">
-				Buy/Renew Private Box ($2/mon)<br/>
-				<small>Billed annually ($24/yr)</small>
-			</h1>
-			<br v-if="!orderComplete" />
-			<div id="privateform" v-if="!orderComplete">
-				<input type="email" v-model="email" placeholder="Email address" required />
-				<div class="info">Please enter valid email id, as the API_SECRET will be sent to this email and this is to be used of all communications in future.</div>
-				<br />
-				<input type="text" v-model="boxid" placeholder="Box ID" required />
-				<button id="generateBtn" v-on:click="generateBoxId">Generate</button>
-				<div class="info">Only alphanumeric characters & "_". Min. 20 chars. Max. 64 chars.</div>
-				<br />
-				<div id="notice" v-if="notice" v-html="notice"></div>
-				<button id="nextBtn" v-if="!notice" v-on:click="next">Next</button>
-				<div id="paypal-button-container"></div>
-			</div>
-			<br />
-			<div v-if="orderComplete">
-				We have sent you an email with your access credentials. Please check your SPAM folder as well. If you haven't received your email in the next 5 mins, contact us at <a href="mailto:jsonbox.io@gmail.com">jsonbox.io@gmail.com</a>. Please read our <a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">docs</a> for information on how to use your credentials.
-			</div>
-		</div>
-	</section>
-	<footer class="wrapper">
-		Made by <a href="https://twitter.com/vsnthv" target="_blank">Vasanth.V</a>
-	</footer>
 	<script>
-	function loadPaypal() {
-		paypal.Buttons({
-			createOrder: function(data, actions) {
-				// Set up the transaction
-				if (thisApp.boxid && thisApp.email)
-					return actions.order.create({
-						purchase_units: [{
-							amount: {
-								currency_code: 'USD',
-								value: '24.00'
-							},
-							custom_id: thisApp.boxid
-						}]
-					});
-			},
-			onApprove: function(data, actions) {
-				// Capture the funds from the transaction
-				return actions.order.capture().then(function(details) {
-					// Show a success message to your buyer
-					alert('Transaction completed by ' + details.payer.name.given_name);
-					thisApp.orderComplete = true;
-					return fetch('/paypal', {
-						method: 'post',
-						headers: {
-							'content-type': 'application/json'
-						},
-						body: JSON.stringify({
-							orderID: data.orderID,
-							email: thisApp.email
-						})
-					});
-				});
-			}
-		}).render('#paypal-button-container');
+	const copyURL = () => {
+		/* Get the text field */
+		var copyText = document.getElementById("boxurl");
+		/* Select the text field */
+		copyText.select();
+		copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+		/* Copy the text inside the text field */
+		document.execCommand("copy");
 	}
+
+	function create_UUID() {
+		var dt = new Date().getTime();
+		var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+			var r = (dt + Math.random() * 16) % 16 | 0;
+			dt = Math.floor(dt / 16);
+			return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+		});
+		return uuid;
+	}
+	document.getElementById('boxurl').value = 'https://jsonbox.io/box_' + create_UUID();
 
 	</script>
 </body>

@@ -90,14 +90,3 @@ Use HTTP DELETE to delete the record one by one.
 ```sh
 curl -X DELETE 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4/5d776b75fd6d3d6cb1d45c53'
 ```
-
-### Private
-You will receive API_SECRET for accessing private boxes and you need to pass them in the headers to authenticate the request. You can pass them through X-API-SECRET or API-SECRET headers. 
-```sh
-curl -X POST 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4' \
-    -H 'content-type: application/json' \
-    -H 'API-SECRET: ${API_SECRET}' \
-    -d '{"name": "Jon Snow", "age": 25}'
-```
-
-For any queries contact the email address listed on https://jsonbox.io.

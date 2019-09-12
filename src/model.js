@@ -1,6 +1,5 @@
 const helper = require('./helper');
-const Db = require('../db').getInstance();
-const Data = Db.Data;
+const Data = require('./db').getInstance();
 
 const xpost = async (req, res, next) => {
 	try {
