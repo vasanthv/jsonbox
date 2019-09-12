@@ -118,7 +118,6 @@ footer {
 	bottom: 0px;
 	z-index: 10;
 	background: #ffffff;
-	display: none;
 }
 #privateform {
 	width: 480px;
@@ -139,6 +138,7 @@ footer {
 }
 #privateform .info {
 	font-size: 0.7rem;
+	margin-top: 5px;
 }
 #privateform .dark {
 	color: #27ae60;

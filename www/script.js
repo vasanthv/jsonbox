@@ -20,7 +20,7 @@ const thisApp = new Vue({
 	},
 	computed: {
 		isValidBoxId: function() {
-			return /^[0-9A-Za-z_]+$/i.test(this.boxid);
+			return /^([0-9A-Za-z_]){20,64}$/i.test(this.boxid);
 		},
 		isValidEmail: function() {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

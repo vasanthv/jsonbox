@@ -56,7 +56,8 @@ const extractParams = (req, res, next) => {
 // check if all the required parameters is present
 const validateParams = (req, res, next) => {
 	if (!req.box) throwError('Invalid or empty box id');
-	else if (req.box.length < 20) throwError('Box id must be atleast 20 chars long');
+	else if (req.box.length < 20 || req.box.length > 64) throwError('Box id must be atleast 20 chars long & max. 64 chars.');
+	else if (req.collection.length > 32) throwError('Collection name can\'t be more than 32 chars.');
 	else if (req.method === "PUT" || req.method === "DELETE") {
 		if (!req.recordId) throwError('Invalid or empty record id');
 		else if (Array.isArray(req.body)) throwError('Bulk update not supported.');

@@ -43,8 +43,6 @@
 			</div>
 			<div id="nav">
 				<a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">read the docs</a>
-				&middot;
-				<a href="javascript:void(0)" onclick="toggleBuy()">private box <small>($2/mon)</small></a>
 			</div>
 		</div>
 	</section>
@@ -53,23 +51,28 @@
 			<h1>Frequently Asked Questions</h1>
 			<div class="faq">
 				<h3>What is jsonbox.io?</h3>
-				<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. Please read the <a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">docs</a> for more info.</p>
+				<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. </p>
 			</div>
 			<div class="faq">
-				<h3>Why is there a premium offering?</h3>
-				<p>Premium subscriptions help us keep the service free while maintaining a rock solid infrastructure, and investing on new features. Unlike others, we’re here to stay.</p>
+				<h3>Who can use it?</h3>
+				<p>Its open for everyone to use it, but its ideal of small projects, prototypes or hackathons, where you don't have to spin up your own datastore.</p>
 			</div>
 			<div class="faq">
-				<h3>Whats in there for premium?</h3>
-				<p>All boxes are public by default (meaning there is no authentication). The data is as secure as the box id you are using. Whereas for Private boxes, there is a one more level of authentication using API-SECRET.</p>
+				<h3>How do we get started?</h3>
+				<p>Copy the URL from the top and start sending HTTP requests to play around with your datastore. Please read the <a href="https://gist.github.com/vasanthv/0967e7709149475813dc9167aa733caa" target="_blank">docs</a> for more info.</p>
+			</div>
+			<div class="faq">
+				<h3>Is it FREE?</h3>
+				<p>The service is completely FREE to use for everyone. Although by default the boxes doesn't have any authentication. The data stored is as secure as the box id you use. You can also pay a nominal fee of <b>$2/mon for private boxes</b>, all requests to private boxes has to be authenticated using API-SECRET.</p>
+				<p><a href="#buy" onclick="toggleBuy()">Click here to get a private box.</a></p>
 			</div>
 			<div class="faq">
 				<h3>Is there any limits?</h3>
-				<p>Yes. For a free box the size of a single record should not be more than 10KB. If you are using a private box, you can store upto 100KB of JSON data in a single record. But there is no limit to the number of records in both free & private boxes.</p>
+				<p>Yes. For a free box the size of a single record can't be more than 10KB. If you are using a private box, you can store upto 100KB of JSON data in a single record. But there is no limit to the number of records in both free & private boxes.</p>
 			</div>
 			<div class="faq">
-				<h3>How do we contact you?</h3>
-				<p>You can contact us for any queries, feel free to contact us at <a href="mailto:jsonbox.io@gmail.com">jsonbox.io@gmail.com</a>. We will respond within 24 to 48 hours.</p>
+				<h3>What is a box?</h3>
+				<p>A box is a virtual entity where you put all your data. It is mandate to be present in all HTTP requests you send.</p>
 			</div>
 			<div class="faq">
 				<h3>Where is our data stored?</h3>
@@ -79,11 +82,19 @@
 				<h3>Do you sell our data to third parties?</h3>
 				<p>No. Never. We don't sell your data to any third parties.</p>
 			</div>
+			<div class="faq">
+				<h3>Can I download my data?</h3>
+				<p>Of course. Please contact us for that.</p>
+			</div>
+			<div class="faq">
+				<h3>How do we contact you?</h3>
+				<p>You can contact us for any queries at <a href="mailto:jsonbox.io@gmail.com">jsonbox.io@gmail.com</a>. We will respond within 24 to 48 hours.</p>
+			</div>
 		</div>
 	</section>
-	<section id="buy">
+	<section id="buy" style="display: none;">
 		<div id="app" class="wrapper">
-			<a href="javascript:void(0)" id="close" onclick="toggleBuy()">&times;</a>
+			<a href="#" id="close" onclick="toggleBuy()">&times;</a>
 			<br /><br />
 			<h1 v-if="!orderComplete">
 				Buy/Renew Private Box ($2/mon)<br/>
@@ -92,11 +103,11 @@
 			<br v-if="!orderComplete" />
 			<div id="privateform" v-if="!orderComplete">
 				<input type="email" v-model="email" placeholder="Email address" required />
-				<div class="info">Please enter a valid email id, as the API_SECRET will be sent to this email and this is to be used of all communications further.</div>
+				<div class="info">Please enter a valid email id, as the API_SECRET will be sent to this email and this is to be used of all communications in future.</div>
 				<br />
 				<input type="text" v-model="boxid" placeholder="Box ID" required />
 				<button id="generateBtn" v-on:click="generateBoxId">Generate</button>
-				<div class="info">Only alphanumeric characters & "_" is allowed. Min. 20 characters.</div>
+				<div class="info">Only alphanumeric characters & "_". Min. 20 chars. Max. 64 chars.</div>
 				<br />
 				<div id="notice" v-if="notice" v-html="notice"></div>
 				<button id="nextBtn" v-if="!notice" v-on:click="next">Next</button>
@@ -109,7 +120,7 @@
 		</div>
 	</section>
 	<footer class="wrapper">
-		&copy; jsonbox.io
+		Made by <a href="https://twitter.com/vsnthv" target="_blank">Vasanth.V</a>
 	</footer>
 	<script>
 	function loadPaypal() {
