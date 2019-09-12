@@ -67,6 +67,7 @@ curl -X GET 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4?query_key=name&
 ```
 
 All the accepted query params are as follows.
+
 | Param       | Description                                                                                   | Default     |
 |-------------|-----------------------------------------------------------------------------------------------|-------------|
 | sort        | Used to sort the result set by the specific field. Add a prefix "-" to sort in reverse order. | -\_createdOn |
