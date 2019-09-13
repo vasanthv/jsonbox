@@ -95,7 +95,7 @@ curl -X DELETE 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4/5d776b75fd6d
 Added some limitations to avoid abuse.
 
 1. The request body cannot be more than 100KB.
-2. Cannot get push or get more than 1000 records at a time.
+2. Can't push or pull more than 1000 records at a time.
 
 ### LICENSE
 MIT
