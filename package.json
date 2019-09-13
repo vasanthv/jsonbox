@@ -18,7 +18,7 @@
     "restful"
   ],
   "author": "Vasanth V",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vasanthv/jsonbox/issues"
   },

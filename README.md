@@ -1,5 +1,5 @@
 # jsonbox.io
-HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for free. 
+A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. 
 
 ## API Documentation
 
@@ -90,3 +90,12 @@ Use HTTP DELETE to delete the record one by one.
 ```sh
 curl -X DELETE 'https://jsonbox.io/76623910d3ab11e9bb652a2ae2dbcce4/5d776b75fd6d3d6cb1d45c53'
 ```
+
+### Limitations
+Added some limitations to avoid abuse.
+
+1. The request body cannot be more than 100KB.
+2. Cannot get push or get more than 1000 records at a time.
+
+### LICENSE
+MIT
