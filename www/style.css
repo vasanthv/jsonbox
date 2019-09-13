@@ -6,22 +6,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-size-adjust: 100%;
 }
-h1 {
-	font-weight: normal;
-	text-align: center;
-}
-h2 {
-	font-weight: normal;
-	font-size: 1.25rem;
-	color: #000;
-}
-
-footer {
-	border-top: 1px solid #efefef;
-	text-align: center;
-	padding: 30px !important;
-	margin-top: 30px !important;
-}
 .wrapper {
 	width: 100%;
 	max-width: 768px;
@@ -33,19 +17,8 @@ footer {
 	font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 	font-size: 0.9rem;
 }
-.faq {
-	margin: 2rem auto;
-}
-.faq h3 {
-	font-weight: normal;
-	line-height: 1;
-	margin: 1rem auto;
-	padding: 0;
-	color: #000000;
-}
-.faq p {}
 #home {
-	min-height: 90vh;
+	min-height: 80vh;
 }
 #brand {
 	font-size: 3rem;
@@ -69,9 +42,10 @@ footer {
 }
 #randombox {
 	display: flex;
-	flex-direction: column;
+	justify-content: space-between;
+	/*flex-direction: column;*/
 	width: 100%;
-	max-width: 600px;
+	max-width: 560px;
 	margin: auto;
 	border-radius: 10px;
 }
@@ -85,10 +59,13 @@ footer {
 	background: #efefef;
 	color: #333333;
 	border-radius: 5px;
+	max-width: 440px;
+	box-sizing: border-box;
 }
 #randombox button {
+	width: 100px;
 	font-size: 0.9rem;
-	padding: 15px 10px;
+	padding: 15px;
 	background: none;
 	border: none;
 	background: #3498db;
@@ -96,84 +73,10 @@ footer {
 	border-radius: 0;
 	border-radius: 5px;
 	cursor: pointer;
-	margin: 10px auto;
+	box-sizing: border-box;
+	/*margin: 10px auto;*/
 }
 #nav {
 	text-align: center;
-	margin-top: 10vh;
-}
-#nav a {
-	color: inherit;
-	text-decoration: none;
-}
-#nav a:hover {
-	text-decoration: underline;
-}
-
-#buy {
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	left: 0px;
-	bottom: 0px;
-	z-index: 10;
-	background: #ffffff;
-}
-#privateform {
-	width: 480px;
-	margin: auto;
-}
-#privateform input {
-	display: block;
-	width: 100%;
-	padding: 10px;
-	font-size: 1rem;
-	box-sizing: border-box;
-	border: 1px solid #cdcdcd;
-	border-radius: 5px;
-}
-#privateform input.red {
-	color: red;
-	border-color: red;
-}
-#privateform .info {
-	font-size: 0.7rem;
-	margin-top: 5px;
-}
-#privateform .dark {
-	color: #27ae60;
-}
-#close {
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	padding: 1rem;
-	z-index: 50;
-	color: inherit;
-	text-decoration: none;
-	font-size: 2rem;
-	line-height: 1rem;
-}
-#generateBtn {
-	float: right;
-	margin-top: 5px;
-}
-#nextBtn {
-	width: 100%;
-	display: block;
-	padding: 10px;
-	font-size: 1rem;
-	border: none;
-	background: #2980b9;
-	color: #fff;
-	border-radius: 5px;
-	cursor: pointer;
-}
-#notice {
-	color: #155724;
-	background-color: #d4edda;
-	border-color: #c3e6cb;
-	padding: .75rem 1.25rem;
-	border-radius: .25rem;
-	margin: 10px auto;
+	margin-top: 20vh;
 }

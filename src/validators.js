@@ -1,5 +1,5 @@
 const helper = require('./helper');
-const Db = require('../db').getInstance();
+const Db = require('./db').getInstance();
 
 // remove the native keys from req.body
 const removeNativeKeys = (req, res, next) => {
@@ -65,43 +65,6 @@ const validateParams = (req, res, next) => {
 	} else next();
 };
 
-const getBoxDetails = async (req, res, next) => {
-	const thisBox = await Db.Box.findOne({ key: req.box }).exec();
-	if (thisBox) {
-		req['boxType'] = thisBox.type;
-		req['boxDetails'] = thisBox;
-	} else {
-		req['boxType'] = 'PUBLIC';
-	}
-	next();
-}
-
-// Limit the size of records if its public or expired 
-const publicBoxValidation = (req, res, next) => {
-	if (req.boxType === 'PRIVATE') next();
-	else {
-		if (req.bodySize > 10000) throwError("JSON body is too large. Should be less than 10KB", 413);
-		else next();
-	}
-}
-
-// check the API_SECRET for the PRIVATE Box
-const privateBoxValidation = (req, res, next) => {
-	if (req.boxType === 'PUBLIC' || req.boxType === 'EXPIRED') next();
-	else {
-		const API_SECRET = req.headers['api-secret'] || req.headers['x-api-secret'];
-		req['API_SECRET'] = API_SECRET;
-		if (API_SECRET) {
-			const getApiSecretDetails = req.boxDetails.access.find(a => a.key === API_SECRET);
-			if (getApiSecretDetails) {
-				if (req.method === 'GET') next();
-				else if (getApiSecretDetails.permission === 'READWRITE') next();
-				else throwError("Do not have write access", 401);
-			} else throwError("Invalid or empty API Secret", 401);
-		} else throwError("Invalid or empty API Secret", 401);
-	}
-}
-
 const throwError = (message, code) => {
 	const errorObject = new Error(message);
 	errorObject.statusCode = code || 400;
@@ -113,8 +76,5 @@ module.exports = {
 	sizeValidator,
 	keysValidator,
 	extractParams,
-	validateParams,
-	getBoxDetails,
-	publicBoxValidation,
-	privateBoxValidation
+	validateParams
 }
