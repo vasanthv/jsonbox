@@ -24,7 +24,6 @@
 	<link rel="icon" href="icon.svg" sizes="any" type="image/svg+xml" />
 	<title>jsonbox.io | HTTP based JSON storage</title>
 	<link href="/style.css" rel="stylesheet" />
-	<script defer src="/script.js"></script>
 </head>
 
 <body>
@@ -40,14 +39,15 @@
 				jsonbox.io
 			</div>
 			<div id="desc">Free HTTP based JSON Storage</div>
+			<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. Copy the URL below and start sending HTTP requests to play around with your data store. Please read the <a href="https://github.com/vasanthv/jsonbox#readme" target="_blank">docs</a> for more info.</p>
 			<div id="randomwrap">
 				<div id="randombox">
 					<input type="text" class="mono" id="boxurl" value="https://jsonbox.io/91229bf2214443f6b0f3d94549850cce" readonly />
-					<button onclick="copyURL()">Copy to clipboard</button>
+					<button id="copyBtn" onclick="copyURL()">Copy</button>
 				</div>
 			</div>
 			<div id="nav">
-				<a href="https://github.com/vasanthv/jsonbox-io" target="_blank">View it in Github</a>
+				<a href="https://github.com/vasanthv/jsonbox" target="_blank">View it in Github</a>
 				&middot;
 				Made by <a href="https://twitter.com/vsnthv" target="_blank">Vasanth.V</a>
 			</div>
@@ -62,11 +62,15 @@
 		copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 		/* Copy the text inside the text field */
 		document.execCommand("copy");
+		document.getElementById('copyBtn').textContent = 'Copied';
+		setTimeout(() => {
+			document.getElementById('copyBtn').textContent = 'Copy';
+		}, 3000);
 	}
 
 	function create_UUID() {
 		var dt = new Date().getTime();
-		var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var uuid = 'xxyxxxxxxyxxxxxyxxxx'.replace(/[xy]/g, function(c) {
 			var r = (dt + Math.random() * 16) % 16 | 0;
 			dt = Math.floor(dt / 16);
 			return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
