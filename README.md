@@ -1,5 +1,5 @@
 # jsonbox.io
-A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. 
+A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal of small projects, prototypes or hackathons, where you don't have to spin up your own data store.
 
 ## API Documentation
 
