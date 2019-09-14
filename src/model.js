@@ -45,7 +45,7 @@ const xget = async (req, res, next) => {
 
 			if (req.query.query_key && req.query.query_value) {
 				let regexp;
-				const queryType = (typeof req.query.query_type === 'string') ? req.query.query_type.toLowerCase() : null
+				const queryType = (typeof req.query.query_type === 'string') ? req.query.query_type.toLowerCase() : null;
 				switch (queryType) {
 					case 'startswith':
 						regexp = new RegExp("^" + req.query.query_value, "i");
