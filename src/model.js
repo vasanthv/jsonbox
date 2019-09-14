@@ -45,17 +45,14 @@ const xget = async (req, res, next) => {
 
 			if (req.query.query_key && req.query.query_value) {
 				let regexp;
-				switch (req.query.query_type) {
+				switch (req.query.query_type.toLowerCase()) {
 					case 'startswith':
-					case 'startsWith':
 						regexp = new RegExp("^" + req.query.query_value, "i");
 						break;
 					case 'endswith':
-					case 'endsWith':
 						regexp = new RegExp(req.query.query_value + '$', "i");
 						break;
 					case 'anywhere':
-					case 'anyWhere':
 						regexp = new RegExp(req.query.query_value, "i");
 						break;
 					default:
