@@ -1,10 +1,12 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const path = require("path");
+const cors = require('cors');
 const config = require("./src/config");
 
 const app = express();
 // set express server middlewares
+app.use(cors());
 app.use(express.static(path.join(__dirname, "www")));
 app.use(bodyParser.json());
 
