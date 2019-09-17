@@ -96,9 +96,10 @@ Added some limitations to avoid abuse.
 
 1. The request body cannot be more than 100KB.
 2. Can't push or pull more than 1000 records at a time.
-
+3. There is no limit on the number of records you store in a box, but please don't abuse the API by storing large datasets of more than **5000** records. This is meant for small projects and that's why it is offered FREE of cost.
 
 ### Wrappers
+*Note: The wrappers listed here are from other sources and it is not been tested on validated by us*
 - **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) by [@harlev](https://github.com/harlev).  [Github](https://github.com/harlev/jsonbox-python) 
 
 ### Contribution
