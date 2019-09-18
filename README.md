@@ -83,6 +83,7 @@ curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age
 The above sample will look for name `arya stark` and age greater than 13. You can filter on `Number`, `String` & `Boolean` values only.
 
 Different filters for Numberic values.
+
 |                                                                   | Sample                   |
 |-------------------------------------------------------------------|--------------------------|
 | Filter values greater than or less than a specific value          | q=age:>10 or q=age:<10   |
