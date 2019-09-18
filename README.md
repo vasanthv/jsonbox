@@ -82,24 +82,24 @@ curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age
 ```
 The above sample will look for name `arya stark` and age greater than 13. You can filter on `Number`, `String` & `Boolean` values only.
 
-Different filters for Numberic values.
+Different filters for Numeric values.
 
 |                                                                      | Sample                       |
 |----------------------------------------------------------------------|------------------------------|
 | To filter values greater than or less than a specific value          | `q=age:>10` or `q=age:<10`   |
 | To filter values greater (or less) than or equal to a specific value | `q=age:>=10` or `q=age:<=10` |
-| To filter values that matches a specific value.                      | `q=age:=10`                  |
+| To filter values that match a specific value.                        | `q=age:=10`                  |
 
 Different filters for String values.
 
 |                                                                    | Sample              |
 |--------------------------------------------------------------------|---------------------|
-| Filter values that starts with a specific string                   | `q=name:arya*`      |
-| Filter values that ends with a specific string                     | `q=name:*stark`     |
+| Filter values that start with a specific string                    | `q=name:arya*`      |
+| Filter values that end with a specific string                      | `q=name:*stark`     |
 | Filter values where a specific string appears anywhere in a string | `q=name:*ya*`       |
-| Filter values that matches a specific string                       | `q=name:arya%stark` |
+| Filter values that match a specific string                         | `q=name:arya%stark` |
 
-You can combine mutiple fields by separating with commas as shown below:
+You can combine multiple fields by separating with commas as shown below:
 ```
 https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13,isalive:true
 ```
