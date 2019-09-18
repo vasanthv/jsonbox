@@ -81,7 +81,7 @@
 		return uuid;
 	}
 	var base = window.location.protocol + '//' + window.location.hostname;
-	base += (window.location.port === 80 || window.location.port) === 433 ? '' : ':' + window.location.port;
+	base += (window.location.port === 80 || window.location.port) === 443 ? '' : ':' + window.location.port;
 	document.getElementById('boxurl').value = base + '/box_' + create_UUID();
 
 	</script>
