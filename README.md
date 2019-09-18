@@ -84,11 +84,25 @@ The above sample will look for name `arya stark` and age greater than 13. You ca
 
 Different filters for Numberic values.
 
-|                                                                   | Sample                   |
-|-------------------------------------------------------------------|--------------------------|
-| Filter values greater than or less than a specific value          | q=age:>10 or q=age:<10   |
-| Filter values greater (or less) than or equal to a specific value | q=age:>=10 or q=age:<=10 |
-| Filter values that matches a specific value.                      | q=age:=10                |
+|                                                                      | Sample                       |
+|----------------------------------------------------------------------|------------------------------|
+| To filter values greater than or less than a specific value          | `q=age:>10` or `q=age:<10`   |
+| To filter values greater (or less) than or equal to a specific value | `q=age:>=10` or `q=age:<=10` |
+| To filter values that matches a specific value.                      | `q=age:=10`                  |
+
+Different filters for String values.
+
+|                                                                    | Sample              |
+|--------------------------------------------------------------------|---------------------|
+| Filter values that starts with a specific string                   | `q=name:arya*`      |
+| Filter values that ends with a specific string                     | `q=name:*stark`     |
+| Filter values where a specific string appears anywhere in a string | `q=name:*ya*`       |
+| Filter values that matches a specific string                       | `q=name:arya%stark` |
+
+You can combine mutiple fields by separating with commas as shown below:
+```
+https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13,isalive:true
+```
 
 ### Update
 Use HTTP PUT to update record one by one. Please note that this will not patch the record, it is full update. _A Bulk update is not supported yet._
