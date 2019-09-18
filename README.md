@@ -97,7 +97,7 @@ Different filters for String values.
 | Filter values that start with a specific string                    | `q=name:arya*`      |
 | Filter values that end with a specific string                      | `q=name:*stark`     |
 | Filter values where a specific string appears anywhere in a string | `q=name:*ya*`       |
-| Filter values that match a specific string                         | `q=name:arya%stark` |
+| Filter values that match a specific string                         | `q=name:arya%20stark` |
 
 You can combine multiple fields by separating them with commas as shown below:
 ```
