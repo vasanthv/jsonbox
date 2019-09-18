@@ -55,10 +55,10 @@ const xget = async (req, res, next) => {
 						else val = value.substr(1);
 
 						if (value.startsWith('>=')) query['data.' + key] = { $gte: +val };
-						if (value.startsWith('<=')) query['data.' + key] = { $lte: +val };
-						if (value.startsWith('>')) query['data.' + key] = { $gt: +val };
-						if (value.startsWith('<')) query['data.' + key] = { $lt: +val };
-						if (value.startsWith('=')) query['data.' + key] = +val;
+						else if (value.startsWith('<=')) query['data.' + key] = { $lte: +val };
+						else if (value.startsWith('>')) query['data.' + key] = { $gt: +val };
+						else if (value.startsWith('<')) query['data.' + key] = { $lt: +val };
+						else if (value.startsWith('=')) query['data.' + key] = +val;
 					} else if (value.startsWith('*') || value.endsWith('*')) {
 						// Need to do regex query
 						let val = value;
