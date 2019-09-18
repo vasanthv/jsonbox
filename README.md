@@ -127,7 +127,7 @@ Added some limitations to avoid abuse.
 
 ### Wrappers
 *Note: The wrappers listed here are from other sources and it is not been tested on validated by us*
-- **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) by [@harlev](https://github.com/harlev).  ([Github](https://github.com/harlev/jsonbox-python))
+- **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
 - **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
 
 ### Contribution
