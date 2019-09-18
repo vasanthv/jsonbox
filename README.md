@@ -73,9 +73,36 @@ All the accepted query params are as follows.
 | sort        | Used to sort the result set by the specific field. Add a prefix "-" to sort in reverse order. | -\_createdOn |
 | skip        | Used to skip certain no. of fields. Can be used for pagination.                               | 0           |
 | limit       | Used to limit the results to a specific count. Can be used for pagination. Max. is 1000.      | 20          |
-| query_key   | The key of the field on which the query is to be executed.                                    |             |
-| query_value | Expected value of the query.                                                                  |             |
-| query_type  | Query type can either of these "startswith", "endswith", "anywhere".                          | exact       |
+| q           | Query for filtering values. Check out the format below.                                       |             |
+
+#### Filtering
+You can pass filter query by passing them in URL param `q` as shown below:
+```sh
+curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
+```
+The above sample will look for the name `arya stark` and age greater than 13. You can filter on `Number`, `String` & `Boolean` values only.
+
+Different filters for Numeric values.
+
+|                                                                      | Sample                       |
+|----------------------------------------------------------------------|------------------------------|
+| To filter values greater than or less than a specific value          | `q=age:>10` or `q=age:<10`   |
+| To filter values greater (or less) than or equal to a specific value | `q=age:>=10` or `q=age:<=10` |
+| To filter values that match a specific value.                        | `q=age:=10`                  |
+
+Different filters for String values.
+
+|                                                                    | Sample              |
+|--------------------------------------------------------------------|---------------------|
+| Filter values that start with a specific string                    | `q=name:arya*`      |
+| Filter values that end with a specific string                      | `q=name:*stark`     |
+| Filter values where a specific string appears anywhere in a string | `q=name:*ya*`       |
+| Filter values that match a specific string                         | `q=name:arya%20stark` |
+
+You can combine multiple fields by separating them with commas as shown below:
+```
+https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13,isalive:true
+```
 
 ### Update
 Use HTTP PUT to update record one by one. Please note that this will not patch the record, it is full update. _A Bulk update is not supported yet._
@@ -100,7 +127,7 @@ Added some limitations to avoid abuse.
 
 ### Wrappers
 *Note: The wrappers listed here are from other sources and it is not been tested on validated by us*
-- **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) by [@harlev](https://github.com/harlev).  ([Github](https://github.com/harlev/jsonbox-python))
+- **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
 - **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
 
 ### Contribution

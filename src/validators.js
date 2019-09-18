@@ -13,16 +13,18 @@ const removeNativeKeys = (req, res, next) => {
 // size of the JSON body should be larger than 100KB
 const sizeValidator = (req, res, next) => {
 	if (req.method === 'POST' || req.method === 'PUT') {
-		const memorySize = helper.memorySizeOf(req.body);
-		req['bodySize'] = memorySize;
-		// memorySize is size in bytes
-		if (memorySize > 100000) {
-			throwError("JSON body is too large. Should be less than 100KB", 413);
-		} else if (Array.isArray(req.body)) {
-			if (req.body.length > 1000) {
-				throwError("Not more than 1000 records for bulk upload.", 413);
+		if (Object.keys(req.body).length > 0) {
+			const memorySize = helper.memorySizeOf(req.body);
+			req['bodySize'] = memorySize;
+			// memorySize is size in bytes
+			if (memorySize > 100000) {
+				throwError("JSON body is too large. Should be less than 100KB", 413);
+			} else if (Array.isArray(req.body)) {
+				if (req.body.length > 1000) {
+					throwError("Not more than 1000 records for bulk upload.", 413);
+				} else next();
 			} else next();
-		} else next();
+		} else throwError("Empty body.", 400);
 	} else next();
 }
 
