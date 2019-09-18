@@ -83,10 +83,11 @@ curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age
 The above sample will look for name `arya stark` and age greater than 13. You can filter on `Number`, `String` & `Boolean` values only.
 
 Different filters for Numberic values.
+|                                                                   | Sample                   |
+|-------------------------------------------------------------------|--------------------------|
 | Filter values greater than or less than a specific value          | q=age:>10 or q=age:<10   |
 | Filter values greater (or less) than or equal to a specific value | q=age:>=10 or q=age:<=10 |
 | Filter values that matches a specific value.                      | q=age:=10                |
-
 
 ### Update
 Use HTTP PUT to update record one by one. Please note that this will not patch the record, it is full update. _A Bulk update is not supported yet._
