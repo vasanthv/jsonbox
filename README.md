@@ -73,14 +73,14 @@ All the accepted query params are as follows.
 | sort        | Used to sort the result set by the specific field. Add a prefix "-" to sort in reverse order. | -\_createdOn |
 | skip        | Used to skip certain no. of fields. Can be used for pagination.                               | 0           |
 | limit       | Used to limit the results to a specific count. Can be used for pagination. Max. is 1000.      | 20          |
-| q           | Filter query string. Check out the format below.                                              |             |
+| q           | Query for filtering values. Check out the format below.                                       |             |
 
 #### Filtering
 You can pass filter query by passing them in URL param `q` as shown below:
 ```sh
 curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
 ```
-The above sample will look for name `arya stark` and age greater than 13. You can filter on `Number`, `String` & `Boolean` values only.
+The above sample will look for the name `arya stark` and age greater than 13. You can filter on `Number`, `String` & `Boolean` values only.
 
 Different filters for Numeric values.
 
@@ -99,7 +99,7 @@ Different filters for String values.
 | Filter values where a specific string appears anywhere in a string | `q=name:*ya*`       |
 | Filter values that match a specific string                         | `q=name:arya%stark` |
 
-You can combine multiple fields by separating with commas as shown below:
+You can combine multiple fields by separating them with commas as shown below:
 ```
 https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13,isalive:true
 ```
