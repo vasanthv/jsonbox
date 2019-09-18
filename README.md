@@ -63,7 +63,7 @@ curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776a25fd6d3d6cb1d45c5
 
 To query records, you have to pass the key & value as shown below.
 ```sh
-curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?query_key=name&query_value=arya%20stark'
+curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark'
 ```
 
 All the accepted query params are as follows.
