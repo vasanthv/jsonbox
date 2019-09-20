@@ -1,5 +1,5 @@
 # jsonbox.io
-A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal of small projects, prototypes or hackathons, where you don't have to spin up your own data store.
+A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal for small projects, prototypes or hackathons, where you don't have to spin up your own data store.
 
 ## API Documentation
 
@@ -51,7 +51,7 @@ To get all records inside a collection _Sample collection name: "users"_:
 curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b/users'
 ```
 
-To sort the records by a specific field use `sort` query param. In the below sample the output will be sort in the descending order of the age.
+To sort the records by a specific field use `sort` query param. In the below example the output will be sorted in the descending order of the age.
 ```sh
 curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?sort=-age'
 ```
@@ -76,7 +76,7 @@ All the accepted query params are as follows.
 | q           | Query for filtering values. Check out the format below.                                       |             |
 
 #### Filtering
-You can pass filter query by passing them in URL param `q` as shown below:
+You can pass a filter in a query by passing them in URL param `q` as shown below:
 ```sh
 curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
 ```
