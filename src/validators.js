@@ -67,7 +67,7 @@ const validateParams = (req, res, next) => {
 	} else next();
 };
 
-const throwError = (message, code=400) => {
+const throwError = (message, code = 400) => {
 	const errorObject = new Error(message);
 	errorObject.statusCode = code;
 	throw errorObject;
