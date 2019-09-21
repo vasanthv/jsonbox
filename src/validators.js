@@ -51,7 +51,6 @@ const extractParams = (req, res, next) => {
 		if (!req['recordId'] && pathParams[2]) {
 			req['recordId'] = isHexString.test(pathParams[2]) ? pathParams[2] : undefined;
 		}
-		console.log(req.headers)
 		next();
 	} else throwError("Box id cannot be empty.");
 }
