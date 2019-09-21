@@ -1,6 +1,7 @@
 const helper = require('./helper');
 const Data = require('./db').getInstance();
 
+
 const xpost = async (req, res, next) => {
 	try {
 		const createRecord = async (body) => {
