@@ -113,9 +113,14 @@ curl -X PUT 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d45c5
 ```
 
 ### Delete
-Use HTTP DELETE to delete the record one by one.
+Two approaches are available for delete
+* To delete a specific record use HTTP DELETE with jsonbox.io/${BOX_ID}/${RECORD_ID}
 ```sh
 curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d45c53'
+```
+* To delete based on a filter use HTTP DELETE with jsonbox.io/${BOX_ID}?q={QUERY}
+```sh
+curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
 ```
 
 ### Limitations
