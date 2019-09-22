@@ -130,6 +130,7 @@ Added some limitations to avoid abuse.
 - **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
 - **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
 - **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
+- **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
 
 ### Contribution
 Any feedback, pull request or issue is welcome.
