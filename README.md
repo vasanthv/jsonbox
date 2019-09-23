@@ -126,7 +126,7 @@ curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,
 ### Limitations
 Added some limitations to avoid abuse.
 
-1. The request body cannot be more than 100KB.
+1. The request body cannot be more than 10KB.
 2. Can't push or pull more than 1000 records at a time.
 3. There is no limit on the number of records you store in a box, but please don't abuse the API by storing large datasets of more than **5000** records. This is meant for small projects and that's why it is offered FREE of cost.
 
