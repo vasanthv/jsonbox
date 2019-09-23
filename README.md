@@ -131,6 +131,23 @@ Added some limitations to avoid abuse.
 - **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
 - **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
 
+### Running a local version with Docker
+1. Make sure you have `docker` and `docker-compose` installed
+2. Clone the git repo
+```
+git clone https://github.com/vasanthv/jsonbox.git
+```
+3. navigate into the directory
+```
+cd jsonbox
+```
+4. run docker compose
+```
+docker-compose up
+```
+On the first run, it will take longer, since it has to download the Mongo DB image and build the Jsonbox image.
+Subsequent runs will start faster.
+
 ### Contribution
 Any feedback, pull request or issue is welcome.
 
