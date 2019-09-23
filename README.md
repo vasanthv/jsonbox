@@ -145,6 +145,9 @@ cd jsonbox
 ```
 docker-compose up
 ```
+The server will be available on (http://localhost:3000)
+If needed, you could change the port in the `docker-compose.yml` file.
+
 On the first run, it will take longer, since it has to download the Mongo DB image and build the Jsonbox image.
 Subsequent runs will start faster.
 
