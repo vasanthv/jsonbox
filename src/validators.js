@@ -61,7 +61,7 @@ const validateParams = (req, res, next) => {
 	else if (req.box.length < 20 || req.box.length > 64) throwError('Box id must be atleast 20 chars long & max. 64 chars.');
 	else if (req.collection ? req.collection.length > 20 : false) throwError('Collection name can\'t be more than 20 chars.');
 	else if (req.method === "PUT" || req.method === "DELETE") {
-		if (!req.recordId) throwError('Invalid or empty record id');
+		if (!req.recordId && !req.query.q) throwError('Invalid or empty record id or missing query definition');
 		else if (Array.isArray(req.body)) throwError('Bulk update not supported.');
 		else next();
 	} else next();
