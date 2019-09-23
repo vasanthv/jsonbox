@@ -5,8 +5,8 @@ const helper = require('./helper');
 // Using in-memory as its run in a single machine.
 const slowDownRequests = slowDown({
 	windowMs: 60 * 60 * 1000, // In 60 minutes window
-	delayAfter: 50, // 50 requests goes in full speed
-	delayMs: 2000 // then 2s delay is added to the 51st request, 4s to the 52nd and so on.
+	delayAfter: 100, // 100 requests goes in full speed
+	delayMs: 2000 // then 2s delay is added to the 101 request, 4s to the 102 and so on.
 });
 
 // remove the native keys from req.body
