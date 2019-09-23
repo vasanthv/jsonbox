@@ -1,5 +1,13 @@
+const slowDown = require("express-slow-down");
 const helper = require('./helper');
-const Db = require('./db').getInstance();
+
+// Since lots of abuse is happening I had to slow down the requests
+// Using in-memory as its run in a single machine.
+const slowDownRequests = slowDown({
+	windowMs: 60 * 60 * 1000, // In 60 minutes window
+	delayAfter: 50, // 50 requests goes in full speed
+	delayMs: 2000 // then 2s delay is added to the 51st request, 4s to the 52nd and so on.
+});
 
 // remove the native keys from req.body
 const removeNativeKeys = (req, res, next) => {
@@ -74,6 +82,7 @@ const throwError = (message, code = 400) => {
 }
 
 module.exports = {
+	slowDownRequests,
 	removeNativeKeys,
 	sizeValidator,
 	keysValidator,

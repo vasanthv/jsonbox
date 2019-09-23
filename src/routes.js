@@ -4,6 +4,7 @@ const model = require('./model');
 const validators = require('./validators');
 
 // list of all validators to be in place
+router.use(validators.slowDownRequests);
 router.use(validators.removeNativeKeys);
 router.use(validators.sizeValidator);
 router.use(validators.keysValidator);
