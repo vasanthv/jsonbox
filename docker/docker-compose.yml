@@ -12,7 +12,9 @@ services:
     restart: always
     environment:
       - MONGODB_URI=mongodb://mongo:27017/jsonbox-io-dev
-    build: .
+    build: 
+      context: ../
+      dockerfile: docker/Dockerfile
     ports:
       - "3000:3000"
     links:
