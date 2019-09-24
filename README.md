@@ -126,7 +126,7 @@ curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,
 ### Limitations
 Added some limitations to avoid abuse.
 
-1. The request body cannot be more than 100KB.
+1. The request body cannot be more than 10KB.
 2. Can't push or pull more than 1000 records at a time.
 3. There is no limit on the number of records you store in a box, but please don't abuse the API by storing large datasets of more than **5000** records. This is meant for small projects and that's why it is offered FREE of cost.
 
@@ -135,6 +135,7 @@ Added some limitations to avoid abuse.
 - **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
 - **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
 - **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
+- **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
 
 ### Contribution
 Any feedback, pull request or issue is welcome.

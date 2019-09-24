@@ -44,8 +44,47 @@ const responseBody = (obj, collection) => {
 	return response;
 }
 
+const parse_query = (req_q) => {
+	let query = {};
+	let q = {};
+	req_q.split(',').forEach(i => (q[i.split(':')[0]] = i.split(':')[1]));
+	Object.keys(q).forEach((key) => {
+		const value = q[key];
+		if (value.startsWith('>=') || value.startsWith('<=') || value.startsWith('>') || value.startsWith('<') || value.startsWith('=')) {
+			// Querying a Number
+			let val = 0;
+			if (value.startsWith('>=') || value.startsWith('<=')) val = value.substr(2);
+			else val = value.substr(1);
+
+			if (value.startsWith('>=')) query['data.' + key] = { $gte: +val };
+			else if (value.startsWith('<=')) query['data.' + key] = { $lte: +val };
+			else if (value.startsWith('>')) query['data.' + key] = { $gt: +val };
+			else if (value.startsWith('<')) query['data.' + key] = { $lt: +val };
+			else if (value.startsWith('=')) query['data.' + key] = +val;
+		} else if (value.startsWith('*') || value.endsWith('*')) {
+			// Need to do regex query
+			let val = value;
+			if (value.startsWith('*')) val = value.substr(1);
+			if (value.endsWith('*')) val = val.substr(0, val.length - 1);
+
+			let regexp;
+			if (value.startsWith('*') && value.endsWith('*')) regexp = new RegExp(val, "i");
+			else if (value.startsWith('*')) regexp = new RegExp(val + '$', "i");
+			else if (value.endsWith('*')) regexp = new RegExp("^" + val, "i");
+			query['data.' + key] = regexp;
+		} else {
+			if (value == 'true') query['data.' + key] = true;
+			else if (value == 'false') query['data.' + key] = false;
+			else query['data.' + key] = new RegExp('^' + value + '$', "i");
+		}
+	});
+
+	return query;
+}
+
 module.exports = {
 	memorySizeOf,
 	isValidKeys,
-	responseBody
+	responseBody,
+	parse_query
 }
