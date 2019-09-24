@@ -137,6 +137,9 @@ Added some limitations to avoid abuse.
 - **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
 - **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
 
+### Running a local version with Docker
+see [docker.md](docker/docker.md)
+
 ### Contribution
 Any feedback, pull request or issue is welcome.
 
