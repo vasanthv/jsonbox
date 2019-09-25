@@ -142,21 +142,31 @@ Any feedback, pull request or issue is welcome.
 
 ### How to Contribute
 Fork this repo and then clone it:
-```git clone https://github.com/<your_name>/jsonbox.git```
+```
+git clone https://github.com/<your_name>/jsonbox.git
+```
 
 Cd into directory where the repo was cloned and install the dependencies:
-```npm install```
+```
+npm install
+```
 
 You need MongoDB to run this application. It is recommended you install it yourself, for further info see the [official documentation](https://docs.mongodb.com/manual/installation/)
 
 You will need to create a database for this app. Run 
-```mongo```
+```
+mongo
+```
 
 and create a new database called jsonbox-io-dev with
-```use jsonbox-io-dev```
+```
+use jsonbox-io-dev
+```
 
 After that you are good to go 🎉. Just run 
-```node server.js```
+```
+node server.js
+```
 
 to start the development server. 
 
