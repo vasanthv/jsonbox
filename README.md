@@ -151,7 +151,7 @@ Cd into directory where the repo was cloned and install the dependencies:
 npm install
 ```
 
-You need MongoDB to run this application. You can create a local isntance  with docker( see docker/docker.md for further instructions) or you can install it yourself. The latter way will be described here. If you don't already have MongoDB, go to the  [official documentation](https://docs.mongodb.com/manual/installation/) and follow the instructions there.
+You need MongoDB to run this application. You can create a local instance  with docker( see docker/docker.md for further instructions) or you can install it yourself. The latter way will be described here. If you don't already have MongoDB, go to the  [official documentation](https://docs.mongodb.com/manual/installation/) and follow the instructions there.
 If you don't want to install MongoDB, you can also use a Docker Container:
 ```
 docker run -d -p 27017:27017 -v ~/data:/data/db mongo
