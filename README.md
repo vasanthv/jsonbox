@@ -151,9 +151,9 @@ Cd into directory where the repo was cloned and install the dependencies:
 npm install
 ```
 
-You need MongoDB to run this application. It is recommended you install it yourself, for further info see the [official documentation](https://docs.mongodb.com/manual/installation/)
+You need MongoDB to run this application. You can install it with docker( see docker/docker.md for further instructions) or you can install it yourself. The latter way will be described here. If you don't already have MongoDB, go to the  [official documentation](https://docs.mongodb.com/manual/installation/) and follow the instructions there.
 
-You will need to create a database for this app. Run 
+Once you have MongoDB run 
 ```
 mongo
 ```
@@ -163,7 +163,7 @@ and create a new database called jsonbox-io-dev with
 use jsonbox-io-dev
 ```
 
-After that you are good to go 🎉. Just run 
+That's it🎉. Just run 
 ```
 node server.js
 ```
