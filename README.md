@@ -136,6 +136,7 @@ Added some limitations to avoid abuse.
 - **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
 - **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
 - **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
+- **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([Github](https://github.com/kuy/jsonbox-rs))
 
 ### Running a local version with Docker
 see [docker.md](docker/docker.md)
