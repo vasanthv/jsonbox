@@ -47,7 +47,12 @@ const responseBody = (obj, collection) => {
 const parse_query = (req_q) => {
 	let query = {};
 	let q = {};
-	req_q.split(',').forEach(i => (q[i.split(':')[0]] = i.split(':')[1]));
+	req_q.split(',')
+	.reduce((acc, curr) => {
+		curr.includes(":") ? acc.push(curr) : acc[acc.length - 1] += ("," + curr); 
+		return acc;
+	}, [])
+	.forEach(i => (q[i.split(':')[0]] = i.split(':')[1]));
 	Object.keys(q).forEach((key) => {
 		const value = q[key];
 		if (value.startsWith('>=') || value.startsWith('<=') || value.startsWith('>') || value.startsWith('<') || value.startsWith('=')) {
