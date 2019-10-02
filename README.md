@@ -161,22 +161,17 @@ If you don't want to install MongoDB, you can also use a Docker Container:
 docker run -d -p 27017:27017 -v ~/data:/data/db mongo
 ```
 
-Once you have MongoDB run 
+Once you have MongoDB run
 ```
 mongo
 ```
 
-and create a new database called jsonbox-io-dev with
+Just run 
 ```
-use jsonbox-io-dev
-```
-
-That's it🎉. Just run 
-```
-node server.js
+npm start
 ```
 
-to start the development server. 
+to start the development server on port `3000`. 
 
 ### LICENSE
 MIT
