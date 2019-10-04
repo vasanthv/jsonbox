@@ -154,7 +154,7 @@ You need MongoDB to run this application. If you don't already have MongoDB, go 
 ```
 mongo
 ```
-to start the MongoDB instance. Then `cd` into directory where the repo was cloned `cd jsonbox` and install the dependencies:
+to start the MongoDB instance. Then `cd` into directory where the repo was cloned and install the dependencies:
 ```
 npm install
 ```
