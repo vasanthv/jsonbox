@@ -150,28 +150,25 @@ Fork this repo and then clone it:
 git clone https://github.com/<your_name>/jsonbox.git
 ```
 
-Cd into directory where the repo was cloned and install the dependencies:
-```
-npm install
-```
-
-You need MongoDB to run this application. You can create a local instance  with docker( see docker/docker.md for further instructions) or you can install it yourself. The latter way will be described here. If you don't already have MongoDB, go to the  [official documentation](https://docs.mongodb.com/manual/installation/) and follow the instructions there.
-If you don't want to install MongoDB, you can also use a Docker Container:
-```
-docker run -d -p 27017:27017 -v ~/data:/data/db mongo
-```
-
-Once you have MongoDB run
+You need MongoDB to run this application. If you don't already have MongoDB, go to the  [official documentation](https://docs.mongodb.com/manual/installation/) and follow the instructions there. Once you have MongoDB installed, run
 ```
 mongo
 ```
-
-Just run 
+to start the MongoDB instance. Then `cd` into directory where the repo was cloned `cd jsonbox` and install the dependencies:
+```
+npm install
+```
+Then just run 
 ```
 npm start
 ```
+to start the development server on port `3000`. Your jsonbox instance will be running on `http://localhost:3000`.
 
-to start the development server on port `3000`. 
+
+Alternatively, you can also use a Docker to run the application in a container:
+```
+docker run -d -p 27017:27017 -v ~/data:/data/db mongo
+```
 
 ### LICENSE
 MIT
