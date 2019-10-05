@@ -44,7 +44,6 @@ const xget = async (req, res, next) => {
 
 			let query = {};
 
-
 			if (req.query.q) {
 				query = helper.parse_query(req.query.q);
 			} else if (req.query.query_key && req.query.query_value) {
@@ -71,16 +70,12 @@ const xget = async (req, res, next) => {
 			if (req.collection) query['_collection'] = req.collection;
 			let records = await Data.find(query).skip(skip).limit(limit).sort(sort).exec();
 			
-
 			records = records.map(r => helper.responseBody(r, req.collection))
 
 			if (req.query.jq){
 				records = jsonQuery(req.query.jq, {
 				  data: records
 				}).value;
-
-				res.json(records);
-				return;
 			}
 
 			res.json(records);
