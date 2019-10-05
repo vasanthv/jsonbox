@@ -30,7 +30,6 @@ const xpost = async (req, res, next) => {
 };
 const xget = async (req, res, next) => {
 	try {
-		console.log("xget");
 		if (req.recordId) {
 			const record = await Data.findOne({ _id: req.recordId, _box: req.box }).exec();
 			res.json(helper.responseBody(record, req.collection));
@@ -72,15 +71,11 @@ const xget = async (req, res, next) => {
 			if (req.collection) query['_collection'] = req.collection;
 			let records = await Data.find(query).skip(skip).limit(limit).sort(sort).exec();
 			
-			console.log("before", records);
-
 			if (req.query.jq){
 				records = jsonQuery(req.query.jq, {
-				  // data: {"results": records}
 				  data: records
 				}).value;
 
-				console.log("after", records);
 				res.json(records);
 				return;
 			}
