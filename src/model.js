@@ -1,5 +1,6 @@
 const helper = require('./helper');
 const Data = require('./db').getInstance();
+const jsonQuery = require('json-query')
 
 const xpost = async (req, res, next) => {
 	try {
@@ -29,6 +30,7 @@ const xpost = async (req, res, next) => {
 };
 const xget = async (req, res, next) => {
 	try {
+		console.log("xget");
 		if (req.recordId) {
 			const record = await Data.findOne({ _id: req.recordId, _box: req.box }).exec();
 			res.json(helper.responseBody(record, req.collection));
@@ -42,6 +44,7 @@ const xget = async (req, res, next) => {
 			}
 
 			let query = {};
+
 
 			if (req.query.q) {
 				query = helper.parse_query(req.query.q);
@@ -67,7 +70,21 @@ const xget = async (req, res, next) => {
 			}
 			query['_box'] = req.box;
 			if (req.collection) query['_collection'] = req.collection;
-			const records = await Data.find(query).skip(skip).limit(limit).sort(sort).exec();
+			let records = await Data.find(query).skip(skip).limit(limit).sort(sort).exec();
+			
+			console.log("before", records);
+
+			if (req.query.jq){
+				records = jsonQuery(req.query.jq, {
+				  // data: {"results": records}
+				  data: records
+				}).value;
+
+				console.log("after", records);
+				res.json(records);
+				return;
+			}
+
 			res.json(records.map(r => helper.responseBody(r, req.collection)));
 		}
 	} catch (error) {
