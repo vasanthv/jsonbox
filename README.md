@@ -104,13 +104,13 @@ You can combine multiple fields by separating them with commas as shown below:
 https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13,isalive:true
 ```
 
-#### Json Query Filtering
-For more complex filtering, such as queries on objects in an array, `json-query` syntax is supported with the usage of the `jq` parameter. Full documentation of the available syntax query is available on the [json-query page](https://github.com/auditassistant/json-query)
+#### Json-Query Filtering
+For more complex filtering, such as queries on objects in an array, `json-query` syntax is supported with the usage of the `jq` parameter. Full documentation of the available query syntax can be found on the [json-query page](https://github.com/auditassistant/json-query)
 * The `jq` filter is applied *on top of* any other filtering params. The usage of `q`, `sort`, `skip`, `limit` is still possible.
-* Applying the `jq` filter will change the structure of the output, as json-query could extract deep elements from the data structute
+* Applying the `jq` filter could change the structure of the output, as json-query could extract deep elements from the data structute.
 * When using the `jq` filter, you have access to the full results objects including `_id`, `_createdOn` etc.
 ```
-https://jsonbox.io/demobox_6d9e326c183fde7b?q=age:>13&jq=data[*age=34]
+https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark&jq=[*age>=15]
 ```
 
 ### Update
