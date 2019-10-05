@@ -99,7 +99,8 @@ const xdelete = async (req, res, next) => {
 			} else { res.status(400).json({ message: "Invalid record Id" }) }
 		} else if (req.query.q) {
 			const query = helper.parse_query(req.query.q)
-
+			query['_box'] = req.box;
+			
 			const result = await Data.deleteMany(query);
 			res.json({ message: result.deletedCount + " Records removed." });
 		}

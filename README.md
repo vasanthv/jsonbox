@@ -136,9 +136,39 @@ Added some limitations to avoid abuse.
 - **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
 - **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
 - **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
+- **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([Github](https://github.com/kuy/jsonbox-rs))
+
+### Running a local version with Docker
+see [docker.md](docker/docker.md)
 
 ### Contribution
 Any feedback, pull request or issue is welcome.
+
+### How to Contribute
+Fork this repo and then clone it:
+```
+git clone https://github.com/<your_name>/jsonbox.git
+```
+
+You need MongoDB to run this application. If you don't already have MongoDB, go to the  [official documentation](https://docs.mongodb.com/manual/installation/) and follow the instructions there. Once you have MongoDB installed, run
+```
+mongo
+```
+to start the MongoDB instance. Then `cd` into directory where the repo was cloned and install the dependencies:
+```
+npm install
+```
+Then just run 
+```
+npm start
+```
+to start the development server on port `3000`. Your jsonbox instance will be running on `http://localhost:3000`.
+
+
+Alternatively, you can also use a Docker to run the application in a container:
+```
+docker run -d -p 27017:27017 -v ~/data:/data/db mongo
+```
 
 ### LICENSE
 MIT
