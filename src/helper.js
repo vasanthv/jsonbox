@@ -50,7 +50,7 @@ const parse_query = (req_q) => {
 	req_q.split(',').forEach(i => (q[i.split(':')[0]] = i.split(':')[1]));
 	Object.keys(q).forEach((key) => {
 		const value = q[key];
-		if (value.startsWith('>=') || value.startsWith('<=') || value.startsWith('>') || value.startsWith('<') || value.startsWith('=')) {
+		if (['>=', '<=', '>', '<', '='].some(item => value.startsWith(item))) {
 			// Querying a Number
 			let val = 0;
 			if (value.startsWith('>=') || value.startsWith('<=')) val = value.substr(2);
