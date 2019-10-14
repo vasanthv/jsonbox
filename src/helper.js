@@ -39,8 +39,12 @@ const responseBody = (obj, collection) => {
 	const data = obj.data;
 	response = { ...response, ...data };
 	response['_createdOn'] = obj._createdOn;
-	if (obj._updatedOn) response['_updatedOn'] = obj._updatedOn;
-	if (!collection && obj._collection) response['_collection'] = obj._collection;
+	if (obj._updatedOn) {
+		response['_updatedOn'] = obj._updatedOn;
+	}
+	if (!collection && obj._collection) {
+		 response['_collection'] = obj._collection;
+	}
 	return response;
 }
 
