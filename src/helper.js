@@ -53,7 +53,7 @@ const parse_query = (req_q) => {
 		if (['>=', '<=', '>', '<', '='].some(item => value.startsWith(item))) {
 			// Querying a Number
 			let val = 0;
-			if (value.startsWith('>=') || value.startsWith('<=')) val = value.substr(2);
+			if (['>=', '<='].some(item => value.startsWith(item))) val = value.substr(2);
 			else val = value.substr(1);
 
 			if (value.startsWith('>=')) query['data.' + key] = { $gte: +val };
