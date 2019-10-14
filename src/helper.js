@@ -58,16 +58,22 @@ const parse_query = (req_q) => {
 			// Querying a Number
 			let val = 0;
 			if (['>=', '<='].some(item => value.startsWith(item))) {
-				val = value.substr(2);
+			  val = value.substr(2);
 			} else  {
 			  val = value.substr(1);
 			}
 
-			if (value.startsWith('>=')) query['data.' + key] = { $gte: +val };
-			else if (value.startsWith('<=')) query['data.' + key] = { $lte: +val };
-			else if (value.startsWith('>')) query['data.' + key] = { $gt: +val };
-			else if (value.startsWith('<')) query['data.' + key] = { $lt: +val };
-			else if (value.startsWith('=')) query['data.' + key] = +val;
+			if (value.startsWith('>=')) {
+			  query['data.' + key] = { $gte: +val };
+			} else if (value.startsWith('<=')) {
+			  query['data.' + key] = { $lte: +val };
+			} else if (value.startsWith('>')) {
+			  query['data.' + key] = { $gt: +val };
+			} else if (value.startsWith('<')) {
+			  query['data.' + key] = { $lt: +val };	
+			} else if (value.startsWith('=')) {
+			  query['data.' + key] = +val;
+			}
 		} else if (value.startsWith('*') || value.endsWith('*')) {
 			// Need to do regex query
 			let val = value;
