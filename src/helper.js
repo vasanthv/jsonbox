@@ -94,9 +94,13 @@ const parse_query = (req_q) => {
 			}
 			query['data.' + key] = regexp;
 		} else {
-			if (value == 'true') query['data.' + key] = true;
-			else if (value == 'false') query['data.' + key] = false;
-			else query['data.' + key] = new RegExp('^' + value + '$', "i");
+			if (value == 'true') {
+			  query['data.' + key] = true;
+			} else if (value == 'false') {
+			  query['data.' + key] = false;
+			} else {
+			  query['data.' + key] = new RegExp('^' + value + '$', "i");
+			}
 		}
 	});
 
