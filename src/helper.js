@@ -16,7 +16,7 @@ const memorySizeOf = (obj) => {
 					break;
 				case 'object':
 					var objClass = Object.prototype.toString.call(obj).slice(8, -1);
-					if (objClass === 'Object' || objClass === 'Array') {
+					if (['Object', 'Array'].includes(objClass)) {
 						for (var key in obj) {
 							if (!obj.hasOwnProperty(key)) continue;
 							sizeOf(obj[key]);
