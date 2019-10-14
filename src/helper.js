@@ -77,13 +77,21 @@ const parse_query = (req_q) => {
 		} else if (value.startsWith('*') || value.endsWith('*')) {
 			// Need to do regex query
 			let val = value;
-			if (value.startsWith('*')) val = value.substr(1);
-			if (value.endsWith('*')) val = val.substr(0, val.length - 1);
+			if (value.startsWith('*')) {
+			 val = value.substr(1);
+			}
+			if (value.endsWith('*')) {
+			  val = val.substr(0, val.length - 1);
+			}
 
 			let regexp;
-			if (value.startsWith('*') && value.endsWith('*')) regexp = new RegExp(val, "i");
-			else if (value.startsWith('*')) regexp = new RegExp(val + '$', "i");
-			else if (value.endsWith('*')) regexp = new RegExp("^" + val, "i");
+			if (value.startsWith('*') && value.endsWith('*')) {
+		      regexp = new RegExp(val, "i");
+			} else if (value.startsWith('*')) {
+			  regexp = new RegExp(val + '$', "i");	
+			} else if (value.endsWith('*')) {
+			  regexp = new RegExp("^" + val, "i");
+			}
 			query['data.' + key] = regexp;
 		} else {
 			if (value == 'true') query['data.' + key] = true;
