@@ -44,38 +44,7 @@ const xget = async (req, res, next) => {
 			let query = {};
 
 			if (req.query.q) {
-				let q = {};
-				req.query.q.split(',').forEach(i => (q[i.split(':')[0]] = i.split(':')[1]));
-				Object.keys(q).forEach((key) => {
-					const value = q[key];
-					if (value.startsWith('>=') || value.startsWith('<=') || value.startsWith('>') || value.startsWith('<') || value.startsWith('=')) {
-						// Querying a Number
-						let val = 0;
-						if (value.startsWith('>=') || value.startsWith('<=')) val = value.substr(2);
-						else val = value.substr(1);
-
-						if (value.startsWith('>=')) query['data.' + key] = { $gte: +val };
-						else if (value.startsWith('<=')) query['data.' + key] = { $lte: +val };
-						else if (value.startsWith('>')) query['data.' + key] = { $gt: +val };
-						else if (value.startsWith('<')) query['data.' + key] = { $lt: +val };
-						else if (value.startsWith('=')) query['data.' + key] = +val;
-					} else if (value.startsWith('*') || value.endsWith('*')) {
-						// Need to do regex query
-						let val = value;
-						if (value.startsWith('*')) val = value.substr(1);
-						if (value.endsWith('*')) val = val.substr(0, val.length - 1);
-
-						let regexp;
-						if (value.startsWith('*') && value.endsWith('*')) regexp = new RegExp(val, "i");
-						else if (value.startsWith('*')) regexp = new RegExp(val + '$', "i");
-						else if (value.endsWith('*')) regexp = new RegExp("^" + val, "i");
-						query['data.' + key] = regexp;
-					} else {
-						if (value == 'true') query['data.' + key] = true;
-						else if (value == 'false') query['data.' + key] = false;
-						else query['data.' + key] = new RegExp('^' + value + '$', "i");
-					}
-				});
+				query = helper.parse_query(req.query.q);
 			} else if (req.query.query_key && req.query.query_value) {
 				// soon to be DEPRECATED
 				let regexp;
@@ -122,15 +91,24 @@ const xput = async (req, res, next) => {
 };
 const xdelete = async (req, res, next) => {
 	try {
-		const record = await Data.findOne({ _id: req.recordId, _box: req.box }).exec();
-		if (record) {
-			await Data.deleteOne({ _id: req.recordId, _box: req.box });
-			res.json({ message: "Record removed." });
-		} else { res.status(400).json({ message: "Invalid record Id" }) }
+		if (req.recordId) {
+			const record = await Data.findOne({ _id: req.recordId, _box: req.box }).exec();
+			if (record) {
+				await Data.deleteOne({ _id: req.recordId, _box: req.box });
+				res.json({ message: "Record removed." });
+			} else { res.status(400).json({ message: "Invalid record Id" }) }
+		} else if (req.query.q) {
+			const query = helper.parse_query(req.query.q)
+			query['_box'] = req.box;
+			
+			const result = await Data.deleteMany(query);
+			res.json({ message: result.deletedCount + " Records removed." });
+		}
 	} catch (error) {
 		next(error);
 	}
 };
+
 
 module.exports = {
 	xpost,

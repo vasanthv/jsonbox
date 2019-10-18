@@ -7,6 +7,7 @@ const routes = require("./src/routes");
 
 const app = express();
 
+app.enable("trust proxy");
 // set express server middlewares
 app.use(cors());
 app.use(express.static(path.join(__dirname, "www")));

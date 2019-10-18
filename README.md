@@ -113,26 +113,65 @@ curl -X PUT 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d45c5
 ```
 
 ### Delete
-Use HTTP DELETE to delete the record one by one.
+Two approaches are available for delete
+* To delete a specific record use HTTP DELETE with jsonbox.io/${BOX_ID}/${RECORD_ID}
 ```sh
 curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d45c53'
+```
+* To delete based on a filter use HTTP DELETE with jsonbox.io/${BOX_ID}?q={QUERY}
+```sh
+curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
 ```
 
 ### Limitations
 Added some limitations to avoid abuse.
 
-1. The request body cannot be more than 100KB.
+1. The request body cannot be more than 10KB.
 2. Can't push or pull more than 1000 records at a time.
 3. There is no limit on the number of records you store in a box, but please don't abuse the API by storing large datasets of more than **5000** records. This is meant for small projects and that's why it is offered FREE of cost.
 
 ### Wrappers
 *Note: The wrappers listed here are from other sources and it is not been tested on validated by us*
-- **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
 - **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
+- **Java**: 
+  1. [https://search.maven.org/artifact/io.jsonbox/jsonbox](https://search.maven.org/artifact/io.jsonbox/jsonbox) ([Github](https://github.com/leonardiwagner/jsonbox-java))
+  2. [https://github.com/leeu1911/jsonbox-java](https://github.com/leeu1911/jsonbox-java)
 - **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
+- **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
+- **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
+- **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([Github](https://github.com/kuy/jsonbox-rs))
+
+### Running a local version with Docker
+see [docker.md](docker/docker.md)
 
 ### Contribution
 Any feedback, pull request or issue is welcome.
+
+### How to Contribute
+Fork this repo and then clone it:
+```
+git clone https://github.com/<your_name>/jsonbox.git
+```
+
+You need MongoDB to run this application. If you don't already have MongoDB, go to the  [official documentation](https://docs.mongodb.com/manual/installation/) and follow the instructions there. Once you have MongoDB installed, run
+```
+mongo
+```
+to start the MongoDB instance. Then `cd` into directory where the repo was cloned and install the dependencies:
+```
+npm install
+```
+Then just run 
+```
+npm start
+```
+to start the development server on port `3000`. Your jsonbox instance will be running on `http://localhost:3000`.
+
+
+Alternatively, you can also use a Docker to run the application in a container:
+```
+docker run -d -p 27017:27017 -v ~/data:/data/db mongo
+```
 
 ### LICENSE
 MIT
