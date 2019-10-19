@@ -49,19 +49,19 @@ body {
 	margin: auto;
 	border-radius: 10px;
 }
-#test-jsonbox {
+#test-jsonbox, .dashboard-btn {
 	margin-top: 20px;
 	display: flex;
+	min-height: 100px;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	/* height: 400px; */
 }
 #test-jsonbox > .controls-container {
 	display: flex;
 	width: 70%;
 }
-#test-jsonbox select, #test-jsonbox button {
+#test-jsonbox select, #test-jsonbox button, .dashboard-btn button {
 	height: 50px;
 	border-radius: 5px;
 	cursor: pointer;
@@ -74,6 +74,14 @@ body {
 #test-jsonbox button {
 	width: 50px;
 	flex: 1;
+	border: none;
+	background: green;
+	color: white;
+	margin-left: 5px;
+	box-sizing: border-box;
+}
+.dashboard-btn button {
+	flex: 0.4;
 	border: none;
 	background: green;
 	color: white;

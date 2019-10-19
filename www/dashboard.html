@@ -41,25 +41,28 @@
 				</div>
 				jsonbox.io
 			</div>
-			<div id="desc">Free HTTP based JSON Storage</div>
-			<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. Copy the URL below and start
-				sending HTTP requests to play around with your data store. Please read the <a
-					href="https://github.com/vasanthv/jsonbox#readme" target="_blank">docs</a> for more info.</p>
-			<div style="margin: 10px auto;text-align: center;">
-				<a href="https://www.producthunt.com/posts/jsonbox-io?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-jsonbox-io"
-					target="_blank"><img
-						src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=167638&theme=light&period=daily"
-						alt="jsonbox.io - A free HTTP based JSON Storage. | Product Hunt Embed"
-						style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
-			</div>
+			<div id="desc">JSONBOX DASHBOARD</div>
 			<div id="randomwrap">
 				<div id="randombox">
-					<input type="text" class="mono" id="boxurl"
-						value="https://jsonbox.io/91229bf2214443f6b0f3d94549850cce" readonly />
+					<input type="text" class="mono" id="boxurl" readonly />
 					<button id="copyBtn" onclick="copyURL()">Copy</button>
 				</div>
-				<div class="dashboard-btn">
-					<button id="test-box" onclick="goToDashboard()">Go to dashboard</button>
+				<div id="test-jsonbox">
+					<div class="controls-container">
+						<select type="text" class="request-type">
+							<option selected value=0>GET</option>
+							<option value=1>POST</option>
+							<option value=2>PUT</option>
+							<option value=3>DELETE</option>
+						</select>
+						<button id="test-box" onclick="sendRequest()">Go</button>
+					</div>
+					<div class="error"
+						style="display: none; margin: 30px 0 0 0; font-size: 14px; font-family: monospace; background: #f32; width: 60%; padding: 10px 20px; color: white; border-radius: 5px;">
+						Error oh</div>
+					<div id="editor"></div>
+					<div>OUTPUT</div>
+					<div id="output"></div>
 				</div>
 			</div>
 			<div id="nav">
@@ -69,11 +72,17 @@
 			</div>
 		</div>
 	</section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js"></script>
 	<script>
-		const uuid = create_UUID()
-		const goToDashboard = () => {
-			window.location = `/dashboard.html?box=box_${uuid}`
-		}
+		const qparams = new URLSearchParams(window.location.search)
+
+		const base = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+		document.getElementById('boxurl').value = base + "/" + qparams.get('box');
+
+		document.querySelector('#editor, #output').textContent = `{
+    "username": "jsonbox.io",
+    "password": "jsonboxisbae"
+}`
 		const copyURL = () => {
 			/* Get the text field */
 			var copyText = document.getElementById("boxurl");
@@ -87,18 +96,58 @@
 				document.getElementById('copyBtn').textContent = 'Copy';
 			}, 3000);
 		}
+		const METHODS = ["GET", "POST", "PUT", "DELETE"] // A dictionary of supported methods
 
-		function create_UUID() {
-			var dt = new Date().getTime();
-			var uuid = 'xxyxxxxxxyxxxxxyxxxx'.replace(/[xy]/g, function (c) {
-				var r = (dt + Math.random() * 16) % 16 | 0;
-				dt = Math.floor(dt / 16);
-				return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-			});
-			return uuid;
+		// setup ace editor
+		const editor = ace.edit("editor");
+		editor.session.setMode("ace/mode/json"); // editor language
+		editor.setTheme("ace/theme/dawn"); // editor theme
+		editor.session.setTabSize(4);
+		editor.session.setUseWrapMode(true);
+
+		// setup readonly ace editor for output
+		const output = ace.edit("output");
+		output.session.setMode("ace/mode/json"); // editor language
+		output.setTheme("ace/theme/dawn"); // editor theme
+		output.session.setTabSize(4);
+		output.session.setUseWrapMode(true);
+		output.setReadOnly(true);
+		output.setHighlightActiveLine(false);
+		output.setHighlightGutterLine(false);
+		output.renderer.$cursorLayer.element.style.display = 'none';
+
+		const sendRequest = () => {
+			try {
+
+				const payload = editor.getValue()
+				const type = document.querySelector('.request-type').value
+				const box_url = document.querySelector('#boxurl').value
+
+				JSON.parse(payload) // To make sure JSON input is valid else it runs into catch block
+
+				const options = {
+					method: METHODS[type],
+					body: payload,
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+				// because you can't send a body along with a GET request
+				if (type == 0) delete (options.body)
+
+				// Fetch to make API call
+				fetch(box_url, options)
+					.then(async response => response.json())
+					.then(data => {
+						output.setValue(JSON.stringify(data, null, 2), 1)
+						document.querySelector('.error').style.display = "none"
+					})
+			} catch (error) {
+				// displays error
+				document.querySelector('.error').textContent = error.message
+				document.querySelector('.error').style.display = "block"
+			}
 		}
-		var base = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
-		document.getElementById('boxurl').value = base + '/box_' + uuid;
 
 	</script>
 </body>
