@@ -4,8 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Cache-control" content="public" />
-	<meta name="viewport"
-		content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="description" content="Free HTTP based JSON storage" />
 	<meta name="keywords" content="json storage, json database, http" />
@@ -33,10 +32,8 @@
 			<div id="brand">
 				<div id="logo">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-						<path fill="#be8549"
-							d="M 42.00,2.00 C 44.21,2.00 46.00,3.79 46.00,6.00 46.00,6.00 46.00,14.00 46.00,14.00 46.09,14.00 2.00,14.09 2.00,14.00 2.00,14.00 2.00,6.00 2.00,6.00 2.00,3.79 3.79,2.00 6.00,2.00 6.00,2.00 42.00,2.00 42.00,2.00 Z M 46.00,16.09 C 46.00,16.09 46.00,41.00 46.00,41.00 46.00,43.76 43.76,46.00 41.00,46.00 41.00,46.00 7.00,46.00 7.00,46.00 4.24,46.00 2.00,43.76 2.00,41.00 2.00,41.00 2.00,16.00 2.00,16.00 2.09,16.00 46.09,16.18 46.00,16.09 Z" />
-						<path fill="#8b5929"
-							d="M 20.00,24.00 C 18.90,24.00 18.00,24.90 18.00,26.00 18.00,26.00 18.00,26.00 18.00,26.00 18.00,27.10 18.90,28.00 20.00,28.00 20.00,28.00 28.00,28.00 28.00,28.00 29.10,28.00 30.00,27.10 30.00,26.00 30.00,26.00 30.00,26.00 30.00,26.00 30.00,24.90 29.10,24.00 28.00,24.00 28.00,24.00 20.00,24.00 20.00,24.00 Z" />
+						<path fill="#be8549" d="M 42.00,2.00 C 44.21,2.00 46.00,3.79 46.00,6.00 46.00,6.00 46.00,14.00 46.00,14.00 46.09,14.00 2.00,14.09 2.00,14.00 2.00,14.00 2.00,6.00 2.00,6.00 2.00,3.79 3.79,2.00 6.00,2.00 6.00,2.00 42.00,2.00 42.00,2.00 Z M 46.00,16.09 C 46.00,16.09 46.00,41.00 46.00,41.00 46.00,43.76 43.76,46.00 41.00,46.00 41.00,46.00 7.00,46.00 7.00,46.00 4.24,46.00 2.00,43.76 2.00,41.00 2.00,41.00 2.00,16.00 2.00,16.00 2.09,16.00 46.09,16.18 46.00,16.09 Z" />
+						<path fill="#8b5929" d="M 20.00,24.00 C 18.90,24.00 18.00,24.90 18.00,26.00 18.00,26.00 18.00,26.00 18.00,26.00 18.00,27.10 18.90,28.00 20.00,28.00 20.00,28.00 28.00,28.00 28.00,28.00 29.10,28.00 30.00,27.10 30.00,26.00 30.00,26.00 30.00,26.00 30.00,26.00 30.00,24.90 29.10,24.00 28.00,24.00 28.00,24.00 20.00,24.00 20.00,24.00 Z" />
 					</svg>
 				</div>
 				jsonbox.io
@@ -45,60 +42,54 @@
 			<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. Copy the URL below and start
 				sending HTTP requests to play around with your data store. Please read the <a
 					href="https://github.com/vasanthv/jsonbox#readme" target="_blank">docs</a> for more info.</p>
-			<div style="margin: 10px auto;text-align: center;">
-				<a href="https://www.producthunt.com/posts/jsonbox-io?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-jsonbox-io"
-					target="_blank"><img
-						src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=167638&theme=light&period=daily"
-						alt="jsonbox.io - A free HTTP based JSON Storage. | Product Hunt Embed"
-						style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
-			</div>
 			<div id="randomwrap">
 				<div id="randombox">
-					<input type="text" class="mono" id="boxurl"
-						value="https://jsonbox.io/91229bf2214443f6b0f3d94549850cce" readonly />
-					<button id="copyBtn" onclick="copyURL()">Copy</button>
-				</div>
-				<div class="dashboard-btn">
-					<button id="test-box" onclick="goToDashboard()">Go to dashboard</button>
+					<input type="text" class="mono" id="boxurl" value="https://jsonbox.io/91229bf2214443f6b0f3d94549850cce" readonly />
+					<div id="buttonwrap">
+						<button id="dashboardBtn" onclick="goToDashboard()">Go to dashboard</button>
+						<button id="copyBtn" onclick="copyURL()">Copy</button>
+					</div>
 				</div>
 			</div>
 			<div id="nav">
+				Made by <a href="https://twitter.com/vsnthv" target="_blank">Vasanth.V</a>
+				&middot;
 				<a href="https://github.com/vasanthv/jsonbox" target="_blank">View in Github</a>
 				&middot;
-				Made by <a href="https://twitter.com/vsnthv" target="_blank">Vasanth.V</a>
+				<a href="/dashboard.html">Open Dashboard</a>
 			</div>
 		</div>
 	</section>
 	<script>
-		const uuid = create_UUID()
-		const goToDashboard = () => {
-			window.location = `/dashboard.html?box=box_${uuid}`
-		}
-		const copyURL = () => {
-			/* Get the text field */
-			var copyText = document.getElementById("boxurl");
-			/* Select the text field */
-			copyText.select();
-			copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-			/* Copy the text inside the text field */
-			document.execCommand("copy");
-			document.getElementById('copyBtn').textContent = 'Copied';
-			setTimeout(() => {
-				document.getElementById('copyBtn').textContent = 'Copy';
-			}, 3000);
-		}
+	const uuid = create_UUID()
+	const goToDashboard = () => {
+		window.location = `/dashboard.html?box=box_${uuid}`
+	}
+	const copyURL = () => {
+		/* Get the text field */
+		var copyText = document.getElementById("boxurl");
+		/* Select the text field */
+		copyText.select();
+		copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+		/* Copy the text inside the text field */
+		document.execCommand("copy");
+		document.getElementById('copyBtn').textContent = 'Copied';
+		setTimeout(() => {
+			document.getElementById('copyBtn').textContent = 'Copy';
+		}, 3000);
+	}
 
-		function create_UUID() {
-			var dt = new Date().getTime();
-			var uuid = 'xxyxxxxxxyxxxxxyxxxx'.replace(/[xy]/g, function (c) {
-				var r = (dt + Math.random() * 16) % 16 | 0;
-				dt = Math.floor(dt / 16);
-				return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-			});
-			return uuid;
-		}
-		var base = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
-		document.getElementById('boxurl').value = base + '/box_' + uuid;
+	function create_UUID() {
+		var dt = new Date().getTime();
+		var uuid = 'xxyxxxxxxyxxxxxyxxxx'.replace(/[xy]/g, function(c) {
+			var r = (dt + Math.random() * 16) % 16 | 0;
+			dt = Math.floor(dt / 16);
+			return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+		});
+		return uuid;
+	}
+	var base = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+	document.getElementById('boxurl').value = base + '/box_' + uuid;
 
 	</script>
 </body>
