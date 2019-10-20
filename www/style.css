@@ -49,6 +49,61 @@ body {
 	margin: auto;
 	border-radius: 10px;
 }
+#test-jsonbox, .dashboard-btn {
+	margin-top: 20px;
+	display: flex;
+	min-height: 100px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+#test-jsonbox > .controls-container {
+	display: flex;
+	width: 70%;
+}
+#test-jsonbox select, #test-jsonbox button, .dashboard-btn button {
+	height: 50px;
+	border-radius: 5px;
+	cursor: pointer;
+
+}
+#test-jsonbox select {
+	background: white;
+	flex: 4
+}
+#test-jsonbox button {
+	width: 50px;
+	flex: 1;
+	border: none;
+	background: green;
+	color: white;
+	margin-left: 5px;
+	box-sizing: border-box;
+}
+.dashboard-btn button {
+	flex: 0.4;
+	border: none;
+	background: green;
+	color: white;
+	margin-left: 5px;
+	box-sizing: border-box;
+}
+#test-jsonbox #editor {
+	resize: none;
+	width:70%;
+	height: 300px;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 30px 0;
+}
+#test-jsonbox #output {
+	resize: none;
+	width:70%;
+	height: 200px;
+	border-radius: 5px;
+	padding: 5px;
+	margin-top: 30px;
+}
 #randombox input {
 	flex: 1;
 	font-size: 1rem;
