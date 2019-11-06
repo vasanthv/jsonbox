@@ -28,6 +28,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-rate-limit": "^5.0.0",
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.7.8"
   }
 }
