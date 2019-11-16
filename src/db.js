@@ -8,7 +8,7 @@ module.exports = (() => {
 		const mongoose = require("mongoose");
 		const config = require("./config");
 
-		mongoose.connect(config.MONGO_URL, { useCreateIndex: true, useNewUrlParser: true });
+		mongoose.connect(config.MONGO_URL, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
 		const Schema = mongoose.Schema;
 
 		console.log('Data Db initialized');

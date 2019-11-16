@@ -37,19 +37,28 @@ body {
 	font-size: 1.5rem;
 	line-height: 3;
 }
-#randomwrap {
+#randomwrap,
+#dashControlsWrap {
 	margin-top: 3rem;
 }
-#randombox {
+#randombox,
+#dashControls {
 	display: flex;
 	justify-content: space-between;
-	/*flex-direction: column;*/
+	flex-direction: column;
 	width: 100%;
 	max-width: 560px;
 	margin: auto;
 	border-radius: 10px;
 }
-#randombox input {
+#dashControls {
+	max-width: 640px;
+	flex-direction: row;
+}
+
+#randombox input,
+#dashControls input {
+	width: 100%;
 	flex: 1;
 	font-size: 1rem;
 	background: none;
@@ -59,24 +68,70 @@ body {
 	background: #efefef;
 	color: #333333;
 	border-radius: 5px;
-	max-width: 440px;
 	box-sizing: border-box;
 }
-#randombox button {
-	width: 100px;
+#randombox #buttonwrap {
+	display: flex;
+	margin-top: 10px;
+	justify-content: space-between;
+}
+#randombox #buttonwrap button,
+#dashControls button {
+	width: 45%;
 	font-size: 0.9rem;
 	padding: 15px;
 	background: none;
 	border: none;
 	background: #3498db;
+	border: 2px solid #3498db;
 	color: #ffffff;
 	border-radius: 0;
 	border-radius: 5px;
 	cursor: pointer;
 	box-sizing: border-box;
-	/*margin: 10px auto;*/
+}
+#dashboardBtn {
+	background: none !important;
+	color: #3498db !important;
 }
 #nav {
+	font-size: 0.9rem;
 	text-align: center;
 	margin-top: 20vh;
+	margin-bottom: 20px;
+}
+#dashControls select {
+	margin-right: 10px;
+	font-size: 1rem;
+	border: none;
+	outline: 0;
+	padding: 15px 10px;
+	background: #efefef;
+	color: #333333;
+}
+#dashControls #boxurl {
+	flex: 1;
+}
+#dashControls button {
+	width: 60px;
+	margin-left: 10px;
+}
+
+
+#datawrap {
+	display: flex;
+	justify-content: space-between;
+	margin: 5%;
+}
+#inputwrap,
+#outputwrap {
+	flex: 1;
+	margin-top: 30px;
+}
+#test-jsonbox #editor,
+#test-jsonbox #output {
+	resize: none;
+	width: 95%;
+	min-height: 300px;
+	border-radius: 5px;
 }

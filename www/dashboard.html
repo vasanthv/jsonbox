@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Cache-control" content="public" />
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="Free HTTP based JSON storage" />
+	<meta name="keywords" content="json storage, json database, http" />
+	<meta property="og:url" content="https://jsonbox.io" />
+	<meta property="og:image" content="https://jsonbox.io/icon.png" />
+	<meta property="og:title" content="jsonbox.io" />
+	<meta property="og:description" content="Free HTTP based JSON storage" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-19124340-28"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-19124340-28');
+	</script>
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="icon" href="icon.svg" sizes="any" type="image/svg+xml" />
+	<title>jsonbox.io | HTTP based JSON storage</title>
+	<link href="/style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<section id="home">
+		<div class="wrapper">
+			<div id="brand">
+				<div id="logo">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+						<path fill="#be8549" d="M 42.00,2.00 C 44.21,2.00 46.00,3.79 46.00,6.00 46.00,6.00 46.00,14.00 46.00,14.00 46.09,14.00 2.00,14.09 2.00,14.00 2.00,14.00 2.00,6.00 2.00,6.00 2.00,3.79 3.79,2.00 6.00,2.00 6.00,2.00 42.00,2.00 42.00,2.00 Z M 46.00,16.09 C 46.00,16.09 46.00,41.00 46.00,41.00 46.00,43.76 43.76,46.00 41.00,46.00 41.00,46.00 7.00,46.00 7.00,46.00 4.24,46.00 2.00,43.76 2.00,41.00 2.00,41.00 2.00,16.00 2.00,16.00 2.09,16.00 46.09,16.18 46.00,16.09 Z" />
+						<path fill="#8b5929" d="M 20.00,24.00 C 18.90,24.00 18.00,24.90 18.00,26.00 18.00,26.00 18.00,26.00 18.00,26.00 18.00,27.10 18.90,28.00 20.00,28.00 20.00,28.00 28.00,28.00 28.00,28.00 29.10,28.00 30.00,27.10 30.00,26.00 30.00,26.00 30.00,26.00 30.00,26.00 30.00,24.90 29.10,24.00 28.00,24.00 28.00,24.00 20.00,24.00 20.00,24.00 Z" />
+					</svg>
+				</div>
+				jsonbox.io
+			</div>
+			<div id="desc">A dashboard to play around with the data in your box.</div>
+			<div id="dashControlsWrap">
+				<div id="dashControls">
+					<select type="text" class="request-type">
+						<option selected value=0>GET</option>
+						<option value=1>POST</option>
+						<option value=2>PUT</option>
+						<option value=3>DELETE</option>
+					</select>
+					<input type="text" class="mono" id="boxurl" placeholder="Your jsonbox url" />
+					<button id="test-box" onclick="sendRequest()">Go</button>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="test-jsonbox">
+				<div id="datawrap">
+					<div id="inputwrap">
+						<p>Your POST/PUT request body:</p>
+						<div id="editor"></div>
+					</div>
+					<div id="outputwrap">
+						<p>Output:</p>
+						<div id="output"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="nav">
+			<a href="/">Back to Home</a>
+		</div>
+		</div>
+	</section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js"></script>
+	<script>
+	const qparams = new URLSearchParams(window.location.search)
+
+	const base = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+	if (qparams.get('box')) document.getElementById('boxurl').value = base + "/" + qparams.get('box');
+
+	document.querySelector('#editor, #output').textContent = `{
+    "name": "jsonbox.io",
+    "desc": "Lorem ipsum dolor sit amet."
+}`
+	const METHODS = ["GET", "POST", "PUT", "DELETE"] // A dictionary of supported methods
+
+	// setup ace editor
+	const editor = ace.edit("editor");
+	editor.session.setMode("ace/mode/json"); // editor language
+	editor.setTheme("ace/theme/dawn"); // editor theme
+	editor.session.setTabSize(4);
+	editor.session.setUseWrapMode(true);
+
+	// setup readonly ace editor for output
+	const output = ace.edit("output");
+	output.session.setMode("ace/mode/json"); // editor language
+	output.setTheme("ace/theme/dawn"); // editor theme
+	output.session.setTabSize(4);
+	output.session.setUseWrapMode(true);
+	output.setReadOnly(true);
+	output.setHighlightActiveLine(false);
+	output.setHighlightGutterLine(false);
+	output.renderer.$cursorLayer.element.style.display = 'none';
+
+	const sendRequest = () => {
+		try {
+
+			const payload = editor.getValue()
+			const type = document.querySelector('.request-type').value
+			const box_url = document.querySelector('#boxurl').value
+
+			JSON.parse(payload) // To make sure JSON input is valid else it runs into catch block
+
+			const options = {
+				method: METHODS[type],
+				body: payload,
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+			// because you can't send a body along with a GET request
+			if (type == 0) delete(options.body)
+
+			// Fetch to make API call
+			fetch(box_url, options)
+				.then(async response => response.json())
+				.then(data => {
+					output.setValue(JSON.stringify(data, null, 2), 1)
+					document.querySelector('.error').style.display = "none"
+				})
+		} catch (error) {
+			console.log(error);
+			alert(error.message);
+		}
+	}
+
+	</script>
+</body>
+
+</html>

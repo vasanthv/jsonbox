@@ -16,7 +16,7 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-19124340-28"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
+		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
 		gtag('config', 'UA-19124340-28');
 	</script>
@@ -39,24 +39,32 @@
 				jsonbox.io
 			</div>
 			<div id="desc">Free HTTP based JSON Storage</div>
-			<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. Copy the URL below and start sending HTTP requests to play around with your data store. Please read the <a href="https://github.com/vasanthv/jsonbox#readme" target="_blank">docs</a> for more info.</p>
-			<div style="margin: 10px auto;text-align: center;">
-				<a href="https://www.producthunt.com/posts/jsonbox-io?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-jsonbox-io" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=167638&theme=light&period=daily" alt="jsonbox.io - A free HTTP based JSON Storage. | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
-			</div>
+			<p>jsonbox.io lets you store, read & modify JSON data over HTTP APIs for free. Copy the URL below and start
+				sending HTTP requests to play around with your data store. Please read the <a
+					href="https://github.com/vasanthv/jsonbox#readme" target="_blank">docs</a> for more info.</p>
 			<div id="randomwrap">
 				<div id="randombox">
 					<input type="text" class="mono" id="boxurl" value="https://jsonbox.io/91229bf2214443f6b0f3d94549850cce" readonly />
-					<button id="copyBtn" onclick="copyURL()">Copy</button>
+					<div id="buttonwrap">
+						<button id="dashboardBtn" onclick="goToDashboard()">Go to dashboard</button>
+						<button id="copyBtn" onclick="copyURL()">Copy</button>
+					</div>
 				</div>
 			</div>
 			<div id="nav">
+				Made by <a href="https://twitter.com/vsnthv" target="_blank">Vasanth.V</a>
+				&middot;
 				<a href="https://github.com/vasanthv/jsonbox" target="_blank">View in Github</a>
 				&middot;
-				Made by <a href="https://twitter.com/vsnthv" target="_blank">Vasanth.V</a>
+				<a href="/dashboard.html">Open Dashboard</a>
 			</div>
 		</div>
 	</section>
 	<script>
+	const uuid = create_UUID()
+	const goToDashboard = () => {
+		window.location = `/dashboard.html?box=box_${uuid}`
+	}
 	const copyURL = () => {
 		/* Get the text field */
 		var copyText = document.getElementById("boxurl");
@@ -81,7 +89,7 @@
 		return uuid;
 	}
 	var base = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
-	document.getElementById('boxurl').value = base + '/box_' + create_UUID();
+	document.getElementById('boxurl').value = base + '/box_' + uuid;
 
 	</script>
 </body>
