@@ -31,7 +31,7 @@ curl -X POST 'https://jsonbox.io/demobox_6d9e326c183fde7b' \
 ```
 You can also pass in an optional collections parameter in the URL to group records `jsonbox.io/${BOX_ID}/${COLLECTION}`.
 
-_Note: A valid `${BOX_ID}` & `${COLLECTION}` should contain only alphanumeric characters & \_. `${BOX_ID}` should be atleast 20 character long._
+_Note: A valid `${BOX_ID}` & `${COLLECTION}` should contain only alphanumeric characters & \_. `${BOX_ID}` should be at least 20 characters long._
 
 ### Read
 Use HTTP GET to read all the records or a single record. You can also query & sort the records. 
