@@ -5,10 +5,14 @@
 module.exports = (() => {
 	let instance;
 	const createInstance = () => {
-		const mongoose = require("mongoose");
-		const config = require("./config");
+		const mongoose = require('mongoose');
+		const config = require('./config');
 
-		mongoose.connect(config.MONGO_URL, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
+		mongoose.connect(config.MONGO_URL, {
+			useCreateIndex: true,
+			useNewUrlParser: true,
+			useUnifiedTopology: true
+		});
 		const Schema = mongoose.Schema;
 
 		console.log('Data Db initialized');
@@ -23,8 +27,8 @@ module.exports = (() => {
 			data: { type: Object } // Actual data of the record
 		});
 
-		return mongoose.model("Data", dataSchema);
-	}
+		return mongoose.model('Data', dataSchema);
+	};
 	return {
 		getInstance: () => {
 			if (!instance) {

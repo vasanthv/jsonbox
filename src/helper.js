@@ -1,4 +1,4 @@
-const memorySizeOf = (obj) => {
+const memorySizeOf = obj => {
 	// took this function from https://stackoverflow.com/a/50180927/607608
 	var bytes = 0;
 
@@ -26,13 +26,15 @@ const memorySizeOf = (obj) => {
 			}
 		}
 		return bytes;
-	};
+	}
 	return sizeOf(obj);
 };
-const isValidKeys = (obj) => {
+
+const isValidKeys = obj => {
 	const keys = Object.keys(obj);
 	return keys.every(key => /^[A-Za-z]/i.test(key[0]));
-}
+};
+
 const responseBody = (obj, collection) => {
 	let response = {};
 	response['_id'] = obj._id;
@@ -42,15 +44,21 @@ const responseBody = (obj, collection) => {
 	if (obj._updatedOn) response['_updatedOn'] = obj._updatedOn;
 	if (!collection && obj._collection) response['_collection'] = obj._collection;
 	return response;
-}
+};
 
-const parse_query = (req_q) => {
+const parse_query = req_q => {
 	let query = {};
 	let q = {};
 	req_q.split(',').forEach(i => (q[i.split(':')[0]] = i.split(':')[1]));
-	Object.keys(q).forEach((key) => {
+	Object.keys(q).forEach(key => {
 		const value = q[key];
-		if (value.startsWith('>=') || value.startsWith('<=') || value.startsWith('>') || value.startsWith('<') || value.startsWith('=')) {
+		if (
+			value.startsWith('>=') ||
+			value.startsWith('<=') ||
+			value.startsWith('>') ||
+			value.startsWith('<') ||
+			value.startsWith('=')
+		) {
 			// Querying a Number
 			let val = 0;
 			if (value.startsWith('>=') || value.startsWith('<=')) val = value.substr(2);
@@ -68,23 +76,23 @@ const parse_query = (req_q) => {
 			if (value.endsWith('*')) val = val.substr(0, val.length - 1);
 
 			let regexp;
-			if (value.startsWith('*') && value.endsWith('*')) regexp = new RegExp(val, "i");
-			else if (value.startsWith('*')) regexp = new RegExp(val + '$', "i");
-			else if (value.endsWith('*')) regexp = new RegExp("^" + val, "i");
+			if (value.startsWith('*') && value.endsWith('*')) regexp = new RegExp(val, 'i');
+			else if (value.startsWith('*')) regexp = new RegExp(val + '$', 'i');
+			else if (value.endsWith('*')) regexp = new RegExp('^' + val, 'i');
 			query['data.' + key] = regexp;
 		} else {
 			if (value == 'true') query['data.' + key] = true;
 			else if (value == 'false') query['data.' + key] = false;
-			else query['data.' + key] = new RegExp('^' + value + '$', "i");
+			else query['data.' + key] = new RegExp('^' + value + '$', 'i');
 		}
 	});
 
 	return query;
-}
+};
 
 module.exports = {
 	memorySizeOf,
 	isValidKeys,
 	responseBody,
 	parse_query
-}
+};
