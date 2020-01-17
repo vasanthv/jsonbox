@@ -2,20 +2,36 @@
  * A singleton implemetaion for the database
  */
 
+const mongoose = require('mongoose');
+const config = require('./config');
+
 module.exports = (() => {
 	let instance;
-	const createInstance = () => {
-		const mongoose = require('mongoose');
-		const config = require('./config');
+	let db = mongoose.connection;
 
+	const connectToDb = () => {
 		mongoose.connect(config.MONGO_URL, {
 			useCreateIndex: true,
 			useNewUrlParser: true,
-			useUnifiedTopology: true
+			useUnifiedTopology: true,
+			autoReconnect: true
 		});
+	};
+
+	const createInstance = () => {
+		db.on('error', error => {
+			console.error('Error in MongoDb connection: ' + error);
+			mongoose.disconnect(); // Trigger disconnect on any error
+		});
+		db.on('connected', () => console.log('Data Db connected'));
+		db.on('disconnected', () => {
+			console.log('MongoDB disconnected!');
+			connectToDb();
+		});
+
+		connectToDb();
 		const Schema = mongoose.Schema;
 
-		console.log('Data Db initialized');
 		// Data Schema
 		const dataSchema = new Schema({
 			_box: { type: String, index: true, select: false }, // box to which the record belongs
@@ -29,6 +45,7 @@ module.exports = (() => {
 
 		return mongoose.model('Data', dataSchema);
 	};
+
 	return {
 		getInstance: () => {
 			if (!instance) {
