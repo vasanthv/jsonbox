@@ -5,10 +5,11 @@ const model = require('./model');
 const validators = require('./validators');
 
 /* Routes related to managing private boxes */
-router.post('/box/private', model.createPrivateBox);
-router.post('/box/private/apikey', model.generateNewAPIKey);
-router.delete('/box/private/apikey', model.deleteAPIKey);
-router.put('/box/private', model.updatePrivateBox);
+router.post('/box/private', model.privateBoxCreate);
+router.get('/box/private', model.privateBoxGet);
+router.put('/box/private', model.privateBoxUpdate);
+router.post('/box/private/apikey', model.privateBoxKeyNew);
+router.delete('/box/private/apikey/:key', model.privateBoxKeyDelete);
 
 // list of all validators to be in place
 router.use(validators.removeNativeKeys);
