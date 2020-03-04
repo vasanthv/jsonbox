@@ -4,6 +4,12 @@ const rateLimit = require('express-rate-limit');
 const model = require('./model');
 const validators = require('./validators');
 
+/* Routes related to managing private boxes */
+router.post('/box/private', model.createPrivateBox);
+router.post('/box/private/apikey', model.generateNewAPIKey);
+router.delete('/box/private/apikey', model.deleteAPIKey);
+router.put('/box/private', model.updatePrivateBox);
+
 // list of all validators to be in place
 router.use(validators.removeNativeKeys);
 router.use(validators.sizeValidator);
