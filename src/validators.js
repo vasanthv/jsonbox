@@ -1,5 +1,7 @@
 const helper = require('./helper');
 
+const Data = require('./db').getInstance();
+
 // remove the native keys from req.body
 const removeNativeKeys = (req, res, next) => {
 	delete req.body._id;
@@ -78,6 +80,28 @@ const validateParams = (req, res, next) => {
 	} else next();
 };
 
+const authenticateRequest = async (req, res, next) => {
+	try {
+		req['apiKey'] = req.headers['x-api-key'];
+		const firstRecord = await Data.findOne({ _box: req.box })
+			.select('_apiKey')
+			.sort('-_createdOn')
+			.exec();
+		if (firstRecord) {
+			if (firstRecord._apiKey) {
+				if (firstRecord._apiKey == req['apiKey']) next();
+				else throwError('Invalid API_KEY.', 401);
+			} else {
+				// dont pass API_KEY if the first data does not have key
+				req['apiKey'] = null;
+				next();
+			}
+		} else next();
+	} catch (error) {
+		next(error);
+	}
+};
+
 const throwError = (message, code = 400) => {
 	const errorObject = new Error(message);
 	errorObject.statusCode = code;
@@ -89,5 +113,6 @@ module.exports = {
 	sizeValidator,
 	keysValidator,
 	extractParams,
-	validateParams
+	validateParams,
+	authenticateRequest
 };

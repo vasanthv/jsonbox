@@ -1,5 +1,5 @@
 const helper = require('./helper');
-const { Data } = require('./db').getInstance();
+const Data = require('./db').getInstance();
 
 const xpost = async (req, res, next) => {
 	try {
@@ -8,6 +8,7 @@ const xpost = async (req, res, next) => {
 			let record = { _box: req.box };
 
 			if (req.collection) record['_collection'] = req.collection;
+			if (req.apiKey) record['_apiKey'] = req.apiKey;
 			record['_createdOn'] = date;
 			record['_createdBy'] = req.API_SECRET;
 			record['data'] = body;
@@ -104,53 +105,9 @@ const xdelete = async (req, res, next) => {
 	}
 };
 
-const privateBoxCreate = async (req, res, next) => {
-	try {
-		const _box = req.body.box;
-		const username = req.body.username;
-		const password = req.body.password;
-	} catch (error) {
-		next(error);
-	}
-};
-
-const privateBoxGet = async (req, res, next) => {
-	try {
-	} catch (error) {
-		next(error);
-	}
-};
-
-const privateBoxUpdate = async (req, res, next) => {
-	try {
-	} catch (error) {
-		next(error);
-	}
-};
-
-const privateBoxKeyNew = async (req, res, next) => {
-	try {
-	} catch (error) {
-		next(error);
-	}
-};
-
-const privateBoxKeyDelete = async (req, res, next) => {
-	try {
-	} catch (error) {
-		next(error);
-	}
-};
-
 module.exports = {
 	xpost,
 	xget,
 	xput,
-	xdelete,
-
-	privateBoxCreate,
-	privateBoxGet,
-	privateBoxUpdate,
-	privateBoxKeyNew,
-	privateBoxKeyDelete
+	xdelete
 };

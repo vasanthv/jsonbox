@@ -4,19 +4,13 @@ const rateLimit = require('express-rate-limit');
 const model = require('./model');
 const validators = require('./validators');
 
-/* Routes related to managing private boxes */
-router.post('/box/private', model.privateBoxCreate);
-router.get('/box/private', model.privateBoxGet);
-router.put('/box/private', model.privateBoxUpdate);
-router.post('/box/private/apikey', model.privateBoxKeyNew);
-router.delete('/box/private/apikey/:key', model.privateBoxKeyDelete);
-
 // list of all validators to be in place
 router.use(validators.removeNativeKeys);
 router.use(validators.sizeValidator);
 router.use(validators.keysValidator);
 router.use(validators.extractParams);
 router.use(validators.validateParams);
+router.use(validators.authenticateRequest);
 
 // only 100 POST requests are allowed in 60 minutes window
 router.post('/*', rateLimit({ windowMs: 60 * 60 * 1000, max: 100 }), model.xpost);
