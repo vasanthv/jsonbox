@@ -43,7 +43,19 @@ module.exports = (() => {
 			data: { type: Object } // Actual data of the record
 		});
 
-		return mongoose.model('Data', dataSchema);
+		// Credentials Schema
+		const privateBoxSchema = new Schema({
+			_box: { type: String, index: true, unique: false }, // box for which the credentials
+			username: String, // username for the box
+			password: String, // password for the box
+			_createdOn: Date, // date on which the credentials is created.
+			_updatedOn: Date // date on which the credentials is udpated.
+		});
+
+		return {
+			Data: mongoose.model('Data', dataSchema),
+			PrivateBox: mongoose.model('PrivateBox', privateBoxSchema)
+		};
 	};
 
 	return {
