@@ -90,19 +90,21 @@ const validateParams = (req, res, next) => {
 // Check if the Request has a valid API_KEY
 const authenticateRequest = async (req, res, next) => {
 	try {
-		const firstRecord = await Data.findOne({ _box: req.box })
-			.select('_apiKey')
-			.sort('-_createdOn')
-			.exec();
-		if (firstRecord) {
-			if (firstRecord._apiKey) {
-				if (firstRecord._apiKey == req['apiKey']) next();
-				else throwError('Invalid API_KEY.', 401);
-			} else {
-				// dont pass API_KEY if the first data does not have key
-				req['apiKey'] = null;
-				next();
-			}
+		if (req.method === 'POST' || req.method === 'PUT') {
+			const firstRecord = await Data.findOne({ _box: req.box })
+				.select('_apiKey')
+				.sort('-_createdOn')
+				.exec();
+			if (firstRecord) {
+				if (firstRecord._apiKey) {
+					if (firstRecord._apiKey == req['apiKey']) next();
+					else throwError('Invalid API_KEY.', 401);
+				} else {
+					// dont pass API_KEY if the first data does not have key
+					req['apiKey'] = null;
+					next();
+				}
+			} else next();
 		} else next();
 	} catch (error) {
 		next(error);
