@@ -2,7 +2,7 @@ const helper = require('./helper');
 
 const Data = require('./db').getInstance();
 
-// remove the native keys from req.body
+// remove the system keys from req.body
 const removeNativeKeys = (req, res, next) => {
 	delete req.body._id;
 	delete req.body._createdOn;
@@ -46,7 +46,7 @@ const extractParams = (req, res, next) => {
 	const isHexString = /^([0-9A-Fa-f]){24}$/;
 	const isValidBoxID = /^[0-9A-Za-z_]+$/i;
 
-	req['apiKey'] = req.headers['x-api-key'];
+	req['apiKey'] = req.headers['x-api-key'] || req.headers['authorization'].split(' ')[1];
 
 	if (pathParams[0]) {
 		req['box'] = isValidBoxID.test(pathParams[0]) ? pathParams[0] : undefined;
@@ -67,6 +67,8 @@ const extractParams = (req, res, next) => {
 
 // check if all the required parameters is present
 const validateParams = (req, res, next) => {
+	const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 	if (!req.box) {
 		throwError('Invalid or empty box id');
 	} else if (req.box.length < 20 || req.box.length > 64) {
@@ -79,13 +81,13 @@ const validateParams = (req, res, next) => {
 		} else if (Array.isArray(req.body)) {
 			throwError('Bulk update not supported.');
 		} else next();
-	} else if (
-		/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(req['apiKey'])
-	) {
-		throwError('Invalid API-KEY. API-KEY Should be a UUID.');
+	} else if (req.apiKey) {
+		if (uuidRegex.test(req['apiKey'])) next();
+		else throwError('Invalid API-KEY. API-KEY Should be a UUID.');
 	} else next();
 };
 
+// Check if the Request has a valid API_KEY
 const authenticateRequest = async (req, res, next) => {
 	try {
 		const firstRecord = await Data.findOne({ _box: req.box })
@@ -94,11 +96,8 @@ const authenticateRequest = async (req, res, next) => {
 			.exec();
 		if (firstRecord) {
 			if (firstRecord._apiKey) {
-				if (firstRecord._apiKey == req['apiKey']) {
-					next();
-				} else {
-					throwError('Invalid API_KEY.', 401);
-				}
+				if (firstRecord._apiKey == req['apiKey']) next();
+				else throwError('Invalid API_KEY.', 401);
 			} else {
 				// dont pass API_KEY if the first data does not have key
 				req['apiKey'] = null;
