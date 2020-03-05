@@ -46,6 +46,8 @@ const extractParams = (req, res, next) => {
 	const isHexString = /^([0-9A-Fa-f]){24}$/;
 	const isValidBoxID = /^[0-9A-Za-z_]+$/i;
 
+	req['apiKey'] = req.headers['x-api-key'];
+
 	if (pathParams[0]) {
 		req['box'] = isValidBoxID.test(pathParams[0]) ? pathParams[0] : undefined;
 
@@ -77,20 +79,26 @@ const validateParams = (req, res, next) => {
 		} else if (Array.isArray(req.body)) {
 			throwError('Bulk update not supported.');
 		} else next();
+	} else if (
+		/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(req['apiKey'])
+	) {
+		throwError('Invalid API-KEY. API-KEY Should be a UUID.');
 	} else next();
 };
 
 const authenticateRequest = async (req, res, next) => {
 	try {
-		req['apiKey'] = req.headers['x-api-key'];
 		const firstRecord = await Data.findOne({ _box: req.box })
 			.select('_apiKey')
 			.sort('-_createdOn')
 			.exec();
 		if (firstRecord) {
 			if (firstRecord._apiKey) {
-				if (firstRecord._apiKey == req['apiKey']) next();
-				else throwError('Invalid API_KEY.', 401);
+				if (firstRecord._apiKey == req['apiKey']) {
+					next();
+				} else {
+					throwError('Invalid API_KEY.', 401);
+				}
 			} else {
 				// dont pass API_KEY if the first data does not have key
 				req['apiKey'] = null;
