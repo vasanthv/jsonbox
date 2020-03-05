@@ -46,7 +46,10 @@ const extractParams = (req, res, next) => {
 	const isHexString = /^([0-9A-Fa-f]){24}$/;
 	const isValidBoxID = /^[0-9A-Za-z_]+$/i;
 
-	req['apiKey'] = req.headers['x-api-key'] || req.headers['authorization'].split(' ')[1];
+	req['apiKey'] =
+		req.headers['x-api-key'] || req.headers['authorization']
+			? req.headers['authorization'].split(' ')[1]
+			: null;
 
 	if (pathParams[0]) {
 		req['box'] = isValidBoxID.test(pathParams[0]) ? pathParams[0] : undefined;
@@ -90,7 +93,7 @@ const validateParams = (req, res, next) => {
 // Check if the Request has a valid API_KEY
 const authenticateRequest = async (req, res, next) => {
 	try {
-		if (req.method === 'POST' || req.method === 'PUT') {
+		if (req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
 			const firstRecord = await Data.findOne({ _box: req.box })
 				.select('_apiKey')
 				.sort('-_createdOn')

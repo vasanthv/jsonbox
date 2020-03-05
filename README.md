@@ -179,6 +179,23 @@ curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d4
 curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
 ```
 
+### Private Box
+
+Private box is similar to the regular box, but you need an API-KEY to create, update & delete records. _Reading records is open and does not need API-KEY_. Pass the API-KEY using the `X-API-KEY` HTTP header.
+
+```sh
+curl -X POST 'https://jsonbox.io/demobox_6d9e326c183fde7b' \
+    -H 'content-type: application/json' \
+	--H 'x-api-key: 7b3b910b-a7ad-41e8-89d6-5e28e2e34e70' \
+    -d '{"name": "Jon Snow", "age": 25}'
+```
+
+You can also use `Authorization: API-KEY 7b3b910b-a7ad-41e8-89d6-5e28e2e34e70` header.
+
+#### How to create a private box?
+
+You create a private box when you push your first record to a new box with an API-KEY. All the subsequent write requests to that box expect the API-KEY to be passed. _Note: You cannot change a public box to private or vice versa._
+
 ### Limitations
 
 Added some limitations to avoid abuse.
