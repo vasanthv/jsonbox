@@ -47,9 +47,8 @@ const extractParams = (req, res, next) => {
 	const isValidBoxID = /^[0-9A-Za-z_]+$/i;
 
 	req['apiKey'] =
-		req.headers['x-api-key'] || req.headers['authorization']
-			? req.headers['authorization'].split(' ')[1]
-			: null;
+		req.headers['x-api-key'] ||
+		(req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null);
 
 	if (pathParams[0]) {
 		req['box'] = isValidBoxID.test(pathParams[0]) ? pathParams[0] : undefined;
