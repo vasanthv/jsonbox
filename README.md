@@ -2,7 +2,7 @@
 
 A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal for small projects, prototypes or hackathons, where you don't have to spin up your own data store.
 
-With the new private boxes (introduced in v2), you can even power your websites with jsonbox apis.
+With the new private boxes (introduced in v2), you can even power your websites with jsonbox.io.
 
 ## API Documentation
 
