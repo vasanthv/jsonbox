@@ -80,9 +80,9 @@
 			</div>
 		</section>
 		<script>
-			const uuid = create_UUID();
+			const uniqueid = createUniqueID();
 			const goToDashboard = () => {
-				window.location = `/dashboard.html?box=box_${uuid}`;
+				window.location = `/dashboard.html?box=box_${uniqueid}`;
 			};
 			const copyURL = () => {
 				/* Get the text field */
@@ -98,7 +98,7 @@
 				}, 3000);
 			};
 
-			function create_UUID() {
+			function createUniqueID() {
 				var dt = new Date().getTime();
 				var uuid = 'xxyxxxxxxyxxxxxyxxxx'.replace(/[xy]/g, function(c) {
 					var r = (dt + Math.random() * 16) % 16 | 0;
@@ -112,7 +112,7 @@
 				'//' +
 				window.location.hostname +
 				(window.location.port ? ':' + window.location.port : '');
-			document.getElementById('boxurl').value = base + '/box_' + uuid;
+			document.getElementById('boxurl').value = base + '/box_' + uniqueid;
 		</script>
 	</body>
 </html>
