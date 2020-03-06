@@ -2,6 +2,8 @@
 
 A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal for small projects, prototypes or hackathons, where you don't have to spin up your own data store.
 
+With the new private boxes (introduced in v2), you can even power your websites with jsonbox apis.
+
 ## API Documentation
 
 Base URL: `https://jsonbox.io/`
@@ -190,11 +192,11 @@ curl -X POST 'https://jsonbox.io/demobox_6d9e326c183fde7b' \
     -d '{"name": "Jon Snow", "age": 25}'
 ```
 
-You can also use `Authorization: API-KEY 7b3b910b-a7ad-41e8-89d6-5e28e2e34e70` header. _An API-KEY should be a valid GUID._
+You can also use `Authorization: API-KEY 7b3b910b-a7ad-41e8-89d6-5e28e2e34e70` header. _An API-KEY should be a valid GUID/UUID._
 
 #### How to create a private box?
 
-You create a private box when you push your first record to a new box with an API-KEY. All the subsequent write requests to that box expect the API-KEY to be passed. _You cannot change a public box to private or vice versa._
+You create a private box by pushing your first record to a new box with an API-KEY. All the subsequent write requests to that box expect the API-KEY to be passed. _You cannot change a public box to private or vice versa._
 
 ### Limitations
 
