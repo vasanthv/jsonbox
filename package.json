@@ -5,7 +5,8 @@
 	"main": "server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node server.js"
+		"start": "node server.js",
+		"dev-test": "./node_modules/mocha/bin/mocha"
 	},
 	"repository": {
 		"type": "git",
@@ -29,5 +30,9 @@
 		"express": "^4.17.1",
 		"express-rate-limit": "^5.0.0",
 		"mongoose": "^5.7.8"
+	},
+	"devDependencies": {
+		"fetch-lite": "^1.1.0",
+		"mocha": "^7.1.0"
 	}
 }
