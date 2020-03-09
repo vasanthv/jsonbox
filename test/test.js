@@ -1,6 +1,7 @@
 const assert = require('assert');
 const fetch = require('fetch-lite');
 
+const apiBase = 'http://localhost:3000';
 const random = (i, j) => Math.floor(Math.random() * j) + i;
 
 const mockData = [
@@ -32,7 +33,7 @@ describe('jsonbox.io tests', () => {
 	console.log(`Box ID: ${boxId}`);
 	describe('Create records', function() {
 		it('Should be 200, with 3 records', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}`, {
+			const response = await fetch(`${apiBase}/${boxId}`, {
 				method: 'POST',
 				body: JSON.stringify(mockData),
 				headers: { 'Content-Type': 'application/json' }
@@ -44,7 +45,7 @@ describe('jsonbox.io tests', () => {
 	});
 	describe('Read records', () => {
 		it('Should be 200, with 3 records', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}`, {
+			const response = await fetch(`${apiBase}/${boxId}`, {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' }
 			});
@@ -54,7 +55,7 @@ describe('jsonbox.io tests', () => {
 	});
 	describe('Query records', () => {
 		it('Should be 200, with 1 record', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}?q=name:*stark,age:<15`, {
+			const response = await fetch(`${apiBase}/${boxId}?q=name:*stark,age:<15`, {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' }
 			});
@@ -65,7 +66,7 @@ describe('jsonbox.io tests', () => {
 	});
 	describe('Update record', () => {
 		it('Should be 200', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}/${recordId}`, {
+			const response = await fetch(`${apiBase}/${boxId}/${recordId}`, {
 				method: 'PUT',
 				body: JSON.stringify({
 					name: 'Arya Stark',
@@ -81,7 +82,7 @@ describe('jsonbox.io tests', () => {
 	});
 	describe('Query records again to verify update', () => {
 		it('Should be 200, with 0 records', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}?q=name:*stark,age:<15`, {
+			const response = await fetch(`${apiBase}/${boxId}?q=name:*stark,age:<15`, {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' }
 			});
@@ -91,7 +92,7 @@ describe('jsonbox.io tests', () => {
 	});
 	describe('Delete record', () => {
 		it('Should be 200', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}/${recordId}`, {
+			const response = await fetch(`${apiBase}/${boxId}/${recordId}`, {
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }
 			});
@@ -100,7 +101,7 @@ describe('jsonbox.io tests', () => {
 	});
 	describe('Verify delete', () => {
 		it('Should be 200, with 2 records', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}`, {
+			const response = await fetch(`${apiBase}/${boxId}`, {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' }
 			});
@@ -116,7 +117,7 @@ describe('jsonbox.io private box tests', () => {
 	console.log(`Box ID: ${boxId}`);
 	describe('Create records', function() {
 		it('Should be 200, with 3 records', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}`, {
+			const response = await fetch(`${apiBase}/${boxId}`, {
 				method: 'POST',
 				body: JSON.stringify(mockData),
 				headers: { 'Content-Type': 'application/json', 'X-API-KEY': apiKey }
@@ -128,7 +129,7 @@ describe('jsonbox.io private box tests', () => {
 	});
 	describe('Read records', () => {
 		it('Should be 200, with 3 records', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}`, {
+			const response = await fetch(`${apiBase}/${boxId}`, {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' }
 			});
@@ -138,7 +139,7 @@ describe('jsonbox.io private box tests', () => {
 	});
 	describe('Update record. Fail', () => {
 		it('Should be 401', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}/${recordId}`, {
+			const response = await fetch(`${apiBase}/${boxId}/${recordId}`, {
 				method: 'PUT',
 				body: JSON.stringify({
 					name: 'Arya Stark',
@@ -154,7 +155,7 @@ describe('jsonbox.io private box tests', () => {
 	});
 	describe('Delete record. Fail', () => {
 		it('Should be 401', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}/${recordId}`, {
+			const response = await fetch(`${apiBase}/${boxId}/${recordId}`, {
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }
 			});
@@ -163,7 +164,7 @@ describe('jsonbox.io private box tests', () => {
 	});
 	describe('Update record.', () => {
 		it('Should be 200', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}/${recordId}`, {
+			const response = await fetch(`${apiBase}/${boxId}/${recordId}`, {
 				method: 'PUT',
 				body: JSON.stringify({
 					name: 'Arya Stark',
@@ -179,7 +180,7 @@ describe('jsonbox.io private box tests', () => {
 	});
 	describe('Delete record.', () => {
 		it('Should be 200', async () => {
-			const response = await fetch(`http://localhost:3000/${boxId}/${recordId}`, {
+			const response = await fetch(`${apiBase}/${boxId}/${recordId}`, {
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json', Authorization: `API-KEY ${apiKey}` }
 			});
