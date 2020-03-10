@@ -2,8 +2,8 @@ html {
 	font-size: 1.2em;
 }
 body {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu,
-		'Helvetica Neue', sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu,
+		"Helvetica Neue", sans-serif;
 	color: #333333;
 	margin: 0;
 	line-height: 1.6;
@@ -42,6 +42,9 @@ a {
 	flex: 1;
 	font-size: 1.8rem;
 	line-height: 48px;
+}
+#title small {
+	color: #888;
 }
 
 #subtitle {
