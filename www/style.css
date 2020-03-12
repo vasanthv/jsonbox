@@ -1,14 +1,19 @@
+html {
+	font-size: 1.2em;
+}
 body {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu,
+		"Helvetica Neue", sans-serif;
 	color: #333333;
 	margin: 0;
-	line-height: 1.5;
+	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
 }
 .wrapper {
 	width: 100%;
-	max-width: 768px;
+	max-width: 640px;
 	margin: auto;
 	box-sizing: border-box;
 	padding: 0px 10px;
@@ -17,66 +22,66 @@ body {
 	font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 	font-size: 0.9rem;
 }
-#home {
-	min-height: 80vh;
+h1,
+h3 {
+	font-weight: normal;
 }
-#brand {
-	font-size: 3rem;
-	text-align: center;
-	padding-top: 5rem;
+a {
+	color: #333;
 }
-#brand #logo {
-	width: 3rem;
-	height: 3rem;
-	display: inline-block;
-	position: relative;
-	top: 0.6rem;
-}
-#desc {
-	text-align: center;
-	font-size: 1.5rem;
-	line-height: 3;
-}
-#randomwrap {
-	margin-top: 3rem;
-}
-#randombox {
+#title {
+	margin-top: 2rem;
 	display: flex;
-	justify-content: space-between;
-	/*flex-direction: column;*/
-	width: 100%;
-	max-width: 560px;
-	margin: auto;
-	border-radius: 10px;
+	color: #000;
 }
-#randombox input {
+#title #logo {
+	width: 48px;
+	margin-right: 1rem;
+}
+#title span {
 	flex: 1;
+	font-size: 1.8rem;
+	line-height: 48px;
+}
+#title small {
+	color: #888;
+}
+
+#subtitle {
+	font-size: 1.3rem;
+	font-style: italic;
+}
+
+#random {
+	display: flex;
+	background-color: #ecf0f1;
+	border-radius: 0.5rem;
+	padding: 1rem 0.8rem;
+}
+#random input {
+	flex: 1;
+	font-size: 0.8rem;
+	border: none;
+	background: none;
+	outline: none;
+}
+#random button {
 	font-size: 1rem;
-	background: none;
 	border: none;
-	outline: 0;
-	padding: 15px 10px;
-	background: #efefef;
-	color: #333333;
-	border-radius: 5px;
-	max-width: 440px;
-	box-sizing: border-box;
-}
-#randombox button {
-	width: 100px;
-	font-size: 0.9rem;
-	padding: 15px;
 	background: none;
-	border: none;
-	background: #3498db;
-	color: #ffffff;
-	border-radius: 0;
-	border-radius: 5px;
 	cursor: pointer;
-	box-sizing: border-box;
-	/*margin: 10px auto;*/
 }
-#nav {
+
+#githublink {
+	display: block;
+	font-size: 1.2rem;
+	color: #333;
+	text-decoration: none;
+	margin: 2rem 0px;
 	text-align: center;
-	margin-top: 20vh;
+}
+#footer {
+	text-align: center;
+	font-size: 0.75rem;
+	margin: 10vh auto 1rem;
 }
