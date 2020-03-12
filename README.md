@@ -155,6 +155,25 @@ You can combine multiple fields by separating them with commas as shown below:
 https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13,isalive:true
 ```
 
+#### Getting Box metadata
+
+Use `/_meta/BOX_ID` in a `GET` request to get metadata of a box
+```
+https://jsonbox.io/_meta/demobox_6d9e326c183fde7b
+```
+
+The result will have the following format
+```json
+{
+    "count": 3,
+    "createdOn": "2020-03-12T04:45:22.000Z",
+    "updatedOn": "2020-03-12T06:23:26.000Z"
+}
+```
+* count - the record cound in the box
+* createdOn - the oldest record's created date
+* updatedOn - the most recent updated date
+
 ### Update
 
 Use HTTP PUT to update record one by one. Please note that this will not patch the record, it is full update. _A Bulk update is not supported yet._
