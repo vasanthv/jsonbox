@@ -90,9 +90,43 @@ const parse_query = req_q => {
 	return query;
 };
 
+const getRecordsMetadata = (records) => {
+	let maxDateStr = new Date(8640000000000000).toString();
+	let minDate = -8640000000000000
+
+	let first_created = records.map(r => r['_createdOn']).reduce((acc, curr) => {
+		if (Date.parse(curr) < Date.parse(acc)) {
+			return curr
+		} else {
+			return acc
+		}
+	}, maxDateStr)
+
+	let last_updated = records.map(r => r['_updatedOn'] === undefined ? minDate : Date.parse(r['_updatedOn'])).reduce((acc, curr) => {
+		if (curr > acc) {
+			return curr
+		} else {
+			return acc
+		}
+	}, minDate)
+
+	metadata = {
+		"count": records.length,
+		"createdOn": first_created,
+		
+	}
+
+	if (last_updated != minDate) {
+		metadata["updatedOn"] = new Date(last_updated);
+	}
+
+	return metadata;
+}
+
 module.exports = {
 	memorySizeOf,
 	isValidKeys,
 	responseBody,
-	parse_query
+	parse_query,
+	getRecordsMetadata
 };

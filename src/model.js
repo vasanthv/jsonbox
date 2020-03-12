@@ -55,7 +55,12 @@ const xget = async (req, res, next) => {
 				.limit(limit)
 				.sort(sort)
 				.exec();
-			res.json(records.map(r => helper.responseBody(r, req.collection)));
+			
+			if (req.headers['x-get-metadata']) {
+				res.json(helper.getRecordsMetadata(records));
+			} else {
+				res.json(records.map(r => helper.responseBody(r, req.collection)));
+			}
 		}
 	} catch (error) {
 		next(error);
