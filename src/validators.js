@@ -42,7 +42,7 @@ const keysValidator = (req, res, next) => {
 // extract the box, collection, record ids from the path
 const extractParams = (req, res, next) => {
 	const path = req.path;
-	const pathParams = path.split('/').filter(p => !!p);
+	const _pathParams = path.split('/').filter(p => !!p);
 	const isHexString = /^([0-9A-Fa-f]){24}$/;
 	const isValidBoxID = /^[0-9A-Za-z_]+$/i;
 
@@ -50,27 +50,24 @@ const extractParams = (req, res, next) => {
 		req.headers['x-api-key'] ||
 		(req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null);
 
-	if (pathParams[0] == "_meta") {
+	if (_pathParams[0] == "_meta") {
 		req['meta'] = true
-		paramBaseIndex = 1
+		pathParams = _pathParams.slice(1)
 	} else {
-		paramBaseIndex = 0
+		pathParams = _pathParams
 	}
 
-	console.log("paramBaseIndex", paramBaseIndex);
-	console.log("req['meta']", req['meta']);
-	if (pathParams[paramBaseIndex]) {
-		req['box'] = isValidBoxID.test(pathParams[paramBaseIndex]) ? pathParams[paramBaseIndex] : undefined;
-		console.log("box", req['box']);
+	if (pathParams[0]) {
+		req['box'] = isValidBoxID.test(pathParams[0]) ? pathParams[0] : undefined;
 
-		if (pathParams[paramBaseIndex+1]) {
-			const isObjectId = isHexString.test(pathParams[paramBaseIndex+1]);
-			if (isObjectId) req['recordId'] = pathParams[paramBaseIndex+1];
-			else req['collection'] = isValidBoxID.test(pathParams[paramBaseIndex+1]) ? pathParams[paramBaseIndex+1] : undefined;
+		if (pathParams[1]) {
+			const isObjectId = isHexString.test(pathParams[1]);
+			if (isObjectId) req['recordId'] = pathParams[1];
+			else req['collection'] = isValidBoxID.test(pathParams[1]) ? pathParams[1] : undefined;
 		}
 
-		if (!req['recordId'] && pathParams[paramBaseIndex+2]) {
-			req['recordId'] = isHexString.test(pathParams[paramBaseIndex+2]) ? pathParams[paramBaseIndex+2] : undefined;
+		if (!req['recordId'] && pathParams[2]) {
+			req['recordId'] = isHexString.test(pathParams[2]) ? pathParams[2] : undefined;
 		}
 
 		next();
