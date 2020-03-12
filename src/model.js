@@ -67,7 +67,6 @@ const xget = async (req, res, next) => {
 				.limit(limit)
 				.sort(sort)
 				.exec();
-			
 			res.json(records.map(r => helper.responseBody(r, req.collection)));
 		}
 	} catch (error) {

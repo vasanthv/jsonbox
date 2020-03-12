@@ -51,7 +51,6 @@ const extractParams = (req, res, next) => {
 		(req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null);
 
 	if (_pathParams[0] == "_meta") {
-		req['meta'] = true
 		pathParams = _pathParams.slice(1)
 	} else {
 		pathParams = _pathParams
