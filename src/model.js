@@ -28,6 +28,18 @@ const xpost = async (req, res, next) => {
 		next(error);
 	}
 };
+
+const xget_meta = async (req, res, next) => {
+	try {
+		let query = {};
+		query['_box'] = req.box;
+		const records = await Data.find(query).exec();
+		res.json(helper.getRecordsMetadata(records));
+	} catch (error) {
+		next(error);
+	}
+};
+
 const xget = async (req, res, next) => {
 	try {
 		if (req.recordId) {
@@ -56,11 +68,7 @@ const xget = async (req, res, next) => {
 				.sort(sort)
 				.exec();
 			
-			if (req.headers['x-get-metadata']) {
-				res.json(helper.getRecordsMetadata(records));
-			} else {
-				res.json(records.map(r => helper.responseBody(r, req.collection)));
-			}
+			res.json(records.map(r => helper.responseBody(r, req.collection)));
 		}
 	} catch (error) {
 		next(error);
@@ -111,6 +119,7 @@ const xdelete = async (req, res, next) => {
 module.exports = {
 	xpost,
 	xget,
+	xget_meta,
 	xput,
 	xdelete
 };
