@@ -53,6 +53,17 @@ describe('jsonbox.io tests', () => {
 			assert.equal(response.body.length, 3);
 		});
 	});
+	describe('Read _meta', () => {
+		it('Should be 200, with 3 records', async () => {
+			const response = await fetch(`${apiBase}/_meta/${boxId}`, {
+				method: 'GET',
+				headers: { 'Content-Type': 'application/json' }
+			});
+			assert.equal(response.status, 200);
+			assert.equal(response.body["count"], 3);
+			assert.notEqual(response.body["createdOn"], undefined);
+		});
+	});
 	describe('Query records', () => {
 		it('Should be 200, with 1 record', async () => {
 			const response = await fetch(`${apiBase}/${boxId}?q=name:*stark,age:<15`, {
