@@ -33,8 +33,23 @@ const xget_meta = async (req, res, next) => {
 	try {
 		let query = {};
 		query['_box'] = req.box;
-		const records = await Data.find(query).exec();
-		res.json(helper.getRecordsMetadata(records));
+
+		// get first _createdOn
+		let sort = '_createdOn'
+		const record_createdOn = await Data.findOne(query).sort(sort).exec();
+		let createdOn = record_createdOn["_createdOn"]
+
+		// get last _updatedOn
+		sort = '-_updatedOn'
+		const record_updatedOn = await Data.findOne(query).sort(sort).exec();
+		let updatedOn = record_updatedOn["_updatedOn"]
+
+		result = {
+			"createdOn": createdOn,
+			"updatedOn": updatedOn
+		}
+
+		res.json(result);
 	} catch (error) {
 		next(error);
 	}
