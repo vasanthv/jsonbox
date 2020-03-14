@@ -35,7 +35,7 @@ const xmeta = async (req, res, next) => {
 		query['_box'] = req.box;
 
 		// get record count
-		const record_count = await Data.count(query).exec();
+		const record_count = await Data.countDocuments(query).exec();
 
 		// get first _createdOn
 		let sort = '_createdOn'
