@@ -32,7 +32,7 @@ const xpost = async (req, res, next) => {
 const xmeta = async (req, res, next) => {
 	try {
 		let query = {};
-		query['_box'] = req.box;
+		query['_box'] = req.params.boxId;
 
 		// get record count
 		const record_count = await Data.countDocuments(query).exec();
