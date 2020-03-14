@@ -40,12 +40,12 @@ const xmeta = async (req, res, next) => {
 		// get first _createdOn
 		let sort = '_createdOn'
 		const record_createdOn = await Data.findOne(query).sort(sort).exec();
-		let createdOn = record_createdOn["_createdOn"]
+		const createdOn = record_createdOn["_createdOn"]
 
 		// get last _updatedOn
 		sort = '-_updatedOn'
 		const record_updatedOn = await Data.findOne(query).sort(sort).exec();
-		let updatedOn = record_updatedOn["_updatedOn"]
+		const updatedOn = record_updatedOn["_updatedOn"]
 
 		result = {
 			"count": record_count,
