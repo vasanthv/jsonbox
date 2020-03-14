@@ -170,7 +170,7 @@ The result will have the following format
     "updatedOn": "2020-03-12T06:23:26.000Z"
 }
 ```
-* count - the record cound in the box
+* count - the record count in the box
 * createdOn - the oldest record's created date
 * updatedOn - the most recent updated date
 
