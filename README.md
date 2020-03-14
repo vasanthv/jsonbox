@@ -155,25 +155,6 @@ You can combine multiple fields by separating them with commas as shown below:
 https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13,isalive:true
 ```
 
-#### Getting Box metadata
-
-Use `/_meta/BOX_ID` in a `GET` request to get metadata of a box
-```
-https://jsonbox.io/_meta/demobox_6d9e326c183fde7b
-```
-
-The result will have the following format
-```json
-{
-    "count": 3,
-    "createdOn": "2020-03-12T04:45:22.000Z",
-    "updatedOn": "2020-03-12T06:23:26.000Z"
-}
-```
-* count - the record count in the box
-* createdOn - the oldest record's created date
-* updatedOn - the most recent updated date
-
 ### Update
 
 Use HTTP PUT to update record one by one. Please note that this will not patch the record, it is full update. _A Bulk update is not supported yet._
@@ -216,6 +197,25 @@ You can also use `Authorization: API-KEY 7b3b910b-a7ad-41e8-89d6-5e28e2e34e70` h
 #### How to create a private box?
 
 You create a private box by pushing your first record to a new box with an API-KEY. All the subsequent write requests to that box expect the API-KEY to be passed. _You cannot change a public box to private or vice versa._
+
+### Getting Box metadata
+
+Use `/_meta/BOX_ID` in a `GET` request to get metadata of a box
+```
+https://jsonbox.io/_meta/demobox_6d9e326c183fde7b
+```
+
+The result will have the following format
+```json
+{
+    "count": 3,
+    "createdOn": "2020-03-12T04:45:22.000Z",
+    "updatedOn": "2020-03-12T06:23:26.000Z"
+}
+```
+* count - the record count in the box
+* createdOn - the oldest record's created date
+* updatedOn - the most recent updated date
 
 ### Limitations
 
