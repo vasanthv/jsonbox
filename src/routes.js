@@ -14,7 +14,7 @@ router.use(validators.authenticateRequest);
 
 // only 100 POST requests are allowed in 60 minutes window
 router.post('/*', rateLimit({ windowMs: 60 * 60 * 1000, max: 100 }), model.xpost);
-router.get('/_meta/*', model.xget_meta);
+router.get('/_meta/*', model.xmeta);
 router.get('/*', model.xget);
 router.put('/*', model.xput);
 router.delete('/*', model.xdelete);

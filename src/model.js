@@ -29,7 +29,7 @@ const xpost = async (req, res, next) => {
 	}
 };
 
-const xget_meta = async (req, res, next) => {
+const xmeta = async (req, res, next) => {
 	try {
 		let query = {};
 		query['_box'] = req.box;
@@ -137,7 +137,7 @@ const xdelete = async (req, res, next) => {
 module.exports = {
 	xpost,
 	xget,
-	xget_meta,
+	xmeta,
 	xput,
 	xdelete
 };
