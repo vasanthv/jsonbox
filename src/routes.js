@@ -4,6 +4,8 @@ const rateLimit = require('express-rate-limit');
 const model = require('./model');
 const validators = require('./validators');
 
+router.get('/_meta/:boxId', model.xmeta);
+
 // list of all validators to be in place
 router.use(validators.removeNativeKeys);
 router.use(validators.sizeValidator);
@@ -14,7 +16,6 @@ router.use(validators.authenticateRequest);
 
 // only 100 POST requests are allowed in 60 minutes window
 router.post('/*', rateLimit({ windowMs: 60 * 60 * 1000, max: 100 }), model.xpost);
-router.get('/_meta/:boxId', model.xmeta);
 router.get('/*', model.xget);
 router.put('/*', model.xput);
 router.delete('/*', model.xdelete);
