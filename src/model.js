@@ -34,6 +34,9 @@ const xget_meta = async (req, res, next) => {
 		let query = {};
 		query['_box'] = req.box;
 
+		// get record count
+		const record_count = await Data.count(query).exec();
+
 		// get first _createdOn
 		let sort = '_createdOn'
 		const record_createdOn = await Data.findOne(query).sort(sort).exec();
@@ -45,6 +48,7 @@ const xget_meta = async (req, res, next) => {
 		let updatedOn = record_updatedOn["_updatedOn"]
 
 		result = {
+			"count": record_count,
 			"createdOn": createdOn,
 			"updatedOn": updatedOn
 		}
