@@ -208,14 +208,14 @@ https://jsonbox.io/_meta/demobox_6d9e326c183fde7b
 The result will have the following format
 ```json
 {
-    "count": 3,
-    "createdOn": "2020-03-12T04:45:22.000Z",
-    "updatedOn": "2020-03-12T06:23:26.000Z"
+    "_count": 3,
+    "_createdOn": "2020-03-12T04:45:22.000Z",
+    "_updatedOn": "2020-03-12T06:23:26.000Z"
 }
 ```
-* count - the record count in the box
-* createdOn - the oldest record's created date
-* updatedOn - the most recent updated date
+* _count - the record count in the box
+* _createdOn - the oldest record's created date
+* _updatedOn - the most recent updated date
 
 ### Limitations
 
