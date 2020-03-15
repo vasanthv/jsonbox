@@ -34,25 +34,29 @@ const xmeta = async (req, res, next) => {
 		let query = {};
 		query['_box'] = req.params.boxId;
 
-		// get record count
-		const record_count = await Data.countDocuments(query).exec();
-		const result = {
-			"_count": record_count
-		}
+		const promises = [
+			Promise.resolve(Data.countDocuments(query).exec()),
+			Promise.resolve(Data.findOne(query).sort('_createdOn').exec()),
+			Promise.resolve(Data.findOne(query).sort('-_updatedOn').exec())
+		];
 
-		if (record_count > 0) {
-			// get first _createdOn
-			const record_createdOn = await Data.findOne(query).sort('_createdOn').exec();
-			const createdOn = record_createdOn["_createdOn"]
-			if (createdOn) result["_createdOn"] = createdOn
+		const result = {}
+		Promise.all(promises).then(function(values) {
+			result["_count"] = values[0];
 
-			// get last _updatedOn
-			const record_updatedOn = await Data.findOne(query).sort('-_updatedOn').exec();
-			const updatedOn = record_updatedOn["_updatedOn"]
-			if (updatedOn) result["_updatedOn"] = updatedOn
-		}
+			if (values[0] > 0) {
+				// get first _createdOn
+				const createdOn = values[1]["_createdOn"];
+				if (createdOn) result["_createdOn"] = createdOn;
 
-		res.json(result);
+				// get last _updatedOn
+				const updatedOn = values[2]["_updatedOn"];
+				if (updatedOn) result["_updatedOn"] = updatedOn;
+			}
+
+			res.json(result);
+		});
+
 	} catch (error) {
 		next(error);
 	}
