@@ -60,8 +60,8 @@ describe('jsonbox.io tests', () => {
 				headers: { 'Content-Type': 'application/json' }
 			});
 			assert.equal(response.status, 200);
-			assert.equal(response.body["count"], 3);
-			assert.notEqual(response.body["createdOn"], undefined);
+			assert.equal(response.body["_count"], 3);
+			assert.notEqual(response.body["_createdOn"], undefined);
 		});
 	});
 	describe('Query records', () => {
