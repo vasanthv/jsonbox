@@ -4,6 +4,8 @@ const rateLimit = require('express-rate-limit');
 const model = require('./model');
 const validators = require('./validators');
 
+router.get('/_meta/:boxId', model.xmeta);
+
 // list of all validators to be in place
 router.use(validators.removeNativeKeys);
 router.use(validators.sizeValidator);

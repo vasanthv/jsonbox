@@ -28,6 +28,7 @@ const xpost = async (req, res, next) => {
 		next(error);
 	}
 };
+
 const xget = async (req, res, next) => {
 	try {
 		if (req.recordId) {
@@ -103,9 +104,46 @@ const xdelete = async (req, res, next) => {
 	}
 };
 
+const xmeta = async (req, res, next) => {
+	try {
+		let query = {};
+		query['_box'] = req.params.boxId;
+
+		const promises = [
+			Data.countDocuments(query).exec(),
+			Data.findOne(query)
+				.sort('_createdOn')
+				.exec(),
+			Data.findOne(query)
+				.sort('-_updatedOn')
+				.exec()
+		];
+
+		const result = {};
+		Promise.all(promises).then(function(values) {
+			result['_count'] = values[0];
+
+			if (values[0] > 0) {
+				// get first _createdOn
+				const createdOn = values[1]['_createdOn'];
+				if (createdOn) result['_createdOn'] = createdOn;
+
+				// get last _updatedOn
+				const updatedOn = values[2]['_updatedOn'];
+				if (updatedOn) result['_updatedOn'] = updatedOn;
+			}
+
+			res.json(result);
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
 module.exports = {
 	xpost,
 	xget,
 	xput,
-	xdelete
+	xdelete,
+	xmeta
 };
