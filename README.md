@@ -169,13 +169,13 @@ curl -X PUT 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d45c5
 
 Two approaches are available for delete
 
-- To delete a specific record use HTTP DELETE with jsonbox.io/${BOX_ID}/${RECORD_ID}
+-   To delete a specific record use HTTP DELETE with jsonbox.io/${BOX_ID}/${RECORD_ID}
 
 ```sh
 curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d45c53'
 ```
 
-- To delete based on a filter use HTTP DELETE with jsonbox.io/\${BOX_ID}?q={QUERY}
+-   To delete based on a filter use HTTP DELETE with jsonbox.io/\${BOX_ID}?q={QUERY}
 
 ```sh
 curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
@@ -200,22 +200,25 @@ You create a private box by pushing your first record to a new box with an API-K
 
 ### Getting Box metadata
 
-Use `/_meta/BOX_ID` in a `GET` request to get metadata of a box
+Use `/_meta/${BOX_ID}` in a `GET` request to get metadata of a box
+
 ```
 https://jsonbox.io/_meta/demobox_6d9e326c183fde7b
 ```
 
 The result will have the following format
+
 ```json
 {
-    "_count": 3,
-    "_createdOn": "2020-03-12T04:45:22.000Z",
-    "_updatedOn": "2020-03-12T06:23:26.000Z"
+	"_count": 3,
+	"_createdOn": "2020-03-12T04:45:22.000Z",
+	"_updatedOn": "2020-03-12T06:23:26.000Z"
 }
 ```
-* _count - the record count in the box
-* _createdOn - the oldest record's created date
-* _updatedOn - the most recent updated date
+
+-   `_count` - the record count in the box
+-   `_createdOn` - the oldest record's created date
+-   `_updatedOn` - the most recent updated date
 
 ### Limitations
 
@@ -229,14 +232,14 @@ Added some limitations to avoid abuse.
 
 _Note: The wrappers listed here are from other sources and it is not been tested on validated by us_
 
-- **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
-- **Java**:
-  1. [https://search.maven.org/artifact/io.jsonbox/jsonbox](https://search.maven.org/artifact/io.jsonbox/jsonbox) ([Github](https://github.com/leonardiwagner/jsonbox-java))
-  2. [https://github.com/leeu1911/jsonbox-java](https://github.com/leeu1911/jsonbox-java)
-- **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
-- **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
-- **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
-- **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([Github](https://github.com/kuy/jsonbox-rs))
+-   **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
+-   **Java**:
+    1. [https://search.maven.org/artifact/io.jsonbox/jsonbox](https://search.maven.org/artifact/io.jsonbox/jsonbox) ([Github](https://github.com/leonardiwagner/jsonbox-java))
+    2. [https://github.com/leeu1911/jsonbox-java](https://github.com/leeu1911/jsonbox-java)
+-   **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
+-   **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
+-   **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
+-   **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([Github](https://github.com/kuy/jsonbox-rs))
 
 ### How to run locally
 
