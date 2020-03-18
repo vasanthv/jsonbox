@@ -13,8 +13,7 @@ module.exports = (() => {
 		mongoose.connect(config.MONGO_URL, {
 			useCreateIndex: true,
 			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			autoReconnect: true
+			useUnifiedTopology: true
 		});
 	};
 
