@@ -122,7 +122,7 @@ describe('jsonbox.io tests', () => {
 	});
 });
 
-describe('jsonbox.io private box tests', () => {
+describe('jsonbox.io protected box tests', () => {
 	const boxId = `box_4a83b8cf8b0688d90790_${random(1000, 9999)}`;
 	let apiKey = 'f11842b5-0ee9-47e4-aeaf-1ddfce0e6fd9';
 	console.log(`Box ID: ${boxId}`);
