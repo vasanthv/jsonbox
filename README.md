@@ -2,7 +2,7 @@
 
 A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal for small projects, prototypes or hackathons, where you don't have to spin up your own data store.
 
-With the new private boxes (introduced in v2), you can even power your websites with jsonbox.io.
+With the new protected boxes (introduced in v2), you can even power your websites with jsonbox.io.
 
 ## API Documentation
 
@@ -181,9 +181,9 @@ curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d4
 curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
 ```
 
-### Private Box
+### Protected Box
 
-A **private box** is similar to a regular box, but you need an API-KEY to create / update / delete records. _Reading records is open and does not need API-KEY_. Pass the API-KEY using the `X-API-KEY` HTTP header.
+A **protected box** is similar to a regular box, but you need an API-KEY to create / update / delete records. _Reading records is open and does not need API-KEY_. Pass the API-KEY using the `X-API-KEY` HTTP header.
 
 ```sh
 curl -X POST 'https://jsonbox.io/demobox_6d9e326c183fde7b' \
@@ -194,9 +194,9 @@ curl -X POST 'https://jsonbox.io/demobox_6d9e326c183fde7b' \
 
 You can also use `Authorization: API-KEY 7b3b910b-a7ad-41e8-89d6-5e28e2e34e70` header. _An API-KEY should be a valid GUID/UUID._
 
-#### How to create a private box?
+#### How to create a protected box?
 
-You create a private box by pushing your first record to a new box with an API-KEY. All the subsequent write requests to that box expect the API-KEY to be passed. _You cannot change a public box to private or vice versa._
+You create a protected box by pushing your first record to a new box with an API-KEY. All the subsequent write requests to that box expect the API-KEY to be passed. _You cannot change a public box to protected or vice versa._
 
 ### Getting Box metadata
 
