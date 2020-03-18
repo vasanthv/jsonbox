@@ -230,7 +230,7 @@ Added some limitations to avoid abuse.
 
 ### Wrappers
 
-_Note: The wrappers listed here are from other sources and it is not been tested on validated by us_
+_Note: The wrappers listed here are from other sources and have not been tested or validated by us_
 
 -   **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
 -   **Java**:
