@@ -233,14 +233,15 @@ Added some limitations to avoid abuse.
 
 _Note: The wrappers listed here are from other sources and have not been tested or validated by us_
 
--   **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([Github](https://github.com/peteretelej/jsonbox))
+-   **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([GitHub](https://github.com/peteretelej/jsonbox))
 -   **Java**:
-    1. [https://search.maven.org/artifact/io.jsonbox/jsonbox](https://search.maven.org/artifact/io.jsonbox/jsonbox) ([Github](https://github.com/leonardiwagner/jsonbox-java))
+    1. [https://search.maven.org/artifact/io.jsonbox/jsonbox](https://search.maven.org/artifact/io.jsonbox/jsonbox) ([GitHub](https://github.com/leonardiwagner/jsonbox-java))
     2. [https://github.com/leeu1911/jsonbox-java](https://github.com/leeu1911/jsonbox-java)
--   **Node**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([Github](https://github.com/0xflotus/jsonbox-node))
--   **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([Github](https://github.com/harlev/jsonbox-python))
--   **React**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([Github](https://github.com/SaraVieira/react-jsonbox))
--   **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([Github](https://github.com/kuy/jsonbox-rs))
+-   **JavaScript (Node + browser)**: [https://www.npmjs.com/package/jsonbox-client](https://www.npmjs.com/package/jsonbox-client) ([GitHub](https://github.com/jsejcksn/jsonbox-client))
+-   **JavaScript (Node)**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([GitHub](https://github.com/0xflotus/jsonbox-node))
+-   **JavaScript (React)**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([GitHub](https://github.com/SaraVieira/react-jsonbox))
+-   **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([GitHub](https://github.com/harlev/jsonbox-python))
+-   **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([GitHub](https://github.com/kuy/jsonbox-rs))
 
 ### How to run locally
 
