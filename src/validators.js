@@ -18,12 +18,12 @@ const sizeValidator = (req, res, next) => {
 			const memorySize = helper.memorySizeOf(req.body);
 			req['bodySize'] = memorySize;
 
-			// memorySize is size in bytes. 100KB  => 100 * 1024
-			if (memorySize > 100 * 1024) {
-				throwError('JSON body is too large. Should be less than 100KB', 413);
+			// memorySize is size in bytes. 1MB  => 1000 * 1024
+			if (memorySize > 1000 * 1024) {
+				throwError('JSON body is too large. Should be less than 1MB', 413);
 			} else if (Array.isArray(req.body)) {
-				if (req.body.length > 1000) {
-					throwError('Not more than 1000 records for bulk upload.', 413);
+				if (req.body.length > 10000) {
+					throwError('Not more than 10000 records for bulk upload.', 413);
 				} else next();
 			} else next();
 		} else throwError('Empty body.', 400);
