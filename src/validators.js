@@ -19,7 +19,7 @@ const sizeValidator = (req, res, next) => {
 			req['bodySize'] = memorySize;
 
 			// memorySize is size in bytes. 1MB  => 1000 * 1024
-			if (memorySize > 10 * 1024) {
+			if (memorySize > 1000 * 1024) {
 				throwError('JSON body is too large. Should be less than 1MB', 413);
 			} else if (Array.isArray(req.body)) {
 				if (req.body.length > 10000) {
