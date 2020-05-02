@@ -240,6 +240,7 @@ _Note: The wrappers listed here are from other sources and have not been tested 
 -   **JavaScript (Node + browser)**: [https://www.npmjs.com/package/jsonbox-client](https://www.npmjs.com/package/jsonbox-client) ([GitHub](https://github.com/jsejcksn/jsonbox-client))
 -   **JavaScript (Node)**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([GitHub](https://github.com/0xflotus/jsonbox-node))
 -   **JavaScript (React)**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([GitHub](https://github.com/SaraVieira/react-jsonbox))
+-   **PHP**: [https://packagist.org/packages/anper/jsonbox](https://packagist.org/packages/anper/jsonbox) ([GitHub](https://github.com/perevoshchikov/jsonbox))
 -   **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([GitHub](https://github.com/harlev/jsonbox-python))
 -   **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([GitHub](https://github.com/kuy/jsonbox-rs))
 
