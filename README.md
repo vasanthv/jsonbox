@@ -270,7 +270,7 @@ Then just run
 npm start
 ```
 
-to start the development server on port `3000`. Your jsonbox instance will be running on `http://localhost:3000`. Alternatively you can run the application usng docker with `docker-compose up`.
+to start the development server on port `3000`. Your jsonbox instance will be running on `http://localhost:3000`. Alternatively you can run the application using docker with `docker-compose up`.
 
 ### LICENSE
 
