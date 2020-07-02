@@ -118,7 +118,7 @@ All the accepted query params are as follows.
 | Param | Description                                                                                   | Default      |
 | ----- | --------------------------------------------------------------------------------------------- | ------------ |
 | sort  | Used to sort the result set by the specific field. Add a prefix "-" to sort in reverse order. | -\_createdOn |
-| skip  | Used to skip certain no. of fields. Can be used for pagination.                               | 0            |
+| skip  | Used to skip certain no. of records. Can be used for pagination.                              | 0            |
 | limit | Used to limit the results to a specific count. Can be used for pagination. Max. is 1000.      | 20           |
 | q     | Query for filtering values. Check out the format below.                                       |              |
 
