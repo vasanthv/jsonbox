@@ -22,10 +22,10 @@ Response:
 
 ```json
 {
-	"_id": "5d776a25fd6d3d6cb1d45c51",
-	"name": "Jon Snow",
-	"age": 25,
-	"_createdOn": "2019-09-10T09:17:25.607Z"
+  "_id": "5d776a25fd6d3d6cb1d45c51",
+  "name": "Jon Snow",
+  "age": 25,
+  "_createdOn": "2019-09-10T09:17:25.607Z"
 }
 ```
 
@@ -39,18 +39,18 @@ curl -X POST 'https://jsonbox.io/demobox_6d9e326c183fde7b' \
 
 ```json
 [
-	{
-		"_id": "5d776b75fd6d3d6cb1d45c52",
-		"name": "Daenerys Targaryen",
-		"age": 25,
-		"_createdOn": "2019-09-10T09:23:01.105Z"
-	},
-	{
-		"_id": "5d776b75fd6d3d6cb1d45c53",
-		"name": "Arya Stark",
-		"age": 16,
-		"_createdOn": "2019-09-10T09:23:01.105Z"
-	}
+  {
+    "_id": "5d776b75fd6d3d6cb1d45c52",
+    "name": "Daenerys Targaryen",
+    "age": 25,
+    "_createdOn": "2019-09-10T09:23:01.105Z"
+  },
+  {
+    "_id": "5d776b75fd6d3d6cb1d45c53",
+    "name": "Arya Stark",
+    "age": 16,
+    "_createdOn": "2019-09-10T09:23:01.105Z"
+  }
 ]
 ```
 
@@ -68,24 +68,24 @@ curl -X GET 'https://jsonbox.io/demobox_6d9e326c183fde7b'
 
 ```json
 [
-	{
-		"_id": "5d776b75fd6d3d6cb1d45c52",
-		"name": "Daenerys Targaryen",
-		"age": 25,
-		"_createdOn": "2019-09-10T09:23:01.105Z"
-	},
-	{
-		"_id": "5d776b75fd6d3d6cb1d45c53",
-		"name": "Arya Stark",
-		"age": 16,
-		"_createdOn": "2019-09-10T09:23:01.105Z"
-	},
-	{
-		"_id": "5d776a25fd6d3d6cb1d45c51",
-		"name": "Jon Snow",
-		"age": 25,
-		"_createdOn": "2019-09-10T09:17:25.607Z"
-	}
+  {
+    "_id": "5d776b75fd6d3d6cb1d45c52",
+    "name": "Daenerys Targaryen",
+    "age": 25,
+    "_createdOn": "2019-09-10T09:23:01.105Z"
+  },
+  {
+    "_id": "5d776b75fd6d3d6cb1d45c53",
+    "name": "Arya Stark",
+    "age": 16,
+    "_createdOn": "2019-09-10T09:23:01.105Z"
+  },
+  {
+    "_id": "5d776a25fd6d3d6cb1d45c51",
+    "name": "Jon Snow",
+    "age": 25,
+    "_createdOn": "2019-09-10T09:17:25.607Z"
+  }
 ]
 ```
 
@@ -169,13 +169,13 @@ curl -X PUT 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d45c5
 
 Two approaches are available for delete
 
--   To delete a specific record use HTTP DELETE with jsonbox.io/${BOX_ID}/${RECORD_ID}
+- To delete a specific record use HTTP DELETE with jsonbox.io/${BOX_ID}/${RECORD_ID}
 
 ```sh
 curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b/5d776b75fd6d3d6cb1d45c53'
 ```
 
--   To delete based on a filter use HTTP DELETE with jsonbox.io/\${BOX_ID}?q={QUERY}
+- To delete based on a filter use HTTP DELETE with jsonbox.io/\${BOX_ID}?q={QUERY}
 
 ```sh
 curl -X DELETE 'https://jsonbox.io/demobox_6d9e326c183fde7b?q=name:arya%20stark,age:>13'
@@ -188,7 +188,7 @@ A **protected box** is similar to a regular box, but you need an API-KEY to crea
 ```sh
 curl -X POST 'https://jsonbox.io/demobox_6d9e326c183fde7b' \
     -H 'content-type: application/json' \
-	--H 'x-api-key: 7b3b910b-a7ad-41e8-89d6-5e28e2e34e70' \
+  --H 'x-api-key: 7b3b910b-a7ad-41e8-89d6-5e28e2e34e70' \
     -d '{"name": "Jon Snow", "age": 25}'
 ```
 
@@ -210,21 +210,21 @@ The result will have the following format
 
 ```json
 {
-	"_count": 3,
-	"_createdOn": "2020-03-12T04:45:22.000Z",
-	"_updatedOn": "2020-03-12T06:23:26.000Z"
+  "_count": 3,
+  "_createdOn": "2020-03-12T04:45:22.000Z",
+  "_updatedOn": "2020-03-12T06:23:26.000Z"
 }
 ```
 
--   `_count` - the record count in the box
--   `_createdOn` - the oldest record's created date
--   `_updatedOn` - the most recent updated date
+- `_count` - the record count in the box
+- `_createdOn` - the oldest record's created date
+- `_updatedOn` - the most recent updated date
 
 ### Limitations
 
 Added some limitations to avoid abuse.
 
-1. The request body cannot be more than 10KB.
+1. The request body cannot be more than 50KB.
 2. Can't push or pull more than 1000 records at a time.
 3. `POST` requests are rate-limited to 100 per hour per IP address
 4. There is no limit on the number of records you store in a box, but please don't abuse the API by storing large datasets of more than **5000** records. This is meant for small projects and that's why it is offered FREE of cost.
@@ -233,16 +233,16 @@ Added some limitations to avoid abuse.
 
 _Note: The wrappers listed here are from other sources and have not been tested or validated by us_
 
--   **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([GitHub](https://github.com/peteretelej/jsonbox))
--   **Java**:
-    1. [https://search.maven.org/artifact/io.jsonbox/jsonbox](https://search.maven.org/artifact/io.jsonbox/jsonbox) ([GitHub](https://github.com/leonardiwagner/jsonbox-java))
-    2. [https://github.com/leeu1911/jsonbox-java](https://github.com/leeu1911/jsonbox-java)
--   **JavaScript (Node + browser)**: [https://www.npmjs.com/package/jsonbox-client](https://www.npmjs.com/package/jsonbox-client) ([GitHub](https://github.com/jsejcksn/jsonbox-client))
--   **JavaScript (Node)**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([GitHub](https://github.com/0xflotus/jsonbox-node))
--   **JavaScript (React)**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([GitHub](https://github.com/SaraVieira/react-jsonbox))
--   **PHP**: [https://packagist.org/packages/anper/jsonbox](https://packagist.org/packages/anper/jsonbox) ([GitHub](https://github.com/perevoshchikov/jsonbox))
--   **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([GitHub](https://github.com/harlev/jsonbox-python))
--   **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([GitHub](https://github.com/kuy/jsonbox-rs))
+- **Go**: [peteretelej/jsonbox](https://godoc.org/github.com/peteretelej/jsonbox) ([GitHub](https://github.com/peteretelej/jsonbox))
+- **Java**:
+  1. [https://search.maven.org/artifact/io.jsonbox/jsonbox](https://search.maven.org/artifact/io.jsonbox/jsonbox) ([GitHub](https://github.com/leonardiwagner/jsonbox-java))
+  2. [https://github.com/leeu1911/jsonbox-java](https://github.com/leeu1911/jsonbox-java)
+- **JavaScript (Node + browser)**: [https://www.npmjs.com/package/jsonbox-client](https://www.npmjs.com/package/jsonbox-client) ([GitHub](https://github.com/jsejcksn/jsonbox-client))
+- **JavaScript (Node)**: [https://www.npmjs.com/package/jsonbox-node](https://www.npmjs.com/package/jsonbox-node) ([GitHub](https://github.com/0xflotus/jsonbox-node))
+- **JavaScript (React)**: [https://www.npmjs.com/package/react-jsonbox](https://www.npmjs.com/package/react-jsonbox) ([GitHub](https://github.com/SaraVieira/react-jsonbox))
+- **PHP**: [https://packagist.org/packages/anper/jsonbox](https://packagist.org/packages/anper/jsonbox) ([GitHub](https://github.com/perevoshchikov/jsonbox))
+- **Python**: [https://pypi.org/project/jsonbox/](https://pypi.org/project/jsonbox/) ([GitHub](https://github.com/harlev/jsonbox-python))
+- **Rust**: [https://crates.io/crates/jsonbox](https://crates.io/crates/jsonbox) ([GitHub](https://github.com/kuy/jsonbox-rs))
 
 ### How to run locally
 
