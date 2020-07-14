@@ -1,4 +1,5 @@
 const helper = require("./helper");
+const config = require("./config");
 
 const Data = require("./db").getInstance();
 
@@ -19,8 +20,8 @@ const sizeValidator = (req, res, next) => {
       req["bodySize"] = memorySize;
 
       // memorySize is size in bytes. 10KB  => 10 * 1024
-      if (memorySize > 50 * 1024) {
-        throwError("JSON body is too large. Should be less than 50KB", 413);
+      if (memorySize > config.SIZE_LIMIT * 1024) {
+        throwError(`JSON body is too large. Should be less than ${config.SIZE_LIMIT}KB`, 413);
       } else if (Array.isArray(req.body)) {
         if (req.body.length > 1000) {
           throwError("Not more than 1000 records for bulk upload.", 413);
