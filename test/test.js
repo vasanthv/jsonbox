@@ -1,5 +1,6 @@
 const assert = require('assert');
 const fetch = require('fetch-lite');
+const config = require('../src/config');
 
 const apiBase = 'http://localhost:3000';
 const random = (i, j) => Math.floor(Math.random() * j) + i;
@@ -61,6 +62,7 @@ describe('jsonbox.io tests', () => {
 			});
 			assert.equal(response.status, 200);
 			assert.equal(response.body["_count"], 3);
+			assert.equal(response.body["_sizeLimit"], config.SIZE_LIMIT);
 			assert.notEqual(response.body["_createdOn"], undefined);
 		});
 	});

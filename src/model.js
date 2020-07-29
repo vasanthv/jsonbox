@@ -1,4 +1,5 @@
 const helper = require('./helper');
+const config = require('./config');
 const Data = require('./db').getInstance();
 
 const xpost = async (req, res, next) => {
@@ -122,6 +123,7 @@ const xmeta = async (req, res, next) => {
 		const result = {};
 		Promise.all(promises).then(function(values) {
 			result['_count'] = values[0];
+			result['_sizeLimit'] = config.SIZE_LIMIT;
 
 			if (values[0] > 0) {
 				// get first _createdOn
