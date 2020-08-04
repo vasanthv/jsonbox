@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   SIZE_LIMIT: 1000, // mentioned in KB
   PORT: process.env.PORT || 3000,
