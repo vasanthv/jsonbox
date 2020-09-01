@@ -4,6 +4,8 @@ A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP 
 
 With the new protected boxes (introduced in v2), you can even power your websites with jsonbox.io.
 
+> :warning: **30 days of data retention:** Data older than 30 days will be deleted automatically. *Note: Updated data will be deleted 30 days from the updated date.*
+
 ## API Documentation
 
 Base URL: `https://jsonbox.io/`
