@@ -90,9 +90,16 @@ const parse_query = req_q => {
 	return query;
 };
 
+const getExpiryDate = () => {
+	const expiryDate = new Date();
+	expiryDate.setDate(expiryDate.getDate() + 30);
+	return expiryDate;
+}
+
 module.exports = {
 	memorySizeOf,
 	isValidKeys,
 	responseBody,
-	parse_query
+	parse_query,
+	getExpiryDate
 };
