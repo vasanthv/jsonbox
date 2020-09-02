@@ -42,7 +42,10 @@ module.exports = (() => {
 			data: { type: Object } // Actual data of the record
 		});
 
-		dataSchema.index({ "_expiry": 1 }, { expireAfterSeconds: 0 });
+		// Once switched on the index will be be set in mongodb. Might need to remove it in order to switch off the behaviour
+		if(config.ENABLE_DATA_EXPIRY){
+			dataSchema.index({ "_expiry": 1 }, { expireAfterSeconds: 0 });
+		}
     
 		return mongoose.model('Data', dataSchema);
 	};

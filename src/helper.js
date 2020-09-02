@@ -1,3 +1,5 @@
+const config = ("./config");
+
 const memorySizeOf = obj => {
 	// took this function from https://stackoverflow.com/a/50180927/607608
 	var bytes = 0;
@@ -92,7 +94,7 @@ const parse_query = req_q => {
 
 const getExpiryDate = () => {
 	const expiryDate = new Date();
-	expiryDate.setDate(expiryDate.getDate() + 30);
+	expiryDate.setDate(expiryDate.getDate() + config.DATA_EXPIRY_IN_DAYS);
 	return expiryDate;
 }
 
