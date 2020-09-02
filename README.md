@@ -230,7 +230,7 @@ This is FREE service, so we have to have some limitations to avoid abuse and sta
 2. Can't push or pull more than 1000 records at a time.
 3. `POST` requests are rate-limited to 100 per hour per IP address
 4. There is no limit on the number of records you store in a box, but please don't abuse the API by storing large datasets of more than **5000** records. This is meant for small projects and that's why it is offered FREE of cost.
-5. 30 days data retention. Data which got updated (or created) 30 days back will be removed.
+5. 30 days of data retention. 
 6. No backup. If your data is lost due to some technical issues, its lost forever.
 
 ### Wrappers
