@@ -11,6 +11,7 @@ const xpost = async (req, res, next) => {
 			if (req.collection) record['_collection'] = req.collection;
 			if (req.apiKey) record['_apiKey'] = req.apiKey;
 			record['_createdOn'] = date;
+			record['_expiry'] = helper.getExpiryDate();
 			record['data'] = body;
 
 			const newRecord = await new Data(record).save();
@@ -71,6 +72,7 @@ const xput = async (req, res, next) => {
 				{ _id: req.recordId, _box: req.box },
 				{
 					_updatedOn: new Date(),
+					_expiry: helper.getExpiryDate(),
 					data: req.body
 				}
 			);
