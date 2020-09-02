@@ -9,6 +9,7 @@ const removeNativeKeys = (req, res, next) => {
 	delete req.body._createdOn;
 	delete req.body._updatedOn;
 	delete req.body._collection;
+	delete req.body._expiry;
 	next();
 };
 
