@@ -68,14 +68,11 @@ const xput = async (req, res, next) => {
 	try {
 		const record = await Data.findOne({ _id: req.recordId, _box: req.box }).exec();
 		if (record) {
-			await Data.updateOne(
-				{ _id: req.recordId, _box: req.box },
-				{
-					_updatedOn: new Date(),
-					_expiry: helper.getExpiryDate(),
-					data: req.body
-				}
-			);
+			await Data.updateOne({ _id: req.recordId, _box: req.box }, {
+				_updatedOn: new Date(),
+				_expiry: helper.getExpiryDate(),
+				data: req.body
+			});
 			res.json({ message: 'Record updated.' });
 		} else {
 			res.status(400).json({ message: 'Invalid record Id' });
@@ -115,11 +112,11 @@ const xmeta = async (req, res, next) => {
 		const promises = [
 			Data.countDocuments(query).exec(),
 			Data.findOne(query)
-				.sort('_createdOn')
-				.exec(),
+			.sort('_createdOn')
+			.exec(),
 			Data.findOne(query)
-				.sort('-_updatedOn')
-				.exec()
+			.sort('-_updatedOn')
+			.exec()
 		];
 
 		const result = {};

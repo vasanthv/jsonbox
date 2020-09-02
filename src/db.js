@@ -38,15 +38,15 @@ module.exports = (() => {
 			_createdOn: Date, // Date on which its created
 			_apiKey: { type: String, index: true, select: false }, // API KEY used to create / update the record
 			_updatedOn: Date, // Date on which its updated
-			_expiry: { type: Date, select: false}, // date after which this record will be deleted
+			_expiry: { type: Date, select: false }, // date after which this record will be deleted
 			data: { type: Object } // Actual data of the record
 		});
 
 		// Once switched on the index will be be set in mongodb. Might need to remove it in order to switch off the behaviour
-		if(config.ENABLE_DATA_EXPIRY){
+		if (config.ENABLE_DATA_EXPIRY) {
 			dataSchema.index({ "_expiry": 1 }, { expireAfterSeconds: 0 });
 		}
-    
+
 		return mongoose.model('Data', dataSchema);
 	};
 
