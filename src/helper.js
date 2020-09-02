@@ -1,4 +1,4 @@
-const config = ("./config");
+const config = require('./config');
 
 const memorySizeOf = obj => {
 	// took this function from https://stackoverflow.com/a/50180927/607608
