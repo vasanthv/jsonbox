@@ -4,6 +4,8 @@ A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP 
 
 With the new protected boxes (introduced in v2), you can even power your websites with jsonbox.io.
 
+> :warning: **30 days of data retention:** Data older than 30 days will be deleted automatically. *Note: Updated data will be deleted 30 days from the updated date.*
+
 ## API Documentation
 
 Base URL: `https://jsonbox.io/`
@@ -222,12 +224,14 @@ The result will have the following format
 
 ### Limitations
 
-Added some limitations to avoid abuse.
+This is FREE service, so we have to have some limitations to avoid abuse and stay free forever.
 
 1. The request body cannot be more than 50KB.
 2. Can't push or pull more than 1000 records at a time.
 3. `POST` requests are rate-limited to 100 per hour per IP address
 4. There is no limit on the number of records you store in a box, but please don't abuse the API by storing large datasets of more than **5000** records. This is meant for small projects and that's why it is offered FREE of cost.
+5. 30 days of data retention. 
+6. No backup. If your data is lost due to some technical issues, its lost forever.
 
 ### Wrappers
 
