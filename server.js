@@ -4,8 +4,17 @@ const path = require('path');
 const cors = require('cors');
 const config = require('./src/config');
 const routes = require('./src/routes');
+const ipfilter = require('express-ipfilter').IpFilter
+
 
 const app = express();
+
+// Optionally use IP filter
+if (config.FILTER_IP_SET !== undefined 
+	&& Array.isArray(config.FILTER_IP_SET) 
+	&& config.FILTER_IP_SET.length > 0) {
+		app.use(ipfilter(config.FILTER_IP_SET, config.FILTER_OPTIONS));
+}
 
 app.enable('trust proxy');
 // set express server middlewares
