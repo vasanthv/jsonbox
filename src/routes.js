@@ -38,8 +38,9 @@ router.use((err, req, res, next) => {
 	console.error(err);
 	if (err instanceof IpDeniedError) {
 		res.status(403).json({ message: "Forbidden" });
+	} else {
+		res.status(err.statusCode || 500).json({ message: err.message });
 	}
-	res.status(err.statusCode || 500).json({ message: err.message });
 });
 
 module.exports = router;
