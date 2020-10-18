@@ -5,6 +5,16 @@ const model = require("./model");
 const config = require("./config");
 const validators = require("./validators");
 
+const ipfilter = require('express-ipfilter').IpFilter
+const IpDeniedError = require('express-ipfilter').IpDeniedError
+
+// Optionally use IP filter
+if (config.FILTER_IP_SET !== undefined &&
+	Array.isArray(config.FILTER_IP_SET) &&
+	config.FILTER_IP_SET.length > 0) {
+	router.use(ipfilter(config.FILTER_IP_SET, config.FILTER_OPTIONS));
+}
+
 router.get("/_meta/:boxId", model.xmeta);
 
 // list of all validators to be in place
@@ -26,6 +36,9 @@ router.delete("/*", model.xdelete);
  */
 router.use((err, req, res, next) => {
 	console.error(err);
+	if (err instanceof IpDeniedError) {
+		res.status(403).json({ message: "Forbidden" });
+	}
 	res.status(err.statusCode || 500).json({ message: err.message });
 });
 
