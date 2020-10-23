@@ -222,6 +222,30 @@ The result will have the following format
 - `_createdOn` - the oldest record's created date
 - `_updatedOn` - the most recent updated date
 
+### Optional IP Filtering
+When running your own instance localy, you could define IP Address filtering.  
+Set the value of `FILTER_IP_SET` in config.js to the set of allowed IP addresses.
+
+Single IP:
+```
+FILTER_IP_SET: ['192.168.1.123']
+```
+
+Using CIDR subnet masks for ranges:
+```
+FILTER_IP_SET: ['127.0.0.1/24']
+```
+
+Using IP ranges:
+```
+FILTER_IP_SET: [['127.0.0.1', '127.0.0.10']]
+```
+
+Using wildcard ip ranges and nginx forwarding:
+```
+FILTER_IP_SET: ['10.1.*.*', '123.??.34.8*']
+```
+
 ### Limitations
 
 This is FREE service, so we have to have some limitations to avoid abuse and stay free forever.
