@@ -85,3 +85,12 @@ a {
 	font-size: 0.75rem;
 	margin: 10vh auto 1rem;
 }
+
+#redband {
+	background: #e74c3c;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 14px;
+	margin: 10px auto;
+}
