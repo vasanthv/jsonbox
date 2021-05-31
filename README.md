@@ -1,10 +1,10 @@
+> :warning: Jsonbox.io cloud instance was shut down on May 31st, 2021 due to a lack of maintenance time. The Jsonbox.io's source code will continue to be open-sourced in this repository.
+
 # jsonbox.io
 
 A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal for small projects, prototypes or hackathons, where you don't have to spin up your own data store.
 
 With the new protected boxes (introduced in v2), you can even power your websites with jsonbox.io.
-
-> :warning: **30 days of data retention:** Data older than 30 days will be deleted automatically. *Note: Updated data will be deleted 30 days from the updated date.*
 
 ## API Documentation
 
