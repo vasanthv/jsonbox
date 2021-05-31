@@ -5,15 +5,20 @@ const model = require("./model");
 const config = require("./config");
 const validators = require("./validators");
 
-const ipfilter = require('express-ipfilter').IpFilter
-const IpDeniedError = require('express-ipfilter').IpDeniedError
+const ipfilter = require("express-ipfilter").IpFilter;
+const IpDeniedError = require("express-ipfilter").IpDeniedError;
 
 // Optionally use IP filter
-if (config.FILTER_IP_SET !== undefined &&
-	Array.isArray(config.FILTER_IP_SET) &&
-	config.FILTER_IP_SET.length > 0) {
+if (config.FILTER_IP_SET !== undefined && Array.isArray(config.FILTER_IP_SET) && config.FILTER_IP_SET.length > 0) {
 	router.use(ipfilter(config.FILTER_IP_SET, config.FILTER_OPTIONS));
 }
+
+router.use("*", (req, res) =>
+	res.status(410).json({
+		message:
+			"Jsonbox.io cloud instance was discontinued on May 31st, 2021. The Jsonbox.io's source code will continue to be open-sourced in Github.",
+	})
+);
 
 router.get("/_meta/:boxId", model.xmeta);
 
