@@ -1,10 +1,10 @@
+> :warning: Jsonbox.io cloud instance was shut down on May 31st, 2021 due to a lack of maintenance time. The Jsonbox.io's source code will continue to be open-sourced in this repository.
+
 # jsonbox.io
 
 A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal for small projects, prototypes or hackathons, where you don't have to spin up your own data store.
 
 With the new protected boxes (introduced in v2), you can even power your websites with jsonbox.io.
-
-> :warning: **30 days of data retention:** Data older than 30 days will be deleted automatically. *Note: Updated data will be deleted 30 days from the updated date.*
 
 ## API Documentation
 
@@ -221,6 +221,30 @@ The result will have the following format
 - `_count` - the record count in the box
 - `_createdOn` - the oldest record's created date
 - `_updatedOn` - the most recent updated date
+
+### Optional IP Filtering
+When running your own instance localy, you could define IP Address filtering.  
+Set the value of `FILTER_IP_SET` in config.js to the set of allowed IP addresses.
+
+Single IP:
+```
+FILTER_IP_SET: ['192.168.1.123']
+```
+
+Using CIDR subnet masks for ranges:
+```
+FILTER_IP_SET: ['127.0.0.1/24']
+```
+
+Using IP ranges:
+```
+FILTER_IP_SET: [['127.0.0.1', '127.0.0.10']]
+```
+
+Using wildcard ip ranges and nginx forwarding:
+```
+FILTER_IP_SET: ['10.1.*.*', '123.??.34.8*']
+```
 
 ### Limitations
 
