@@ -1,0 +1,14 @@
+spec:
+  name: signalx-db
+  services:
+  - name: signalx-db
+    git:
+      repo_clone_url: https://github.com/aakashlpin/jsonbox
+      branch: master
+    build_command: yarn
+    run_command: yarn start
+    envs:
+    - key: MONGODB_URI
+      value: "MONGODB_URI"
+    - key: PORT
+      value: 8080

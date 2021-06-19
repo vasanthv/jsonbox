@@ -1,5 +1,3 @@
-> :warning: Jsonbox.io cloud instance was shut down on May 31st, 2021 due to a lack of maintenance time. The Jsonbox.io's source code will continue to be open-sourced in this repository.
-
 # jsonbox.io
 
 A HTTP based JSON storage. It lets you store, read & modify JSON data over HTTP APIs for FREE. Ideal for small projects, prototypes or hackathons, where you don't have to spin up your own data store.
@@ -223,7 +221,7 @@ The result will have the following format
 - `_updatedOn` - the most recent updated date
 
 ### Optional IP Filtering
-When running your own instance localy, you could define IP Address filtering.  
+When running your own instance localy, you could define IP Address filtering.
 Set the value of `FILTER_IP_SET` in config.js to the set of allowed IP addresses.
 
 Single IP:
@@ -254,7 +252,7 @@ This is FREE service, so we have to have some limitations to avoid abuse and sta
 2. Can't push or pull more than 1000 records at a time.
 3. `POST` requests are rate-limited to 100 per hour per IP address
 4. There is no limit on the number of records you store in a box, but please don't abuse the API by storing large datasets of more than **5000** records. This is meant for small projects and that's why it is offered FREE of cost.
-5. 30 days of data retention. 
+5. 30 days of data retention.
 6. No backup. If your data is lost due to some technical issues, its lost forever.
 
 ### Wrappers
