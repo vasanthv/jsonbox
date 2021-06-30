@@ -17,6 +17,10 @@ if (config.FILTER_IP_SET !== undefined &&
 
 router.get("/_meta/:boxId", model.xmeta);
 
+if (config.WHITELISTED_BOXID_CHECKER_URI) {
+	router.use(validators.checkBoxIdWhitelisted);
+}
+
 // list of all validators to be in place
 router.use(validators.removeNativeKeys);
 router.use(validators.sizeValidator);

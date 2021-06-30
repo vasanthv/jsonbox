@@ -1,5 +1,6 @@
 const helper = require("./helper");
 const config = require("./config");
+const { default: axios } = require("axios");
 
 const Data = require("./db").getInstance();
 
@@ -112,6 +113,27 @@ const authenticateRequest = async (req, res, next) => {
 	}
 };
 
+// Check if the BoxId is allowed to be saved in our db
+const checkBoxIdWhitelisted = async (req, res, next) => {
+	try {
+		if (req.method === "POST" || req.method === "PUT" || req.method === "DELETE") {
+			try {
+				const { data } = await axios.post(config.WHITELISTED_BOXID_CHECKER_URI, {
+					box: req.box.includes('_') ? req.box.split('_')[1] : req.box
+				});
+
+				if (data.allowed) next();
+				else throwError('Disallowed BOX_ID.', 401);
+			} catch(e) {
+				console.log(e);
+				throwError('[Axios error] Disallowed BOX_ID.', 401);
+			}
+		} else next();
+	} catch (error) {
+		next(error);
+	}
+};
+
 const throwError = (message, code = 400) => {
 	const errorObject = new Error(message);
 	errorObject.statusCode = code;
@@ -125,4 +147,5 @@ module.exports = {
 	extractParams,
 	validateParams,
 	authenticateRequest,
+	checkBoxIdWhitelisted,
 };

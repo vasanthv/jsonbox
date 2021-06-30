@@ -9,4 +9,5 @@ module.exports = {
 	DATA_EXPIRY_IN_DAYS: 30,
 	FILTER_IP_SET: [], // example ['172.29.0.1']
 	FILTER_OPTIONS: { mode: "allow" },
+	WHITELISTED_BOXID_CHECKER_URI: process.env.WHITELISTED_BOXID_CHECKER_URI
 };
