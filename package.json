@@ -34,6 +34,6 @@
 	},
 	"devDependencies": {
 		"fetch-lite": "^1.1.0",
-		"mocha": "^7.1.1"
+		"mocha": "^9.1.3"
 	}
 }
