@@ -25,9 +25,9 @@
 	},
 	"homepage": "https://github.com/vasanthv/jsonbox#readme",
 	"dependencies": {
-		"body-parser": "^1.19.0",
+		"body-parser": "^1.20.1",
 		"cors": "^2.8.5",
-		"express": "^4.17.1",
+		"express": "^4.18.2",
 		"express-ipfilter": "^1.1.2",
 		"express-rate-limit": "^5.1.1",
 		"mongoose": "^5.12.12"
